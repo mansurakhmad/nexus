@@ -1,27 +1,34 @@
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue';
+import { watch } from 'vue';
 
 import Dialog from 'primevue/dialog';
 import { useRouter, useRoute } from 'vue-router';
 
 import { useConfirmEnrollment } from '@/features/confirm';
-import { useLogin } from '@/features/login';
-import { APP_ROUTERS_NAMES, APP_ROUTES, EMAIL_REGEX, KEEP_USER_LOGIN } from '@/shared/config';
+import { useLoginForm, useLoginQuery } from '@/features/login';
+import { APP_ROUTERS_NAMES, APP_ROUTES, KEEP_USER_LOGIN } from '@/shared/config';
 import { BaseButton, BaseCheckbox, BaseInput, PasswordField, useBaseAlertStore } from '@/shared/ui';
-import { testPattern } from '@/shared/utils';
 
 const router = useRouter();
 const route = useRoute();
-const email = ref('');
-const password = ref('');
-const emailIsValid = ref(true);
-const rememberMeIsActive = ref(false);
-const { triggerAlert, closeAlert } = useBaseAlertStore();
-const { login, isPending } = useLogin();
+const { triggerAlert } = useBaseAlertStore();
+const { login, isPending } = useLoginQuery();
+
+const {
+  email,
+  emailAttr,
+  emailError,
+  password,
+  passwordAttr,
+  passwordError,
+  rememberMe,
+  handleSubmit,
+  handleFormValid,
+} = useLoginForm();
 
 useConfirmEnrollment(email);
 
-watch(rememberMeIsActive, newValue => {
+watch(rememberMe, newValue => {
   localStorage.setItem(KEEP_USER_LOGIN, JSON.stringify(newValue));
 });
 
@@ -44,25 +51,10 @@ watch(
   { immediate: true }
 );
 
-const isSubmitDisable = computed(() => !email.value || !password.value);
-
-const onSubmit = () => {
-  closeAlert();
-
-  if (!testPattern(email.value, EMAIL_REGEX)) {
-    triggerAlert({
-      title: 'Invalid Email',
-      message: 'Invalid format',
-      theme: 'error',
-      closeTime: 5000,
-    });
-
-    emailIsValid.value = false;
-    return;
-  }
-
-  login({ email: email.value, password: password.value });
-};
+const onSubmit = handleSubmit(
+  values => login({ email: values.email || '', password: values.password || '' }),
+  errors => console.log('onSubmit errors:', errors)
+);
 </script>
 
 <template>
@@ -72,13 +64,25 @@ const onSubmit = () => {
         <BaseInput
           labelValue="Email"
           v-model="email"
-          :isValid="emailIsValid"
-          @blur="emailIsValid = true"
+          v-bind="emailAttr"
+          :isValid="!emailError"
+          :errorMessage="emailError"
         />
-        <PasswordField labelValue="Password" v-model="password" :isValid="true" />
+        <PasswordField
+          labelValue="Password"
+          v-model="password"
+          v-bind="passwordAttr"
+          :isValid="!passwordError"
+          :errorMessage="passwordError"
+        />
       </div>
-      <BaseCheckbox :label="'Remember Me'" inputIdValue="rememberMe" v-model="rememberMeIsActive" />
-      <BaseButton value="Login" theme="accent" type="submit" :disabled="isSubmitDisable" />
+      <BaseCheckbox
+        :label="'Remember Me'"
+        inputIdValue="rememberMe"
+        v-model="rememberMe"
+        class="rememberMe"
+      />
+      <BaseButton value="Login" theme="accent" type="submit" :disabled="!handleFormValid()" />
       <BaseButton
         value="Create Account"
         theme="secondary"
@@ -116,6 +120,10 @@ const onSubmit = () => {
     flex-direction: column;
     gap: 44px;
     margin-bottom: 12px;
+  }
+
+  .rememberMe {
+    margin-top: 12px;
   }
 }
 

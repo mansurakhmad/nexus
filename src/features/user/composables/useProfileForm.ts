@@ -43,8 +43,6 @@ export const useProfileForm = () => {
 
   const currentStep = ref(1);
 
-  const validationSchema = toTypedSchema(zodSchema);
-
   const checkCurrentStepErrors = () => {
     const i = currentStep.value - 1;
     steps.value[i]!.hasErrors = steps.value[i]!.fields.some(field => errors.value[field]);
@@ -58,7 +56,7 @@ export const useProfileForm = () => {
   };
 
   const { handleSubmit, values, errors, resetForm } = useForm({
-    validationSchema,
+    validationSchema: toTypedSchema(zodSchema),
     validateOnMount: false,
   });
 

@@ -4,7 +4,7 @@ import { confirmAfterEnrollment } from '../logic';
 
 import { useBaseAlertStore } from '@/shared/ui';
 
-export const useConfirmEnrollment = (email: Ref<string>) => {
+export const useConfirmEnrollment = (email: Ref<string | undefined>) => {
   const { triggerAlert } = useBaseAlertStore();
 
   onMounted(async () => {

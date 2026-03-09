@@ -3,17 +3,17 @@ import { useRouter } from 'vue-router';
 
 import { sendLoginRequest } from '../logic/sendLoginRequest';
 
-import type { Login } from '../models';
+import type { LoginApi } from '../models';
 
 import { APP_ROUTES } from '@/shared/config';
 import { useBaseAlertStore } from '@/shared/ui';
 
-export const useLogin = () => {
+export const useLoginQuery = () => {
   const router = useRouter();
   const { triggerAlert } = useBaseAlertStore();
   const { mutate, data, error, isPending } = useMutation({
     meta: { showLoader: true },
-    mutationFn: (bodyData: Login.BodyData) => sendLoginRequest(bodyData),
+    mutationFn: (bodyData: LoginApi.BodyData) => sendLoginRequest(bodyData),
     onSuccess: () => router.replace(APP_ROUTES.MAIN),
     onError: error => {
       triggerAlert({
