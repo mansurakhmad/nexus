@@ -19,9 +19,6 @@ const { labelValue, isValid, errorMessage } = defineProps<PasswordFieldTypes.Pro
       toggleMask
     />
     <label>{{ labelValue }}</label>
-    <template v-if="!isValid && errorMessage">
-      <div class="errorMessage">{{ errorMessage }}</div>
-    </template>
     <ErrorMessage v-if="!isValid && errorMessage" :message="errorMessage" />
   </FloatLabel>
 </template>

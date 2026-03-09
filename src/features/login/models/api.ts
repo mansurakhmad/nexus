@@ -1,4 +1,4 @@
-export namespace Login {
+export namespace LoginApi {
   export interface BodyData {
     email: string;
     password: string;
