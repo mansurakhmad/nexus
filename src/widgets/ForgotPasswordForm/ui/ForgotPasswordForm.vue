@@ -1,39 +1,33 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue';
-
 import { useRouter } from 'vue-router';
 
-import { useForgotPassword } from '@/features/forgotPassword';
-import { EMAIL_REGEX } from '@/shared/config';
+import { useForgotPasswordMutation, useForgotPasswordForm } from '@/features/forgotPassword';
 import { BaseButton, BaseInput } from '@/shared/ui';
-import { testPattern } from '@/shared/utils';
 
-const email = ref('');
+const { email, emailAttr, emailError, handleSubmit, resetForm, handleFormValid } =
+  useForgotPasswordForm();
+
 const router = useRouter();
-const { mutate } = useForgotPassword(email);
+const { mutate } = useForgotPasswordMutation(resetForm);
 
-const emailIsValid = computed(() => {
-  if (!email.value) return true;
-
-  return testPattern(email.value, EMAIL_REGEX);
-});
-
-const submitIsDisable = computed(() => !email.value || !emailIsValid.value);
-
-const submit = () => mutate();
+const onSubmit = handleSubmit(
+  values => mutate(values.email),
+  errors => console.log('onSubmit errors:', errors)
+);
 </script>
 
 <template>
   <Transition name="slide-up" appear>
-    <form class="forgotPasswordForm" @submit.prevent="submit">
+    <form class="forgotPasswordForm" @submit.prevent="onSubmit">
       <BaseInput
         labelValue="Email"
         v-model="email"
-        :isValid="emailIsValid"
-        errorMessage="Invalid format"
+        v-bind="emailAttr"
+        :isValid="!emailError"
+        :errorMessage="emailError"
       />
       <div class="buttons">
-        <BaseButton value="Submit" theme="accent" type="submit" :disabled="submitIsDisable" />
+        <BaseButton value="Submit" theme="accent" type="submit" :disabled="!handleFormValid()" />
         <BaseButton value="Back" theme="secondary" @click="router.back()" />
       </div>
     </form>

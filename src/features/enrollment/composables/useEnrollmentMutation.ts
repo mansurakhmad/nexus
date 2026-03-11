@@ -1,5 +1,3 @@
-import type { Ref } from 'vue';
-
 import { useMutation } from '@tanstack/vue-query';
 import { useRouter } from 'vue-router';
 
@@ -10,19 +8,9 @@ import type { Enrollment } from '../models';
 import { APP_ROUTERS_NAMES, APP_ROUTES } from '@/shared/config';
 import { useBaseAlertStore } from '@/shared/ui';
 
-export const useEnrollment = (
-  emailRef: Ref<string>,
-  passwordRef: Ref<string>,
-  confirmPasswordRef: Ref<string>
-) => {
+export const useEnrollmentMutation = (resetForm: () => void) => {
   const router = useRouter();
   const { triggerAlert, closeAlert } = useBaseAlertStore();
-
-  const clearFormFields = () => {
-    emailRef.value = '';
-    passwordRef.value = '';
-    confirmPasswordRef.value = '';
-  };
 
   const { mutate, isPending, data, error, isSuccess } = useMutation({
     meta: { showLoader: true },
@@ -43,8 +31,6 @@ export const useEnrollment = (
           });
         },
       });
-
-      clearFormFields();
     },
     onError: error => {
       triggerAlert({
@@ -53,9 +39,8 @@ export const useEnrollment = (
         theme: 'error',
         closeTime: 5000,
       });
-
-      clearFormFields();
     },
+    onSettled: () => resetForm(),
   });
 
   return {

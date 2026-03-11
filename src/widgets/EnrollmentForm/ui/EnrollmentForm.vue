@@ -1,37 +1,32 @@
 <script lang="ts" setup>
-import { computed, ref } from 'vue';
-
-import { useEnrollment } from '@/features/enrollment';
-import { EMAIL_REGEX, PASSWORD_REGEX } from '@/shared/config';
+import { useEnrollmentMutation, useEnrollmentForm } from '@/features/enrollment';
 import { BaseButton, BaseInput, PasswordField } from '@/shared/ui';
-import { testPattern } from '@/shared/utils';
 
-const email = ref('');
-const password = ref('');
-const confirmPassword = ref('');
-const { enroll, closeAlert } = useEnrollment(email, password, confirmPassword);
+const {
+  email,
+  emailAttr,
+  emailError,
+  password,
+  passwordAttr,
+  passwordError,
+  confirmPassword,
+  confirmPasswordAttr,
+  confirmPasswordError,
+  handleFormValid,
+  resetForm,
+  handleSubmit,
+} = useEnrollmentForm();
 
-const passwordValuesAreValid = computed(() => {
-  if (!confirmPassword.value) return true;
+const { enroll, closeAlert } = useEnrollmentMutation(resetForm);
 
-  return password.value === confirmPassword.value && testPattern(password.value, PASSWORD_REGEX);
-});
+const submitForm = handleSubmit(
+  ({ email, password }) => {
+    closeAlert();
 
-const emailIsValid = computed(() => {
-  if (!email.value) return true;
-
-  return testPattern(email.value, EMAIL_REGEX);
-});
-
-const submitButtonDisabled = computed(() => {
-  return !email.value || !password.value || !confirmPassword.value || !passwordValuesAreValid.value;
-});
-
-const submitForm = () => {
-  closeAlert();
-
-  enroll({ email: email.value, password: password.value });
-};
+    enroll({ email, password });
+  },
+  errors => console.log('onSubmit errors:', errors)
+);
 </script>
 
 <template>
@@ -40,15 +35,22 @@ const submitForm = () => {
       <BaseInput
         labelValue="Email"
         v-model="email"
-        :isValid="emailIsValid"
+        v-bind="emailAttr"
+        :isValid="!emailError"
         errorMessage="Invalid email"
       />
-      <PasswordField labelValue="Password" v-model="password" :isValid="passwordValuesAreValid" />
+      <PasswordField
+        labelValue="Password"
+        v-model="password"
+        v-bind="passwordAttr"
+        :isValid="!passwordError"
+      />
       <PasswordField
         labelValue="Confirm password"
-        errorMessage="Invalid password. Requirements: A-Z, 0-9, and !#%$"
         v-model="confirmPassword"
-        :isValid="passwordValuesAreValid"
+        v-bind="confirmPasswordAttr"
+        :isValid="!confirmPasswordError"
+        :errorMessage="confirmPasswordError"
       />
       <div class="buttons">
         <BaseButton
@@ -56,7 +58,7 @@ const submitForm = () => {
           class="button"
           type="submit"
           theme="accent"
-          :disabled="submitButtonDisabled"
+          :disabled="!handleFormValid()"
         />
         <BaseButton value="Back" class="button" theme="secondary" @onClick="$router.back()" />
       </div>

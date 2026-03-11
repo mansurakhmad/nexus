@@ -1,5 +1,3 @@
-import type { Ref } from 'vue';
-
 import { useMutation } from '@tanstack/vue-query';
 import { useRouter } from 'vue-router';
 
@@ -8,21 +6,19 @@ import { sendForgotPasswordRequest } from '../logic';
 import { APP_ROUTES } from '@/shared/config';
 import { useBaseAlertStore } from '@/shared/ui';
 
-export const useForgotPassword = (emailRef: Ref<string>) => {
+export const useForgotPasswordMutation = (resetForm: () => void) => {
   const router = useRouter();
   const { triggerAlert } = useBaseAlertStore();
   const { mutate, isPending } = useMutation({
     meta: { showLoader: true },
-    mutationFn: () => sendForgotPasswordRequest(emailRef.value),
-    onSuccess: () => {
+    mutationFn: (email: string) => sendForgotPasswordRequest(email),
+    onSuccess: (_, email) => {
       triggerAlert({
-        title: `Success! Check ${emailRef.value} address`,
+        title: `Success! Check your ${email} address`,
         message: `If you don't see the email within a few minutes, please check your spam folder.`,
         closeTime: 5000,
         onClose: () => router.replace(APP_ROUTES.lOGIN),
       });
-
-      emailRef.value = '';
     },
     onError: error => {
       triggerAlert({
@@ -31,9 +27,8 @@ export const useForgotPassword = (emailRef: Ref<string>) => {
         closeTime: 4000,
         theme: 'error',
       });
-
-      emailRef.value = '';
     },
+    onSettled: () => resetForm(),
   });
 
   return { mutate, isPending };
