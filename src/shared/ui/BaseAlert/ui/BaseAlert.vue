@@ -36,7 +36,7 @@ const { alertData } = storeToRefs(alertStore);
   color: var(--white-100);
 
   &.defaultTheme {
-    background-color: var(--wine-150);
+    background-color: var(--cyan-100);
   }
 
   &.errorTheme {
