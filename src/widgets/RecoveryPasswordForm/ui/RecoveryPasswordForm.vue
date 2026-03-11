@@ -1,46 +1,46 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue';
-
 import RulesList from './RulesList.vue';
 
-import { useRecoveryPassword } from '@/features/recoveryPassword';
-import { PASSWORD_REGEX } from '@/shared/config';
-import { PasswordField } from '@/shared/ui';
-import { BaseButton } from '@/shared/ui';
-import { testPattern } from '@/shared/utils';
+import { useRecoveryPasswordForm, useRecoveryPasswordMutation } from '@/features/recoveryPassword';
+import { PasswordField, BaseButton } from '@/shared/ui';
 
-const password = ref('');
-const confirmPassword = ref('');
-const { recoverPassword } = useRecoveryPassword();
+const {
+  password,
+  passwordAttr,
+  confirmPassword,
+  confirmPasswordAttr,
+  handleSubmit,
+  passwordError,
+  confirmPasswordError,
+  handleFormValid,
+} = useRecoveryPasswordForm();
 
-const passwordValuesAreValid = computed(() => {
-  if (!confirmPassword.value) return true;
+const { recoverPassword } = useRecoveryPasswordMutation();
 
-  return password.value === confirmPassword.value && testPattern(password.value, PASSWORD_REGEX);
-});
-
-const submitButtonIsDisabled = computed(() => {
-  return !password.value || !confirmPassword.value || !passwordValuesAreValid.value;
-});
-
-const submit = () => recoverPassword(password.value);
+const submit = handleSubmit(
+  ({ password }) => recoverPassword(password),
+  errors => console.log('onSubmit errors:', errors)
+);
 </script>
 
 <template>
   <Transition name="slide-up" appear>
     <form class="recoveryPasswordForm" @submit.prevent="submit">
-      <RulesList :password="password" />
+      <RulesList :password="password || ''" />
       <PasswordField
         labelValue="New password"
-        :isValid="passwordValuesAreValid"
+        :isValid="!passwordError"
         v-model="password"
+        v-bind="passwordAttr"
       />
       <PasswordField
-        labelValue="Repeat new password"
-        :isValid="passwordValuesAreValid"
         v-model="confirmPassword"
+        v-bind="confirmPasswordAttr"
+        :isValid="!confirmPasswordError"
+        :errorMessage="confirmPasswordError"
+        labelValue="Repeat new password"
       />
-      <BaseButton value="Submit" type="submit" :disabled="submitButtonIsDisabled" />
+      <BaseButton value="Submit" type="submit" :disabled="!handleFormValid()" theme="accent" />
     </form>
   </Transition>
 </template>

@@ -6,7 +6,7 @@ import { sendForgotPasswordRequest } from '../logic';
 import { APP_ROUTES } from '@/shared/config';
 import { useBaseAlertStore } from '@/shared/ui';
 
-export const useForgotPassword = (resetForm: () => void) => {
+export const useForgotPasswordMutation = (resetForm: () => void) => {
   const router = useRouter();
   const { triggerAlert } = useBaseAlertStore();
   const { mutate, isPending } = useMutation({

@@ -8,9 +8,9 @@ export const useLoginForm = () => {
     validationSchema: toTypedSchema(zodSchema),
     validateOnMount: false,
     initialValues: {
-      email: '',
-      password: '',
-      rememberMe: false,
+      [LoginForm.Fields.EMAIL]: '',
+      [LoginForm.Fields.PASSWORD]: '',
+      [LoginForm.Fields.REMEMBER_ME]: false,
     },
   });
 
@@ -24,9 +24,7 @@ export const useLoginForm = () => {
   const handleFormValid = () => {
     if (Object.keys(errors.value).length) return false;
 
-    const valuesArr = [values.email, values.password];
-
-    return valuesArr.every(Boolean);
+    return [values.email, values.password].every(Boolean);
   };
 
   return {

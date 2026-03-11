@@ -1,1 +1,2 @@
-export * from './useRecoveryPassword';
+export * from './useRecoveryPasswordMutation';
+export * from './useRecoveryPasswordForm';

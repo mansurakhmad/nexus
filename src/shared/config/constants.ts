@@ -18,8 +18,6 @@ export const APP_ROUTES = {
 
 export const KEEP_USER_LOGIN = 'KEEP_USER_LOGIN';
 
-export const PASSWORD_REGEX = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+{}[\]:;<>,.?~\\/-]).{8,}$/;
-
 export const PINIA_STORES_KEYS = {
   AUTH: 'auth',
 };

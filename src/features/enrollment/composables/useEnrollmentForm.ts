@@ -4,7 +4,7 @@ import { useFieldError, useForm } from 'vee-validate';
 import { zodSchema, EnrollmentForm } from '../models';
 
 export const useEnrollmentForm = () => {
-  const { defineField, errors, values, resetForm } = useForm({
+  const { defineField, errors, values, resetForm, handleSubmit } = useForm({
     validateOnMount: false,
     validationSchema: toTypedSchema(zodSchema),
     initialValues: { email: '', password: '', confirmPassword: '' },
@@ -36,6 +36,7 @@ export const useEnrollmentForm = () => {
     confirmPassword,
     confirmPasswordAttr,
     confirmPasswordError,
+    handleSubmit,
     handleFormValid,
     resetForm: () => resetForm(),
   };

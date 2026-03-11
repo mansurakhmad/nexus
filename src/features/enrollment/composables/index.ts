@@ -1,2 +1,2 @@
-export * from './useEnrollment';
+export * from './useEnrollmentMutation';
 export * from './useEnrollmentForm';

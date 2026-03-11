@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useEnrollment, useEnrollmentForm } from '@/features/enrollment';
+import { useEnrollmentMutation, useEnrollmentForm } from '@/features/enrollment';
 import { BaseButton, BaseInput, PasswordField } from '@/shared/ui';
 
 const {
@@ -14,15 +14,19 @@ const {
   confirmPasswordError,
   handleFormValid,
   resetForm,
+  handleSubmit,
 } = useEnrollmentForm();
 
-const { enroll, closeAlert } = useEnrollment(resetForm);
+const { enroll, closeAlert } = useEnrollmentMutation(resetForm);
 
-const submitForm = () => {
-  closeAlert();
+const submitForm = handleSubmit(
+  ({ email, password }) => {
+    closeAlert();
 
-  enroll({ email: email.value!, password: password.value! });
-};
+    enroll({ email, password });
+  },
+  errors => console.log('onSubmit errors:', errors)
+);
 </script>
 
 <template>

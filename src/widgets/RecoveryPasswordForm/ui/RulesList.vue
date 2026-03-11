@@ -8,8 +8,8 @@ const { password } = defineProps<{ password: string }>();
 const rules = computed(() => [
   {
     id: 1,
-    label: 'Minimum of 6 characters.',
-    isDone: password.length >= 6,
+    label: 'Minimum of 8 characters.',
+    isDone: password.length >= 8,
   },
   {
     id: 2,

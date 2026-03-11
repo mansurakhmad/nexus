@@ -6,7 +6,7 @@ import { sendRecoveryPasswordRequest } from '../logic';
 import { APP_ROUTERS_NAMES, APP_ROUTES } from '@/shared/config';
 import { useBaseAlertStore } from '@/shared/ui';
 
-export const useRecoveryPassword = () => {
+export const useRecoveryPasswordMutation = () => {
   const router = useRouter();
   const { triggerAlert } = useBaseAlertStore();
 

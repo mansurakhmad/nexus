@@ -8,7 +8,7 @@ import type { Enrollment } from '../models';
 import { APP_ROUTERS_NAMES, APP_ROUTES } from '@/shared/config';
 import { useBaseAlertStore } from '@/shared/ui';
 
-export const useEnrollment = (resetForm: () => void) => {
+export const useEnrollmentMutation = (resetForm: () => void) => {
   const router = useRouter();
   const { triggerAlert, closeAlert } = useBaseAlertStore();
 
