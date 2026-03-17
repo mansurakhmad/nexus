@@ -21,3 +21,9 @@ export const KEEP_USER_LOGIN = 'KEEP_USER_LOGIN';
 export const PINIA_STORES_KEYS = {
   AUTH: 'auth',
 };
+
+export enum APP_FLOWS {
+  FINTECH = 'fintech',
+  FITNESS = 'fitnessLab',
+  TASKS = 'taskManager',
+}

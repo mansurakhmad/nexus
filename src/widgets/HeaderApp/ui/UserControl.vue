@@ -4,13 +4,13 @@ import { ref } from 'vue';
 import { Popover } from 'primevue';
 import { useRouter } from 'vue-router';
 
-import { useLogout } from '@/features/logout';
+import { useLogoutMutation } from '@/features/logout';
 import { useUserProfileQuery } from '@/features/user';
 import { APP_ROUTERS_NAMES, APP_ROUTES } from '@/shared/config';
 import { BaseButton } from '@/shared/ui';
 
 const router = useRouter();
-const { logout } = useLogout();
+const { logout } = useLogoutMutation();
 const { data } = useUserProfileQuery();
 const op = ref<InstanceType<typeof Popover> | null>(null);
 
