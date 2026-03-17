@@ -60,7 +60,6 @@ router.beforeEach(async (to, _, next) => {
   if (session) authStore.setSession(session);
 
   if (requiresAuth && !session) {
-    localStorage.removeItem(KEEP_USER_LOGIN);
     next(APP_ROUTES.lOGIN);
   } else if (session && to.name === APP_ROUTES.lOGIN) {
     next(APP_ROUTES.MAIN);
