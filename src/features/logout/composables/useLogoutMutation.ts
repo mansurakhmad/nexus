@@ -5,7 +5,7 @@ import { logoutUser } from '../logic/logoutUser';
 import { APP_ROUTES, KEEP_USER_LOGIN } from '@/shared/config';
 import { useBaseAlertStore } from '@/shared/ui';
 
-export const useLogout = () => {
+export const useLogoutMutation = () => {
   const { triggerAlert } = useBaseAlertStore();
   const { mutate } = useMutation({
     meta: { showLoader: true },
