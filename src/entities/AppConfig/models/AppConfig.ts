@@ -9,6 +9,5 @@ export namespace AppConfig {
 
   export interface Model {
     availableFlows: string[];
-    isTest: boolean;
   }
 }
