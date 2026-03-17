@@ -8,7 +8,7 @@ import { MainPage } from '@/pages/MainPage';
 import { ProfilePage } from '@/pages/ProfilePage';
 import { RecoveryPasswordPage } from '@/pages/RecoveryPasswordPage';
 import { api } from '@/shared/api';
-import { APP_ROUTERS_NAMES, APP_ROUTES, KEEP_USER_LOGIN } from '@/shared/config';
+import { APP_ROUTERS_NAMES, APP_ROUTES } from '@/shared/config';
 
 const routes: RouteRecordRaw[] = [
   {
