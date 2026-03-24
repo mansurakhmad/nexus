@@ -1,14 +1,8 @@
 import { createWebHistory, createRouter, type RouteRecordRaw } from 'vue-router';
 
-import { useAuthStore } from '@/features/user';
-import { EnrollmentPage } from '@/pages/EnrollmentPage';
-import { ForgotPasswordPage } from '@/pages/ForgotPasswordPage';
 import { LoginPage } from '@/pages/LoginPage';
 import { MainPage } from '@/pages/MainPage';
-import { ProfilePage } from '@/pages/ProfilePage';
-import { RecoveryPasswordPage } from '@/pages/RecoveryPasswordPage';
-import { api } from '@/shared/api';
-import { APP_ROUTERS_NAMES, APP_ROUTES } from '@/shared/config';
+import { APP_FLOWS, APP_ROUTERS_NAMES, APP_ROUTES } from '@/shared/config';
 
 const routes: RouteRecordRaw[] = [
   {
@@ -24,48 +18,35 @@ const routes: RouteRecordRaw[] = [
   },
   {
     path: APP_ROUTES.ENROLLMENT,
-    component: EnrollmentPage,
+    component: () => import('@/pages/EnrollmentPage'),
     name: APP_ROUTERS_NAMES.ENROLLMENT,
     meta: { isOnboarding: true },
   },
   {
     path: APP_ROUTES.FORGOT_PASSWORD,
-    component: ForgotPasswordPage,
+    component: () => import('@/pages/ForgotPasswordPage'),
     name: APP_ROUTERS_NAMES.FORGOT_PASSWORD,
     meta: { isOnboarding: true },
   },
   {
     path: APP_ROUTES.RECOVERY_PASSWORD,
-    component: RecoveryPasswordPage,
+    component: () => import('@/pages/RecoveryPasswordPage'),
     name: APP_ROUTERS_NAMES.RECOVERY_PASSWORD,
     meta: { isOnboarding: true },
   },
   {
     path: APP_ROUTES.PROFILE,
-    component: ProfilePage,
+    component: () => import('@/pages/ProfilePage'),
     name: APP_ROUTERS_NAMES.PROFILE,
+  },
+  {
+    name: APP_ROUTERS_NAMES.FINANCE,
+    path: APP_ROUTES.FINANCE,
+    component: () => import('@/pages/FinTechMain'),
+    meta: { flow: APP_FLOWS.FINANCE },
   },
 ];
 
 const router = createRouter({ history: createWebHistory(), routes });
-
-router.beforeEach(async (to, _, next) => {
-  const {
-    data: { session },
-  } = await api.auth.getSession();
-  const authStore = useAuthStore();
-
-  const requiresAuth = to.matched.some(record => !record.meta.isOnboarding);
-
-  if (session) authStore.setSession(session);
-
-  if (requiresAuth && !session) {
-    next(APP_ROUTES.lOGIN);
-  } else if (session && to.name === APP_ROUTES.lOGIN) {
-    next(APP_ROUTES.MAIN);
-  } else {
-    next();
-  }
-});
 
 export { router };

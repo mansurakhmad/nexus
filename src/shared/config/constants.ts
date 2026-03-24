@@ -5,6 +5,7 @@ export enum APP_ROUTERS_NAMES {
   FORGOT_PASSWORD = 'FORGOT_PASSWORD',
   RECOVERY_PASSWORD = 'RECOVERY_PASSWORD',
   PROFILE = 'PROFILE',
+  FINANCE = 'FINANCE',
 }
 
 export const APP_ROUTES = {
@@ -14,6 +15,7 @@ export const APP_ROUTES = {
   [APP_ROUTERS_NAMES.FORGOT_PASSWORD]: '/forgot-password',
   [APP_ROUTERS_NAMES.RECOVERY_PASSWORD]: '/recovery-password',
   [APP_ROUTERS_NAMES.PROFILE]: '/profile',
+  [APP_ROUTERS_NAMES.FINANCE]: '/finance',
 } as const satisfies Record<APP_ROUTERS_NAMES, string>;
 
 export const KEEP_USER_LOGIN = 'KEEP_USER_LOGIN';
@@ -23,7 +25,7 @@ export const PINIA_STORES_KEYS = {
 };
 
 export enum APP_FLOWS {
-  FINTECH = 'fintech',
+  FINANCE = 'finance',
   FITNESS = 'fitnessLab',
   TASKS = 'taskManager',
 }

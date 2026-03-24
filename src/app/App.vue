@@ -7,6 +7,7 @@ import { RouterView, useRoute } from 'vue-router';
 import { useRequestState } from '@/features/requestState';
 import { useAuthStore } from '@/features/user';
 import planet from '@/shared/assets/plannet.svg';
+import { APP_FLOWS } from '@/shared/config';
 import BaseAlert from '@/shared/ui/BaseAlert/ui/BaseAlert.vue';
 import { GlobalLoader } from '@/shared/ui/GlobalLoader';
 import { ContentContainer } from '@/widgets/ContentContainer';
@@ -19,15 +20,24 @@ const { showLoader } = useRequestState();
 
 const isOnboardingRoute = computed(() => route.meta.isOnboarding);
 
+const isFinanceFlow = computed(() => route.meta.flow === APP_FLOWS.FINANCE);
+
 authStore.init();
 </script>
 
 <template>
-  <div class="app" :class="isOnboardingRoute ? 'onboarding' : 'authorized'">
+  <div v-if="isFinanceFlow" class="financeFlow">
+    <ContentContainer sizeValue="normal" class="headerContainer">
+      <HeaderApp class="header" />
+    </ContentContainer>
+    <RouterView />
+  </div>
+
+  <div v-else class="app" :class="isOnboardingRoute ? 'onboarding' : 'authorized'">
     <Transition name="fade" appear>
       <img :src="planet" alt="planner" class="planet" />
     </Transition>
-    <ContentContainer class="headerApp" :sizeValue="isOnboardingRoute ? 'small' : 'normal'">
+    <ContentContainer class="headerContainer" :sizeValue="isOnboardingRoute ? 'small' : 'normal'">
       <HeaderApp class="header" />
     </ContentContainer>
     <ContentContainer
@@ -71,7 +81,7 @@ authStore.init();
     }
   }
 
-  .headerApp {
+  .headerContainer {
     position: relative;
     z-index: 3;
     padding: 16px 0 0;
@@ -87,6 +97,15 @@ authStore.init();
   height: 100%;
   transform: translate(-50%, -50%);
   animation: rotate-planet 60s linear 2.6s infinite;
+}
+
+.financeFlow {
+  min-height: 100vh;
+  background: var(--white-100);
+
+  .headerContainer {
+    position: relative;
+  }
 }
 
 .fade-enter-from {
