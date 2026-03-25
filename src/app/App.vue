@@ -6,19 +6,19 @@ import { RouterView, useRoute } from 'vue-router';
 
 import { useRequestState } from '@/features/requestState';
 import { useAuthStore } from '@/features/user';
-import planet from '@/shared/assets/plannet.svg';
 import { APP_FLOWS } from '@/shared/config';
 import BaseAlert from '@/shared/ui/BaseAlert/ui/BaseAlert.vue';
 import { GlobalLoader } from '@/shared/ui/GlobalLoader';
 import { ContentContainer } from '@/widgets/ContentContainer';
 import { HeaderApp } from '@/widgets/HeaderApp';
+import { OnboardingOverview } from '@/widgets/OnboardingOverview';
 
 const authStore = useAuthStore();
 
 const route = useRoute();
 const { showLoader } = useRequestState();
 
-const isOnboardingRoute = computed(() => route.meta.isOnboarding);
+const isOnboardingFlow = computed(() => route.meta.isOnboarding);
 
 const isFinanceFlow = computed(() => route.meta.flow === APP_FLOWS.FINANCE);
 
@@ -26,14 +26,28 @@ authStore.init();
 </script>
 
 <template>
-  <div v-if="isFinanceFlow" class="financeFlow">
+  <div v-if="isOnboardingFlow" class="onboardingFlow">
+    <ContentContainer
+      paddingValue="none"
+      sizeValue="normal"
+      flexValue="row"
+      class="onboardingContentContainer"
+    >
+      <OnboardingOverview />
+      <div class="onboardingMainContent">
+        <RouterView />
+      </div>
+    </ContentContainer>
+  </div>
+
+  <div v-else-if="isFinanceFlow" class="financeFlow">
     <ContentContainer sizeValue="normal" class="headerContainer">
       <HeaderApp class="header" />
     </ContentContainer>
     <RouterView />
   </div>
 
-  <div v-else class="app" :class="isOnboardingRoute ? 'onboarding' : 'authorized'">
+  <!-- <div v-else class="app" :class="isOnboardingRoute ? 'onboarding' : 'authorized'">
     <Transition name="fade" appear>
       <img :src="planet" alt="planner" class="planet" />
     </Transition>
@@ -47,82 +61,36 @@ authStore.init();
     >
       <RouterView />
     </ContentContainer>
-  </div>
+  </div> -->
+
   <BaseAlert />
   <GlobalLoader :showLoader />
   <VueQueryDevtools />
 </template>
 
 <style scoped lang="scss">
-.app {
-  position: relative;
+.onboardingFlow {
   display: flex;
-  flex-direction: column;
-  padding: 0 8px;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
   min-height: 100vh;
-  background-color: var(--black-150);
-  background-image: url('../shared/assets/outer-space-background.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: left;
-  overflow: hidden;
+  background-color: var(--white-50);
 
-  .content {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    justify-content: center;
-    padding: 0;
-    text-align: center;
-    margin-top: 40px;
+  .onboardingContentContainer {
+    gap: 40px;
+    min-height: 80vh;
+    background-color: var(--gray-10);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow:
+      rgb(0 0 0 / 30%) 0 19px 38px,
+      rgb(0 0 0 / 22%) 0 15px 12px;
 
-    &.onboarding > *:first-child {
-      width: 375px;
+    .onboardingMainContent {
+      flex-basis: 50%;
+      padding: 24px 40px 24px 0;
     }
-  }
-
-  .headerContainer {
-    position: relative;
-    z-index: 3;
-    padding: 16px 0 0;
-  }
-}
-
-.planet {
-  position: absolute;
-  z-index: 1;
-  top: 50%;
-  left: 50%;
-  width: 100%;
-  height: 100%;
-  transform: translate(-50%, -50%);
-  animation: rotate-planet 60s linear 2.6s infinite;
-}
-
-.financeFlow {
-  min-height: 100vh;
-  background: var(--white-100);
-
-  .headerContainer {
-    position: relative;
-  }
-}
-
-.fade-enter-from {
-  opacity: 0;
-}
-
-.fade-enter-active {
-  transition: all 2.5s ease-in;
-}
-
-@keyframes rotate-planet {
-  from {
-    transform: translate(-50%, -50%) rotate(0deg);
-  }
-
-  to {
-    transform: translate(-50%, -50%) rotate(360deg);
   }
 }
 </style>

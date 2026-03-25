@@ -35,6 +35,8 @@
 
   /* --- Нейтральные и карточки (Gray/Light/White) --- */
   --white-100: #fff;
+  --white-80: #f8f8ff;
+  --white-50: #f5f5f5;
   --gray-80: #e9ecef;
   --gray-50: #ced4da;
   --gray-20: #a1a1a1;

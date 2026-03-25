@@ -1,9 +1,18 @@
 <script lang="ts" setup>
-const { sizeValue } = defineProps<{ sizeValue?: 'small' | 'normal' }>();
+import type { ContentContainer } from '../models';
+
+const { sizeValue, flexValue, paddingValue } = defineProps<ContentContainer.Props>();
 </script>
 
 <template>
-  <div class="contentContainer" :class="`${sizeValue}Size`">
+  <div
+    class="contentContainer"
+    :class="{
+      [`${sizeValue}Size`]: sizeValue,
+      [`${flexValue}Flex`]: flexValue,
+      [`${paddingValue}Padding`]: paddingValue,
+    }"
+  >
     <slot></slot>
   </div>
 </template>
@@ -11,8 +20,11 @@ const { sizeValue } = defineProps<{ sizeValue?: 'small' | 'normal' }>();
 <style lang="scss" scoped>
 .contentContainer {
   margin: 0 auto;
-  padding: 16px;
   width: 100%;
+
+  &.largeSize {
+    max-width: 1440px;
+  }
 
   &.normalSize {
     max-width: 1120px;
@@ -20,6 +32,24 @@ const { sizeValue } = defineProps<{ sizeValue?: 'small' | 'normal' }>();
 
   &.smallSize {
     max-width: 900px;
+  }
+
+  &.rowFlex {
+    display: flex;
+    flex-direction: row;
+  }
+
+  &.columnFlex {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &.nonePadding {
+    padding: 0;
+  }
+
+  &.normalPadding {
+    padding: 16px;
   }
 }
 </style>

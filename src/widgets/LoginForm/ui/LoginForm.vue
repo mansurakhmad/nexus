@@ -111,7 +111,6 @@ const onSubmit = handleSubmit(
   flex-direction: column;
   gap: 24px;
   width: 100%;
-  max-width: 400px;
   border-radius: 12px;
   color: var(--black-100);
 
