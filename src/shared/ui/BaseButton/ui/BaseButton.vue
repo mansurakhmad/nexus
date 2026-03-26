@@ -91,5 +91,19 @@ const {
       color: var(--cyan-10);
     }
   }
+
+  &.noBorderTheme {
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    color: var(--white-100);
+    box-shadow: none;
+
+    &:not(:disabled):hover {
+      background-color: transparent;
+      border: none;
+      color: var(--gold-100);
+    }
+  }
 }
 </style>

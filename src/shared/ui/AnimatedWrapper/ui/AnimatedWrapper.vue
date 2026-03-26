@@ -23,8 +23,6 @@ const linesRefs = useAnimationRules();
 <style lang="scss" scoped>
 .animatedWrapper {
   position: relative;
-  padding: 24px 24px 28px;
-  min-height: 150px;
   border-radius: 12px;
   overflow: hidden;
 

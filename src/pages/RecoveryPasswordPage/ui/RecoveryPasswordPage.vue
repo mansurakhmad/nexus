@@ -15,7 +15,6 @@ import { RecoveryPasswordForm } from '@/widgets/RecoveryPasswordForm';
 .recoveryPasswordPage {
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 44px;
 }
 

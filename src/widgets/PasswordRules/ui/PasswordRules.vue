@@ -3,6 +3,8 @@ import { computed } from 'vue';
 
 import { Card } from 'primevue';
 
+import { AnimatedWrapper } from '@/shared/ui';
+
 const { password } = defineProps<{ password: string }>();
 
 const rules = computed(() => [
@@ -30,24 +32,28 @@ const rules = computed(() => [
 </script>
 
 <template>
-  <Transition name="fade" appear>
-    <Card class="rulesList">
-      <template #title>Password Requirements:</template>
-      <template #content>
-        <ul class="rules">
-          <li v-for="rule in rules" :key="rule.id" class="rule">
-            <p class="label">- {{ rule.label }}</p>
-            <i v-if="rule.isDone" class="pi pi-check"></i>
-            <i v-else class="pi pi-times"></i>
-          </li>
-        </ul>
-      </template>
-    </Card>
-  </Transition>
+  <AnimatedWrapper theme="Blue">
+    <Transition name="fade" appear>
+      <Card class="rulesList">
+        <template #title>Password Requirements:</template>
+        <template #content>
+          <ul class="rules">
+            <li v-for="rule in rules" :key="rule.id" class="rule">
+              <p class="label">- {{ rule.label }}</p>
+              <i v-if="rule.isDone" class="pi pi-check"></i>
+              <i v-else class="pi pi-times"></i>
+            </li>
+          </ul>
+        </template>
+      </Card>
+    </Transition>
+  </AnimatedWrapper>
 </template>
 
 <style lang="scss" scoped>
 .rulesList {
+  width: 100%;
+
   &:deep(.p-card-title) {
     border-bottom: 1px solid var(--white-100);
     padding-bottom: 6px;

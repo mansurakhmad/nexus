@@ -28,7 +28,7 @@ const onSubmit = handleSubmit(
       />
       <div class="buttons">
         <BaseButton value="Submit" theme="accent" type="submit" :disabled="!handleFormValid()" />
-        <BaseButton value="Back" theme="secondary" @click="router.back()" />
+        <BaseButton value="Back" theme="noBorder" @click="router.back()" />
       </div>
     </form>
   </Transition>
@@ -39,9 +39,8 @@ const onSubmit = handleSubmit(
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 32px;
+  gap: 48px;
   width: 100%;
-  max-width: 400px;
   border-radius: 12px;
   color: var(--black-100);
 }

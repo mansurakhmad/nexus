@@ -15,7 +15,6 @@ import { ForgotPasswordForm } from '@/widgets/ForgotPasswordForm';
 .forgotPasswordPage {
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 44px;
 }
 

@@ -15,7 +15,6 @@ import { EnrollmentForm } from '@/widgets/EnrollmentForm';
 .enrollmentPage {
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 44px;
 }
 

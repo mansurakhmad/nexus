@@ -85,16 +85,19 @@ const onSubmit = handleSubmit(
       <BaseButton value="Login" theme="accent" type="submit" :disabled="!handleFormValid()" />
       <BaseButton
         value="Create Account"
-        theme="secondary"
+        theme="noBorder"
+        class="onboardingRouteButton"
         @onClick="$router.push(APP_ROUTES.ENROLLMENT)"
       />
       <BaseButton
         value="Forgot Password"
-        theme="secondary"
+        theme="noBorder"
+        class="onboardingRouteButton"
         @click="$router.push(APP_ROUTES.FORGOT_PASSWORD)"
       />
     </form>
   </Transition>
+
   <Dialog
     modal
     :closable="false"
@@ -117,12 +120,17 @@ const onSubmit = handleSubmit(
   .fields {
     display: flex;
     flex-direction: column;
-    gap: 44px;
+    gap: 48px;
     margin-bottom: 12px;
   }
 
   .rememberMe {
-    margin-top: 12px;
+    margin: 12px 0;
+  }
+
+  .onboardingRouteButton {
+    margin: 0 auto;
+    max-width: max-content;
   }
 }
 

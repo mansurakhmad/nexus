@@ -47,21 +47,12 @@ authStore.init();
     <RouterView />
   </div>
 
-  <!-- <div v-else class="app" :class="isOnboardingRoute ? 'onboarding' : 'authorized'">
-    <Transition name="fade" appear>
-      <img :src="planet" alt="planner" class="planet" />
-    </Transition>
-    <ContentContainer class="headerContainer" :sizeValue="isOnboardingRoute ? 'small' : 'normal'">
+  <div v-else>
+    <ContentContainer sizeValue="normal" class="headerContainer">
       <HeaderApp class="header" />
     </ContentContainer>
-    <ContentContainer
-      class="content"
-      :class="isOnboardingRoute ? 'onboarding' : ''"
-      :sizeValue="isOnboardingRoute ? 'small' : 'normal'"
-    >
-      <RouterView />
-    </ContentContainer>
-  </div> -->
+    <RouterView />
+  </div>
 
   <BaseAlert />
   <GlobalLoader :showLoader />

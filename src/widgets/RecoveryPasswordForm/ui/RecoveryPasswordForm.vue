@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import RulesList from './RulesList.vue';
-
 import { useRecoveryPasswordForm, useRecoveryPasswordMutation } from '@/features/recoveryPassword';
 import { PasswordField, BaseButton } from '@/shared/ui';
+import { PasswordRules } from '@/widgets/PasswordRules';
 
 const {
   password,
@@ -26,12 +25,12 @@ const submit = handleSubmit(
 <template>
   <Transition name="slide-up" appear>
     <form class="recoveryPasswordForm" @submit.prevent="submit">
-      <RulesList :password="password || ''" />
+      <PasswordRules :password="password || ''" />
       <PasswordField
-        labelValue="New password"
-        :isValid="!passwordError"
         v-model="password"
         v-bind="passwordAttr"
+        :isValid="!passwordError"
+        labelValue="New password"
       />
       <PasswordField
         v-model="confirmPassword"
@@ -52,7 +51,6 @@ const submit = handleSubmit(
   justify-content: space-between;
   gap: 44px;
   width: 100%;
-  max-width: 400px;
   border-radius: 12px;
   color: var(--black-100);
 }
