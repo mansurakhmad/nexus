@@ -67,6 +67,7 @@ const onSubmit = handleSubmit(
           v-bind="emailAttr"
           :isValid="!emailError"
           :errorMessage="emailError"
+          errorTheme="warning"
         />
         <PasswordField
           labelValue="Password"
@@ -74,6 +75,7 @@ const onSubmit = handleSubmit(
           v-bind="passwordAttr"
           :isValid="!passwordError"
           :errorMessage="passwordError"
+          errorTheme="warning"
         />
       </div>
       <BaseCheckbox

@@ -6,7 +6,7 @@ import type { PasswordFieldTypes } from '../models';
 import { ErrorMessage } from '@/shared/ui/ErrorMessage';
 
 const modelValue = defineModel<string>();
-const { labelValue, isValid, errorMessage } = defineProps<PasswordFieldTypes.Props>();
+const { labelValue, isValid, errorMessage, errorTheme } = defineProps<PasswordFieldTypes.Props>();
 </script>
 
 <template>
@@ -18,8 +18,8 @@ const { labelValue, isValid, errorMessage } = defineProps<PasswordFieldTypes.Pro
       class="inputWrapper"
       toggleMask
     />
-    <label>{{ labelValue }}</label>
-    <ErrorMessage v-if="!isValid && errorMessage" :message="errorMessage" />
+    <label :class="`${errorTheme}Theme`">{{ labelValue }}</label>
+    <ErrorMessage v-if="!isValid && errorMessage" :message="errorMessage" :theme="errorTheme" />
   </FloatLabel>
 </template>
 
@@ -48,8 +48,15 @@ const { labelValue, isValid, errorMessage } = defineProps<PasswordFieldTypes.Pro
 
   &:has(input[aria-invalid='true']) {
     label {
-      color: var(--red-50);
       font-weight: 500;
+
+      &.warningTheme {
+        color: var(--gold-50);
+      }
+
+      &.defaultTheme {
+        color: var(--red-50);
+      }
     }
   }
 }

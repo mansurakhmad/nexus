@@ -4,7 +4,15 @@ import InputText from 'primevue/inputtext';
 
 import type { BaseInputTypes } from '../models';
 
-const { labelValue, isValid, errorMessage } = defineProps<BaseInputTypes.Props>();
+import { ErrorMessage } from '@/shared/ui/ErrorMessage';
+
+const {
+  labelValue,
+  isValid,
+  errorMessage,
+  errorTheme = 'default',
+} = defineProps<BaseInputTypes.Props>();
+
 const emit = defineEmits(['blur']);
 const model = defineModel<string>();
 </script>
@@ -12,10 +20,8 @@ const model = defineModel<string>();
 <template>
   <FloatLabel class="baseInput">
     <InputText v-model="model" class="input" @blur="emit('blur')" :invalid="!isValid" />
-    <label>{{ labelValue }}</label>
-    <template v-if="!isValid && errorMessage">
-      <div class="errorMessage">{{ errorMessage }}</div>
-    </template>
+    <label :class="[`${errorTheme}Theme`]">{{ labelValue }}</label>
+    <ErrorMessage v-if="!isValid && errorMessage" :message="errorMessage" :theme="errorTheme" />
   </FloatLabel>
 </template>
 
@@ -38,21 +44,16 @@ const model = defineModel<string>();
 
   &:has(input[aria-invalid='true']) {
     label {
-      color: var(--red-50);
       font-weight: 500;
-    }
-  }
 
-  .errorMessage {
-    position: absolute;
-    left: 0;
-    width: 100%;
-    color: var(--red-50);
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 14px;
-    text-align: center;
-    padding-top: 12px;
+      &.warningTheme {
+        color: var(--gold-50);
+      }
+
+      &.defaultTheme {
+        color: var(--red-50);
+      }
+    }
   }
 }
 </style>
