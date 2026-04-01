@@ -14,7 +14,11 @@ export const useLoginForm = () => {
     },
   });
 
-  const [email, emailAttr] = defineField(LoginForm.Fields.EMAIL);
+  const [email, emailAttr] = defineField(LoginForm.Fields.EMAIL, {
+    validateOnBlur: true,
+    validateOnModelUpdate: false,
+  });
+
   const [password, passwordAttr] = defineField(LoginForm.Fields.PASSWORD);
   const [rememberMe] = defineField(LoginForm.Fields.REMEMBER_ME);
 

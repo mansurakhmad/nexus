@@ -63,19 +63,19 @@ const onSubmit = handleSubmit(
       <div class="fields">
         <BaseInput
           labelValue="Email"
+          errorTheme="default"
           v-model="email"
           v-bind="emailAttr"
           :isValid="!emailError"
           :errorMessage="emailError"
-          errorTheme="warning"
         />
         <PasswordField
           labelValue="Password"
+          errorTheme="warning"
           v-model="password"
           v-bind="passwordAttr"
           :isValid="!passwordError"
           :errorMessage="passwordError"
-          errorTheme="warning"
         />
       </div>
       <BaseCheckbox

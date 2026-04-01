@@ -6,7 +6,12 @@ import type { PasswordFieldTypes } from '../models';
 import { ErrorMessage } from '@/shared/ui/ErrorMessage';
 
 const modelValue = defineModel<string>();
-const { labelValue, isValid, errorMessage, errorTheme } = defineProps<PasswordFieldTypes.Props>();
+const {
+  labelValue,
+  isValid,
+  errorMessage,
+  errorTheme = 'default',
+} = defineProps<PasswordFieldTypes.Props>();
 </script>
 
 <template>
