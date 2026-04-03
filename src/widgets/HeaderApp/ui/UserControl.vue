@@ -42,7 +42,12 @@ const getName = () => {
 <template>
   <Transition name="fade" appear>
     <div class="userControl" v-if="data && !$route.meta.isOnboarding">
-      <BaseButton :value="`Hi, ${getName()}`" theme="outlineCyan" @click="togglePopoverState" />
+      <BaseButton
+        :value="`Hi, ${getName()}`"
+        theme="noBorder"
+        @click="togglePopoverState"
+        class="popupTrigger"
+      />
     </div>
   </Transition>
   <Popover ref="op" :close-on-escape="true">
@@ -61,6 +66,12 @@ const getName = () => {
 <style lang="scss" scoped>
 .userControl {
   position: relative;
+
+  .popupTrigger {
+    color: var(--gold-50);
+    font-size: 18px;
+    font-weight: 500;
+  }
 }
 
 .fade-enter-from {

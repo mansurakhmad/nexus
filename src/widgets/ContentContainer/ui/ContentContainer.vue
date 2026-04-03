@@ -22,6 +22,10 @@ const { sizeValue, flexValue, paddingValue } = defineProps<ContentContainer.Prop
   margin: 0 auto;
   width: 100%;
 
+  &.fullSize {
+    max-width: 100%;
+  }
+
   &.largeSize {
     max-width: 1440px;
   }

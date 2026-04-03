@@ -25,19 +25,21 @@ const contentItems = [
 </script>
 
 <template>
-  <div class="onboardingOverview">
-    <AppLogo />
-    <Carousel :value="contentItems" :circular="true" :showNavigators="false">
-      <template #item="slotProps">
-        <div class="content">
-          <h2 class="title">{{ slotProps.data.title }}</h2>
-          <p class="description">
-            {{ slotProps.data.description }}
-          </p>
-        </div>
-      </template>
-    </Carousel>
-  </div>
+  <Transition name="fade" appear>
+    <div class="onboardingOverview">
+      <AppLogo />
+      <Carousel :value="contentItems" :circular="true" :showNavigators="false">
+        <template #item="slotProps">
+          <div class="content">
+            <h2 class="title">{{ slotProps.data.title }}</h2>
+            <p class="description">
+              {{ slotProps.data.description }}
+            </p>
+          </div>
+        </template>
+      </Carousel>
+    </div>
+  </Transition>
 </template>
 
 <style lang="scss" scoped>
@@ -76,5 +78,14 @@ const contentItems = [
       background: var(--gold-10);
     }
   }
+}
+
+.fade-enter-from {
+  opacity: 0;
+  transform: translateX(-20%);
+}
+
+.fade-enter-active {
+  transition: all 1.5s ease-in-out;
 }
 </style>

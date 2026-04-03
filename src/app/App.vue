@@ -26,7 +26,7 @@ authStore.init();
 </script>
 
 <template>
-  <div v-if="isOnboardingFlow" class="onboardingFlow">
+  <div v-if="isOnboardingFlow" class="app onboardingFlow">
     <ContentContainer
       paddingValue="none"
       sizeValue="normal"
@@ -40,17 +40,13 @@ authStore.init();
     </ContentContainer>
   </div>
 
-  <div v-else-if="isFinanceFlow" class="financeFlow">
-    <ContentContainer sizeValue="normal" class="headerContainer">
-      <HeaderApp class="header" />
-    </ContentContainer>
+  <div v-else-if="isFinanceFlow" class="app financeFlow">
+    <HeaderApp class="header" />
     <RouterView />
   </div>
 
-  <div v-else>
-    <ContentContainer sizeValue="normal" class="headerContainer">
-      <HeaderApp class="header" />
-    </ContentContainer>
+  <div v-else class="app main">
+    <HeaderApp class="header" />
     <RouterView />
   </div>
 
@@ -60,13 +56,16 @@ authStore.init();
 </template>
 
 <style scoped lang="scss">
+.app {
+  min-height: 100vh;
+  background-color: var(--white-50);
+}
+
 .onboardingFlow {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 10px;
-  min-height: 100vh;
-  background-color: var(--white-50);
 
   .onboardingContentContainer {
     gap: 40px;

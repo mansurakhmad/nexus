@@ -2,17 +2,20 @@
 import UserControl from './UserControl.vue';
 
 import { AppLogo } from '@/shared/ui';
+import { ContentContainer } from '@/widgets/ContentContainer';
 </script>
 
 <template>
-  <header class="header">
-    <Transition name="fade" appear>
-      <AppLogo />
-    </Transition>
-    <div>
-      <UserControl />
-    </div>
-  </header>
+  <ContentContainer sizeValue="full" paddingValue="normal">
+    <header class="header">
+      <Transition name="fade" appear>
+        <AppLogo />
+      </Transition>
+      <div>
+        <UserControl />
+      </div>
+    </header>
+  </ContentContainer>
 </template>
 
 <style lang="scss" scoped>
@@ -20,6 +23,14 @@ import { AppLogo } from '@/shared/ui';
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
+  background: radial-gradient(
+    circle at center,
+    var(--wine-10),
+    var(--wine-50),
+    var(--wine-100),
+    var(--wine-150)
+  );
 }
 
 .fade-enter-from {
