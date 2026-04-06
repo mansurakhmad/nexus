@@ -12,7 +12,7 @@ const { alertData } = storeToRefs(alertStore);
 <template>
   <Dialog
     class="baseDialog"
-    position="bottom"
+    position="bottomright"
     :class="`${alertData?.theme}Theme`"
     :visible="!!alertData"
     :draggable="false"

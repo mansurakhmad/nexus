@@ -3,5 +3,7 @@ export namespace ContentContainer {
     sizeValue?: 'small' | 'normal' | 'large' | 'full';
     flexValue?: 'row' | 'column';
     paddingValue?: 'normal' | 'none';
+    gapValue?: 'small' | 'normal' | 'large' | 'none';
+    radiusValue?: 'small' | 'normal' | 'large';
   }
 }

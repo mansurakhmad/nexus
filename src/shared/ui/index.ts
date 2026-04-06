@@ -6,3 +6,4 @@ export * from './PasswordField';
 export * from './AnimatedWrapper';
 export * from './BaseDatePicker';
 export * from './AppLogo';
+export * from './BaseText';

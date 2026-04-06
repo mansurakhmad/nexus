@@ -42,12 +42,16 @@ authStore.init();
 
   <div v-else-if="isFinanceFlow" class="app financeFlow">
     <HeaderApp class="header" />
-    <RouterView />
+    <ContentContainer paddingValue="normal">
+      <RouterView />
+    </ContentContainer>
   </div>
 
   <div v-else class="app main">
     <HeaderApp class="header" />
-    <RouterView />
+    <ContentContainer paddingValue="normal">
+      <RouterView />
+    </ContentContainer>
   </div>
 
   <BaseAlert />
@@ -58,7 +62,7 @@ authStore.init();
 <style scoped lang="scss">
 .app {
   min-height: 100vh;
-  background-color: var(--white-50);
+  background-color: var(--gray-80);
 }
 
 .onboardingFlow {
