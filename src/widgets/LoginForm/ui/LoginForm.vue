@@ -62,8 +62,8 @@ const onSubmit = handleSubmit(
     <form class="loginForm" @submit.prevent="onSubmit">
       <div class="fields">
         <BaseInput
-          labelValue="Email"
-          errorTheme="default"
+          labelValue="Enter your email"
+          errorTheme="warning"
           v-model="email"
           v-bind="emailAttr"
           :isValid="!emailError"
@@ -71,7 +71,7 @@ const onSubmit = handleSubmit(
         />
         <PasswordField
           labelValue="Password"
-          errorTheme="warning"
+          errorTheme="default"
           v-model="password"
           v-bind="passwordAttr"
           :isValid="!passwordError"
@@ -84,18 +84,24 @@ const onSubmit = handleSubmit(
         v-model="rememberMe"
         class="rememberMe"
       />
-      <BaseButton value="Login" theme="accent" type="submit" :disabled="!handleFormValid()" />
+      <BaseButton
+        value="Login"
+        theme="primary"
+        type="submit"
+        :disabled="!handleFormValid()"
+        :size="'large'"
+      />
       <BaseButton
         value="Create Account"
-        theme="noBorder"
-        class="onboardingRouteButton"
+        theme="secondary"
         @onClick="$router.push(APP_ROUTES.ENROLLMENT)"
+        :size="'large'"
       />
       <BaseButton
         value="Forgot Password"
-        theme="noBorder"
-        class="onboardingRouteButton"
+        theme="transparent"
         @click="$router.push(APP_ROUTES.FORGOT_PASSWORD)"
+        :size="'large'"
       />
     </form>
   </Transition>
@@ -114,7 +120,7 @@ const onSubmit = handleSubmit(
 .loginForm {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 22px;
   width: 100%;
   border-radius: 12px;
   color: var(--black-100);
@@ -128,11 +134,6 @@ const onSubmit = handleSubmit(
 
   .rememberMe {
     margin: 12px 0;
-  }
-
-  .onboardingRouteButton {
-    margin: 0 auto;
-    max-width: max-content;
   }
 }
 

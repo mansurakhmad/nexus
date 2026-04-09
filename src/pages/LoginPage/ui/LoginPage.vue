@@ -18,6 +18,10 @@ import { LoginForm } from '@/widgets/LoginForm';
   display: flex;
   flex-direction: column;
   gap: 44px;
+
+  h2 {
+    color: var(--primary-80);
+  }
 }
 
 .content {

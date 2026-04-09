@@ -18,42 +18,43 @@ const model = defineModel<string>();
 </script>
 
 <template>
-  <FloatLabel class="baseInput">
+  <FloatLabel :class="['baseInput', `${errorTheme}Theme`]">
     <InputText v-model="model" class="input" @blur="emit('blur')" :invalid="!isValid" />
-    <label :class="[`${errorTheme}Theme`]">{{ labelValue }}</label>
+    <label>{{ labelValue }}</label>
     <ErrorMessage v-if="!isValid && errorMessage" :message="errorMessage" :theme="errorTheme" />
   </FloatLabel>
 </template>
 
 <style lang="scss" scoped>
 .baseInput {
-  .input {
+  color: var(--secondary-100);
+
+  &.warningTheme {
+    &:has(input[aria-invalid='true']) {
+      color: var(--tertiary-50);
+    }
+  }
+
+  &.defaultTheme {
+    &:has(input[aria-invalid='true']) {
+      color: var(--red-100);
+    }
+  }
+
+  input {
     width: 100%;
-    background-color: var(--glass-white);
+    background-color: transparent;
+    color: inherit;
+    font-weight: 500;
+    border-color: inherit;
 
     &:focus {
-      border: 1px solid var(--gold-10);
+      border: 1px solid var(--tertiary-90);
     }
   }
 
-  &:has(input:focus) {
-    label {
-      color: var(--gold-50);
-    }
-  }
-
-  &:has(input[aria-invalid='true']) {
-    label {
-      font-weight: 500;
-
-      &.warningTheme {
-        color: var(--gold-50);
-      }
-
-      &.defaultTheme {
-        color: var(--red-50);
-      }
-    }
+  label {
+    color: inherit !important;
   }
 }
 </style>

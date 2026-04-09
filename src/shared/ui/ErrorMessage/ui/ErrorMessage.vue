@@ -5,7 +5,7 @@ const { message, theme = 'default' } = defineProps<ErrorMessageTypes.Props>();
 </script>
 
 <template>
-  <div class="errorMessage" :class="['errorMessage', `${theme}Theme`]">{{ message }}</div>
+  <div :class="['errorMessage', `${theme}Theme`]">{{ message }}</div>
 </template>
 
 <style lang="scss" scoped>
@@ -20,11 +20,11 @@ const { message, theme = 'default' } = defineProps<ErrorMessageTypes.Props>();
   padding-top: 8px;
 
   &.defaultTheme {
-    color: var(--red-50);
+    color: var(--red-100);
   }
 
   &.warningTheme {
-    color: var(--gold-50);
+    color: var(--tertiary-50);
   }
 }
 </style>

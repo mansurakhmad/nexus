@@ -63,10 +63,10 @@ const submitForm = handleSubmit(
           value="Create Account"
           class="button"
           type="submit"
-          theme="accent"
+          theme="primary"
           :disabled="!handleFormValid()"
         />
-        <BaseButton value="Back" class="button" theme="noBorder" @onClick="$router.back()" />
+        <BaseButton value="Back" class="button" theme="transparent" @onClick="$router.back()" />
       </div>
     </form>
   </Transition>

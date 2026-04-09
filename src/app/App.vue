@@ -62,7 +62,7 @@ authStore.init();
 <style scoped lang="scss">
 .app {
   min-height: 100vh;
-  background-color: var(--gray-80);
+  background-color: var(--neutral-1);
 }
 
 .onboardingFlow {
@@ -74,7 +74,7 @@ authStore.init();
   .onboardingContentContainer {
     gap: 40px;
     min-height: 80vh;
-    background-color: var(--gray-10);
+    background-color: var(--white-100);
     border-radius: 16px;
     overflow: hidden;
     box-shadow:

@@ -16,6 +16,10 @@ import { ForgotPasswordForm } from '@/widgets/ForgotPasswordForm';
   display: flex;
   flex-direction: column;
   gap: 44px;
+
+  h2 {
+    color: var(--primary-80);
+  }
 }
 
 .slide-down-enter-from {
