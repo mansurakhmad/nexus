@@ -79,7 +79,7 @@ const onSubmit = handleSubmit(
         />
       </div>
       <BaseCheckbox
-        :label="'Remember Me'"
+        :label="'Keep me logged in'"
         inputIdValue="rememberMe"
         v-model="rememberMe"
         class="rememberMe"
@@ -92,7 +92,7 @@ const onSubmit = handleSubmit(
         :size="'large'"
       />
       <BaseButton
-        value="Create Account"
+        value="Don't have an account? Register"
         theme="secondary"
         @onClick="$router.push(APP_ROUTES.ENROLLMENT)"
         :size="'large'"

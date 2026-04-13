@@ -19,12 +19,14 @@ const {
 
 <style lang="scss" scoped>
 @mixin common-styles($bg-color-0, $bg-color-50, $bg-color-100, $text-color, $border-value: none) {
-  background: radial-gradient(
+  $gradient: radial-gradient(
     circle at center,
     $bg-color-0 0%,
     $bg-color-50 50%,
     $bg-color-100 100%
   );
+
+  background: $gradient;
   background-size: 200% 200%;
   background-position: center;
   border: $border-value;
@@ -32,12 +34,7 @@ const {
 
   &:hover,
   &:active {
-    background: radial-gradient(
-      circle at center,
-      $bg-color-0 0%,
-      $bg-color-50 50%,
-      $bg-color-100 100%
-    );
+    background: $gradient;
     background-position: right bottom;
     border: $border-value;
     color: $text-color;
@@ -45,12 +42,7 @@ const {
 
   &:disabled {
     &:hover {
-      background: radial-gradient(
-        circle at center,
-        $bg-color-0 0%,
-        $bg-color-50 50%,
-        $bg-color-100 100%
-      );
+      background: $gradient;
       background-size: 200% 200%;
       background-position: center;
     }

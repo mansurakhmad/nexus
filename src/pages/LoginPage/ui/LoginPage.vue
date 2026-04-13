@@ -5,7 +5,7 @@ import { LoginForm } from '@/widgets/LoginForm';
 <template>
   <div class="loginPage">
     <Transition name="slide-down" appear>
-      <h2 class="title">Log in to your account</h2>
+      <h2 class="title">Welcome back to Nexus!</h2>
     </Transition>
     <div class="content">
       <LoginForm />
