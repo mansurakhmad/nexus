@@ -44,7 +44,7 @@ const getName = () => {
     <div class="userControl" v-if="data && !$route.meta.isOnboarding">
       <BaseButton
         :value="`Hi, ${getName()}`"
-        theme="noBorder"
+        theme="primary"
         @click="togglePopoverState"
         class="popupTrigger"
       />
@@ -55,10 +55,10 @@ const getName = () => {
       <BaseButton
         v-if="$route.name !== APP_ROUTERS_NAMES.PROFILE"
         value="Personal Profile"
-        theme="accent"
+        theme="primary"
         @click="goToProfilePage"
       />
-      <BaseButton value="Log out" theme="outline" @click="logout" />
+      <BaseButton value="Log out" theme="inverted" @click="logout" />
     </div>
   </Popover>
 </template>
@@ -66,12 +66,6 @@ const getName = () => {
 <style lang="scss" scoped>
 .userControl {
   position: relative;
-
-  .popupTrigger {
-    color: var(--gold-50);
-    font-size: 18px;
-    font-weight: 500;
-  }
 }
 
 .fade-enter-from {

@@ -7,3 +7,4 @@ export * from './AnimatedWrapper';
 export * from './BaseDatePicker';
 export * from './AppLogo';
 export * from './BaseText';
+export * from './BaseContainer';

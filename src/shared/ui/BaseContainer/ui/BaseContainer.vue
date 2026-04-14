@@ -1,13 +1,13 @@
 <script lang="ts" setup>
-import type { ContentContainer } from '../models';
+import type { BaseContainer } from '../models';
 
 const { sizeValue, flexValue, paddingValue, gapValue, radiusValue } =
-  defineProps<ContentContainer.Props>();
+  defineProps<BaseContainer.Props>();
 </script>
 
 <template>
   <div
-    class="contentContainer"
+    class="baseContainer"
     :class="{
       [`${sizeValue}Size`]: sizeValue,
       [`${flexValue}Flex`]: flexValue,
@@ -21,7 +21,7 @@ const { sizeValue, flexValue, paddingValue, gapValue, radiusValue } =
 </template>
 
 <style lang="scss" scoped>
-.contentContainer {
+.baseContainer {
   margin: 0 auto;
   width: 100%;
 

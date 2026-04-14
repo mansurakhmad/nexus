@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { APP_ROUTES } from '@/shared/config';
-import { BaseButton, BaseText } from '@/shared/ui';
-import { ContentContainer } from '@/widgets/ContentContainer';
+import { BaseButton, BaseText, BaseContainer } from '@/shared/ui';
 
 const finTechBenefits = [
   'Real-Time Exchange Rates: Instant currency tracking with live charts and historical data.',
@@ -13,7 +12,7 @@ const finTechBenefits = [
 
 <template>
   <div class="mainPage">
-    <ContentContainer
+    <BaseContainer
       paddingValue="normal"
       gapValue="normal"
       flexValue="column"
@@ -30,9 +29,9 @@ const finTechBenefits = [
         value="Get Started"
         class="flowButton"
         @onClick="$router.push(APP_ROUTES.FINANCE)"
-        theme="accent"
+        theme="primary"
       />
-    </ContentContainer>
+    </BaseContainer>
   </div>
 </template>
 

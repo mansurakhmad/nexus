@@ -1,12 +1,11 @@
 <script lang="ts" setup>
 import UserControl from './UserControl.vue';
 
-import { AppLogo } from '@/shared/ui';
-import { ContentContainer } from '@/widgets/ContentContainer';
+import { AppLogo, BaseContainer } from '@/shared/ui';
 </script>
 
 <template>
-  <ContentContainer sizeValue="full" paddingValue="normal">
+  <BaseContainer sizeValue="full" paddingValue="normal">
     <header class="header">
       <Transition name="fade" appear>
         <AppLogo />
@@ -15,7 +14,7 @@ import { ContentContainer } from '@/widgets/ContentContainer';
         <UserControl />
       </div>
     </header>
-  </ContentContainer>
+  </BaseContainer>
 </template>
 
 <style lang="scss" scoped>

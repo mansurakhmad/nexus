@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { ProfileForm } from '@/widgets/ProfileForm';
+import { UserCard } from '@/widgets/UserCard';
 </script>
 
 <template>
   <div class="profilePage">
-    <h2 class="title">Personal Profile</h2>
+    <UserCard />
     <ProfileForm />
   </div>
 </template>
@@ -17,11 +18,5 @@ import { ProfileForm } from '@/widgets/ProfileForm';
   gap: 44px;
   width: 100%;
   padding-bottom: 64px;
-}
-
-.title {
-  font-size: 24px;
-  font-weight: 500;
-  line-height: 30px;
 }
 </style>

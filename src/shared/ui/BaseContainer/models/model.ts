@@ -1,4 +1,4 @@
-export namespace ContentContainer {
+export namespace BaseContainer {
   export interface Props {
     sizeValue?: 'small' | 'normal' | 'large' | 'full';
     flexValue?: 'row' | 'column';

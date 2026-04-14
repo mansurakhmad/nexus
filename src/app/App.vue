@@ -7,9 +7,9 @@ import { RouterView, useRoute } from 'vue-router';
 import { useRequestState } from '@/features/requestState';
 import { useAuthStore } from '@/features/user';
 import { APP_FLOWS } from '@/shared/config';
+import { BaseContainer } from '@/shared/ui';
 import BaseAlert from '@/shared/ui/BaseAlert/ui/BaseAlert.vue';
 import { GlobalLoader } from '@/shared/ui/GlobalLoader';
-import { ContentContainer } from '@/widgets/ContentContainer';
 import { HeaderApp } from '@/widgets/HeaderApp';
 import { OnboardingOverview } from '@/widgets/OnboardingOverview';
 
@@ -27,7 +27,7 @@ authStore.init();
 
 <template>
   <div v-if="isOnboardingFlow" class="app onboardingFlow">
-    <ContentContainer
+    <BaseContainer
       paddingValue="none"
       sizeValue="normal"
       flexValue="row"
@@ -37,21 +37,21 @@ authStore.init();
       <div class="onboardingMainContent">
         <RouterView />
       </div>
-    </ContentContainer>
+    </BaseContainer>
   </div>
 
   <div v-else-if="isFinanceFlow" class="app financeFlow">
     <HeaderApp class="header" />
-    <ContentContainer paddingValue="normal">
+    <BaseContainer paddingValue="normal">
       <RouterView />
-    </ContentContainer>
+    </BaseContainer>
   </div>
 
   <div v-else class="app main">
     <HeaderApp class="header" />
-    <ContentContainer paddingValue="normal">
+    <BaseContainer paddingValue="normal">
       <RouterView />
-    </ContentContainer>
+    </BaseContainer>
   </div>
 
   <BaseAlert />
