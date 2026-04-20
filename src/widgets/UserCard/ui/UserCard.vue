@@ -1,17 +1,21 @@
 <script setup lang="ts">
-import Card from 'primevue/card';
+import { UserAvatar, UserInfo } from './components';
+
+import { useUserProfileQuery } from '@/features/user';
+import { BaseContainer } from '@/shared/ui';
+
+const { data } = useUserProfileQuery();
 </script>
 
 <template>
-  <Card class="userCard">
-    <template #title>userCard</template>
-    <template #subtitle>subtitle</template>
-    <template #content>content</template>
-  </Card>
+  <BaseContainer v-if="data && data.profileData" class="userCard" flexValue="row" gapValue="xLarge">
+    <UserAvatar />
+    <UserInfo />
+  </BaseContainer>
 </template>
 
 <style lang="scss" scoped>
 .userCard {
-  flex-direction: column;
+  color: var(--neutral-100);
 }
 </style>

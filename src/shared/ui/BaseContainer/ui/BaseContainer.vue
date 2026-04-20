@@ -79,6 +79,14 @@ const { sizeValue, flexValue, paddingValue, gapValue, radiusValue } =
     gap: 24px;
   }
 
+  &.xLargeGap {
+    gap: 32px;
+  }
+
+  &.extraGap {
+    gap: 40px;
+  }
+
   // RADIUS
   &.noneRadius {
     border-radius: 0;

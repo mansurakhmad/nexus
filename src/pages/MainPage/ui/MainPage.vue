@@ -38,7 +38,6 @@ const finTechBenefits = [
 <style lang="scss" scoped>
 .mainPage {
   width: 100%;
-  height: calc(100vh - 150px);
 }
 
 .flowButton {

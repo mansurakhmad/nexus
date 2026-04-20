@@ -6,7 +6,6 @@ import { RouterView, useRoute } from 'vue-router';
 
 import { useRequestState } from '@/features/requestState';
 import { useAuthStore } from '@/features/user';
-import { APP_FLOWS } from '@/shared/config';
 import { BaseContainer } from '@/shared/ui';
 import BaseAlert from '@/shared/ui/BaseAlert/ui/BaseAlert.vue';
 import { GlobalLoader } from '@/shared/ui/GlobalLoader';
@@ -19,8 +18,6 @@ const route = useRoute();
 const { showLoader } = useRequestState();
 
 const isOnboardingFlow = computed(() => route.meta.isOnboarding);
-
-const isFinanceFlow = computed(() => route.meta.flow === APP_FLOWS.FINANCE);
 
 authStore.init();
 </script>
@@ -40,18 +37,11 @@ authStore.init();
     </BaseContainer>
   </div>
 
-  <div v-else-if="isFinanceFlow" class="app financeFlow">
+  <div v-else class="app">
     <HeaderApp class="header" />
-    <BaseContainer paddingValue="normal">
+    <main class="main">
       <RouterView />
-    </BaseContainer>
-  </div>
-
-  <div v-else class="app main">
-    <HeaderApp class="header" />
-    <BaseContainer paddingValue="normal">
-      <RouterView />
-    </BaseContainer>
+    </main>
   </div>
 
   <BaseAlert />
@@ -86,5 +76,9 @@ authStore.init();
       padding: 24px 40px 24px 0;
     }
   }
+}
+
+.main {
+  padding: 46px 16px;
 }
 </style>

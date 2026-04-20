@@ -3,8 +3,8 @@ import { ref, watch } from 'vue';
 import { toTypedSchema } from '@vee-validate/zod';
 import { useForm } from 'vee-validate';
 
-import { ProfileForm, zodSchema } from '../models';
 import { useUserProfileQuery } from './useUserProfileQuery';
+import { ProfileFormFields, zodSchema, type ProfileForm } from '../models';
 
 export const useProfileForm = () => {
   const { data: savedProfileData } = useUserProfileQuery();
@@ -14,10 +14,10 @@ export const useProfileForm = () => {
       key: 'p_inf',
       id: 1,
       fields: [
-        ProfileForm.Fields.FIRST_NAME,
-        ProfileForm.Fields.LAST_NAME,
-        ProfileForm.Fields.BIRTHDAY,
-        ProfileForm.Fields.GENDER,
+        ProfileFormFields.FIRST_NAME,
+        ProfileFormFields.LAST_NAME,
+        ProfileFormFields.BIRTHDAY,
+        ProfileFormFields.GENDER,
       ],
       hasErrors: false,
     },
@@ -26,9 +26,9 @@ export const useProfileForm = () => {
       key: 'c_inf',
       id: 2,
       fields: [
-        ProfileForm.Fields.EMAIL,
-        ProfileForm.Fields.PHONE_CODE,
-        ProfileForm.Fields.PHONE_NUMBER,
+        ProfileFormFields.EMAIL,
+        ProfileFormFields.PHONE_CODE,
+        ProfileFormFields.PHONE_NUMBER,
       ],
       hasErrors: false,
     },
@@ -36,7 +36,7 @@ export const useProfileForm = () => {
       title: 'App information',
       key: 'a_inf',
       id: 3,
-      fields: [ProfileForm.Fields.USERNAME],
+      fields: [ProfileFormFields.USERNAME],
       hasErrors: false,
     },
   ]);

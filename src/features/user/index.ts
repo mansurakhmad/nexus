@@ -1,2 +1,2 @@
 export * from './composables';
-export { ProfileForm } from './models';
+export { type ProfileForm } from './models';

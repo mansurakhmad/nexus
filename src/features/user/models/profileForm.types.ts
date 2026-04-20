@@ -1,5 +1,7 @@
 import z from 'zod';
 
+import type { ProfileFormFields } from './enums';
+
 export const zodSchema = z.object({
   firstName: z.string().nonempty('First name is required'),
   lastName: z.string().nonempty('Last name is required'),
@@ -14,22 +16,11 @@ export const zodSchema = z.object({
 export namespace ProfileForm {
   export type FormValues = z.infer<typeof zodSchema>;
 
-  export enum Fields {
-    FIRST_NAME = 'firstName',
-    LAST_NAME = 'lastName',
-    BIRTHDAY = 'birthday',
-    GENDER = 'gender',
-    USERNAME = 'username',
-    EMAIL = 'email',
-    PHONE_CODE = 'phoneCode',
-    PHONE_NUMBER = 'phoneNumber',
-  }
-
   export interface Step {
     title: string;
     key: string;
     id: number;
-    fields: Fields[];
+    fields: ProfileFormFields[];
     hasErrors: boolean;
   }
 }

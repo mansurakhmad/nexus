@@ -1,3 +1,4 @@
+import type { USER_TIRES } from '@/shared/config';
 import type { Nullable } from '@/shared/utils';
 import type { User as UserAuth } from '@supabase/supabase-js';
 
@@ -15,6 +16,10 @@ export namespace User {
     username: string;
     phone_code: number;
     phone_number: number;
+    location?: string;
+    position?: string;
+    avatar?: string;
+    tier?: USER_TIRES;
   }>;
 
   export interface Model extends UserAuth {

@@ -1,18 +1,22 @@
 <script setup lang="ts">
 import type { BaseTextTypes } from '../models';
 
-const { value, size, tag = 'p', weight } = defineProps<BaseTextTypes.Props>();
+const { size, tag = 'p', weight } = defineProps<BaseTextTypes.Props>();
 
 const classNames = ['baseText', `${size}SizeText`, `${weight}WeightText`];
 </script>
 
 <template>
   <template v-if="tag === 'span'">
-    <span :class="classNames">{{ value }}</span>
+    <span :class="classNames">
+      <slot />
+    </span>
   </template>
 
   <template v-else>
-    <p :class="classNames">{{ value }}</p>
+    <p :class="classNames">
+      <slot />
+    </p>
   </template>
 </template>
 

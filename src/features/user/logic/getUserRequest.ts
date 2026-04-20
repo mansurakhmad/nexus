@@ -8,8 +8,6 @@ export const getUserRequest = async (): Promise<User.Model> => {
     error,
   } = await api.auth.getUser();
 
-  console.log('getUserRequest user', user);
-
   if (error) throw error;
 
   if (!user) throw new Error('User not found');

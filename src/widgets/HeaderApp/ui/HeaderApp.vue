@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import UserControl from './UserControl.vue';
+import { UserControl } from './components';
 
 import { AppLogo, BaseContainer } from '@/shared/ui';
 </script>

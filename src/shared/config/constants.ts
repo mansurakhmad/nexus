@@ -29,3 +29,9 @@ export enum APP_FLOWS {
   FITNESS = 'fitnessLab',
   TASKS = 'taskManager',
 }
+
+export enum USER_TIRES {
+  STANDARD = 'STANDARD',
+  PREMIUM = 'PREMIUM',
+  ENTERPRISE = 'ENTERPRISE',
+}
