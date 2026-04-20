@@ -3,7 +3,7 @@ import { computed } from 'vue';
 
 import { useUserProfileQuery } from '@/features/user';
 import { USER_TIRES } from '@/shared/config';
-import { AnimatedWrapper, BaseText } from '@/shared/ui';
+import { AnimatedWrapper, BaseHeading, BaseText } from '@/shared/ui';
 import { capitalizeFirstLetter } from '@/shared/utils';
 
 const { data } = useUserProfileQuery();
@@ -16,11 +16,11 @@ const fullName = computed(
 
 <template>
   <div class="userInfo" v-if="data && data.profileData">
-    <h3 class="fullName">
+    <BaseHeading level="h3" class="fullName">
       {{ fullName }}
-    </h3>
+    </BaseHeading>
     <div class="details">
-      <AnimatedWrapper theme="Gold" class="tierWrapper">
+      <AnimatedWrapper theme="Blue" class="tierWrapper">
         <BaseText tag="span" size="medium" class="tier">
           {{ data.profileData.tier || USER_TIRES.STANDARD }}
         </BaseText>
@@ -61,9 +61,9 @@ const fullName = computed(
 
     .tier {
       padding: 8px 12px;
-      background-color: var(--secondary-50);
+      background-color: var(--tertiary-20);
       border-radius: 100px;
-      color: var(--white-100);
+      color: var(--primary-100);
     }
   }
 }

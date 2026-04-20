@@ -1,11 +1,12 @@
 <script setup lang="ts">
+import { BaseHeading } from '@/shared/ui';
 import { LoginForm } from '@/widgets/LoginForm';
 </script>
 
 <template>
   <div class="loginPage">
     <Transition name="slide-down" appear>
-      <h2 class="title">Welcome back to Nexus!</h2>
+      <BaseHeading level="h2" :class="'title'">Welcome back to Nexus!</BaseHeading>
     </Transition>
     <div class="content">
       <LoginForm />
@@ -18,10 +19,6 @@ import { LoginForm } from '@/widgets/LoginForm';
   display: flex;
   flex-direction: column;
   gap: 44px;
-
-  h2 {
-    color: var(--primary-80);
-  }
 }
 
 .content {

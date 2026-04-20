@@ -1,92 +1,42 @@
 :root {
-  /* --- Основные темные (Black/Dark Wine) --- */
-  --black-150: #000;
-  --black-150-o-10: rgb(0 0 0 / 10%);
-  --black-100: #0a0104;
-  --black-50: #140307;
-  --black-10: #1c050a;
-
-  /* --- Винные и бордовые (Wine) --- */
-  --wine-150: #180409;
-  --wine-100: #4a0e1c;
-  --wine-50: #6b1428;
-  --wine-10: #8b1d36;
-  --wine-50-o-50: rgb(74 14 28 / 50%);
-  --wine-10-o-20: rgb(139 29 54 / 20%);
-
-  /* --- Красные акценты (Red) --- */
-  --red-100: #b22a22;
-  --red-50: #ff3b30;
-  --red-10: #ff5e54;
-  --red-10-o-10: rgb(255 94 84 / 10%);
-
-  /* --- акценты (Cyan/Mint/Gold) --- */
-  --cyan-100: #39a694;
-  --cyan-50: #4cd9c0;
-  --cyan-50-o-80: rgb(76 217 192 / 80%);
-  --cyan-10: #76e7d3;
-  --cyan-10-o-50: rgb(118 231 211 / 50%);
-  --cyan-10-o-10: rgb(118 231 211 / 10%);
-  --cyan-10-o-5: rgb(118 231 211 / 5%);
-  --gold-100: #8c6a2c;
-  --gold-50: #d4af37;
-  --gold-10: #f1d592;
-  --gold-10-o-15: rgb(241 213 146 / 15%);
-  --gold-10-o-10: rgb(241 213 146 / 10%);
-
-  /* --- Нейтральные и карточки (Gray/Light/White) --- */
-  --white-100: #fff;
-  --white-80: #f8f8ff;
-  --white-50: #f5f5f5;
-  --gray-80: #e9ecef;
-  --gray-50: #ced4da;
-  --gray-20: #a1a1a1;
-  --gray-10: #2d2d2d;
-
-  /* --- Спец-эффекты (Glass & Border) --- */
-  --glass-white: rgb(255 255 255 / 8%); /* Эффект матового стекла */
-  --glass-border: rgb(255 255 255 / 15%); /* Тонкие границы окон */
-  --shadow-overlay: rgb(0 0 0 / 40%); /* Тень под модальным окном */
-
-
     /* --- Primary --- */
-  --primary-100: #3C0610;
-  --primary-90: #581B24;
-  --primary-80: #753139;
-  --primary-70: #722F37;
-  --primary-60: #92484F;
-  --primary-50: #AF6067;
-  --primary-40: #CD7880;
-  --primary-30: #EC9299;
-  --primary-20: #FFB2B8;
-  --primary-10: #FFDADB;
-  --primary-1: #FFECED;
+  --primary-100: #000;
+  --primary-90: #241A00;
+  --primary-80: #3E2E00;
+  --primary-70: #574500;
+  --primary-60: #735C00;
+  --primary-50: #917400;
+  --primary-40: #AF8D11;
+  --primary-30: #CCA730;
+  --primary-20: #E9C349;
+  --primary-10: #FFE088;
+  --primary-1: #FFF;
 
    /* --- Secondary  --- */
-  --secondary-100: #00201D;
-  --secondary-90: #003732;
-  --secondary-80: #005049;
-  --secondary-70: #006A62;
-  --secondary-60: #00867B;
-  --secondary-50: #00A296;
-  --secondary-40: #00C0B1;
-  --secondary-30: #40E0D0;
-  --secondary-20: #3ADCCC;
-  --secondary-10: #61F9E9;
-  --secondary-1: #B3FFF4;
+  --secondary-100: #410007;
+  --secondary-90: #680011;
+  --secondary-80: #92001C;
+  --secondary-70: #BB152C;
+  --secondary-60: #DF3341;
+  --secondary-50: #FF535B;
+  --secondary-40: #F88;
+  --secondary-30: #FFB3B1;
+  --secondary-20: #FFDAD8;
+  --secondary-10: #FFEDEB;
+  --secondary-1: #fff0ee;
 
   /* --- Tertiary --- */
-  --tertiary-100: #241A00;
-  --tertiary-90: #3C2F00;
-  --tertiary-80: #574500;
-  --tertiary-70: #735C00;
-  --tertiary-60: #917400;
-  --tertiary-50: #AF8D11;
-  --tertiary-40: #D4AF37;
-  --tertiary-30: #CCA730;
-  --tertiary-20: #E9C349;
-  --tertiary-10: #FFE088;
-  --tertiary-1: #FFEFCC;
+  --tertiary-100: #01123a;
+  --tertiary-90: #082B72;
+  --tertiary-80: #27438A;
+  --tertiary-70: #415BA4;
+  --tertiary-60: #5B74BE;
+  --tertiary-50: #758EDA;
+  --tertiary-40: #8FA8F7;
+  --tertiary-30: #B4C5FF;
+  --tertiary-20: #DBE1FF;
+  --tertiary-10: #EEF0FF;
+  --tertiary-1: #f5f6fe;
 
 /* --- Neutral --- */
   --neutral-100: #1B1C1C;
@@ -100,4 +50,13 @@
   --neutral-20: #C7C6C6;
   --neutral-10: #E3E2E2;
   --neutral-1: #F2F0F0;
+
+  /* --- Error --- */
+  --color-error: var(--secondary-60);
+
+  /* --- Warning --- */
+  --color-warning: var(--primary-50);
+
+  /* --- Normal text --- */
+  --color-normal-text: var(--primary-100);
 }

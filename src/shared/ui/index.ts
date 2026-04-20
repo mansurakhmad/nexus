@@ -9,3 +9,5 @@ export * from './AppLogo';
 export * from './BaseText';
 export * from './BaseContainer';
 export * from './BaseIcon';
+export * from './BaseHeading';
+export * from './ErrorMessage';

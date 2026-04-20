@@ -53,14 +53,20 @@ const rules = computed(() => [
 <style lang="scss" scoped>
 .rulesList {
   width: 100%;
+  background: linear-gradient(
+    180deg,
+    var(--neutral-70) 0%,
+    var(--neutral-80) 50%,
+    var(--neutral-90) 100%
+  );
 
   &:deep(.p-card-title) {
-    border-bottom: 1px solid var(--white-100);
+    border-bottom: 1px solid var(--primary-1);
     padding-bottom: 6px;
   }
 
   &:deep(.pi-check) {
-    color: var(--cyan-100);
+    color: var(--tertiary-30);
   }
 }
 

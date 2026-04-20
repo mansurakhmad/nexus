@@ -4,7 +4,7 @@ import { useField } from 'vee-validate';
 
 import FormSectionTitle from './FormSectionTitle.vue';
 
-import { ProfileForm } from '@/features/user';
+import { ProfileFormFields } from '@/features/user';
 import { BaseInput, AnimatedWrapper, BaseDatePicker } from '@/shared/ui';
 
 const genderOptions = [
@@ -12,9 +12,9 @@ const genderOptions = [
   { name: 'Female', code: 'XX' },
 ];
 
-const firstNameField = useField<string>(ProfileForm.Fields.FIRST_NAME);
-const lastNameField = useField<string>(ProfileForm.Fields.LAST_NAME);
-const { value: gender } = useField<string>(ProfileForm.Fields.GENDER);
+const firstNameField = useField<string>(ProfileFormFields.FIRST_NAME);
+const lastNameField = useField<string>(ProfileFormFields.LAST_NAME);
+const { value: gender } = useField<string>(ProfileFormFields.GENDER);
 </script>
 
 <template>

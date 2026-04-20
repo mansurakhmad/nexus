@@ -25,7 +25,7 @@ const checked = defineModel<boolean>();
     border: 1px solid var(--tertiary-80) !important;
 
     svg {
-      color: var(--gold-100) !important;
+      color: var(--tertiary-100) !important;
     }
   }
 

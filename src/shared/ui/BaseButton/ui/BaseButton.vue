@@ -59,10 +59,10 @@ const {
 
   &.primaryTheme {
     @include common-styles(
-      var(--primary-80),
-      var(--primary-90),
-      var(--primary-100),
-      var(--white-100)
+      var(--primary-30),
+      var(--primary-40),
+      var(--primary-30),
+      var(--primary-1)
     );
   }
 
@@ -71,16 +71,16 @@ const {
       var(--secondary-50),
       var(--secondary-60),
       var(--secondary-70),
-      var(--white-100)
+      var(--primary-1)
     );
   }
 
-  &.invertedTheme {
+  &.tertiaryTheme {
     @include common-styles(
-      var(--neutral-50),
-      var(--neutral-60),
-      var(--neutral-70),
-      var(--white-100)
+      var(--tertiary-70),
+      var(--tertiary-80),
+      var(--tertiary-90),
+      var(--primary-1)
     );
   }
 
@@ -91,8 +91,8 @@ const {
       transparent,
       transparent,
       transparent,
-      var(--primary-100),
-      1px solid var(--primary-100)
+      var(--color-normal-text),
+      1px solid var(--color-normal-text)
     );
 
     &:hover,
@@ -102,7 +102,7 @@ const {
   }
 
   &.transparentTheme {
-    @include common-styles(transparent, transparent, transparent, var(--primary-100));
+    @include common-styles(transparent, transparent, transparent, var(--color-normal-text));
 
     &:hover,
     &:active {

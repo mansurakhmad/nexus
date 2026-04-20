@@ -1,11 +1,12 @@
 <script setup lang="ts">
+import { BaseHeading } from '@/shared/ui';
 import { EnrollmentForm } from '@/widgets/EnrollmentForm';
 </script>
 
 <template>
   <div class="enrollmentPage">
     <Transition name="slide-down" appear>
-      <h2>Create Account</h2>
+      <BaseHeading level="h2" :class="'title'">Create Account</BaseHeading>
     </Transition>
     <EnrollmentForm />
   </div>
@@ -16,10 +17,6 @@ import { EnrollmentForm } from '@/widgets/EnrollmentForm';
   display: flex;
   flex-direction: column;
   gap: 44px;
-
-  h2 {
-    color: var(--primary-80);
-  }
 }
 
 .slide-down-enter-from {

@@ -93,7 +93,7 @@ const onSubmit = handleSubmit(
       />
       <BaseButton
         value="Don't have an account? Register"
-        theme="secondary"
+        theme="tertiary"
         @onClick="$router.push(APP_ROUTES.ENROLLMENT)"
         :size="'large'"
       />

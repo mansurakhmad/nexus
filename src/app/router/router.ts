@@ -2,7 +2,7 @@ import { createWebHistory, createRouter, type RouteRecordRaw } from 'vue-router'
 
 import { LoginPage } from '@/pages/LoginPage';
 import { MainPage } from '@/pages/MainPage';
-import { APP_FLOWS, APP_ROUTERS_NAMES, APP_ROUTES } from '@/shared/config';
+import { APP_ROUTERS_NAMES, APP_ROUTES } from '@/shared/config';
 
 const routes: RouteRecordRaw[] = [
   {
@@ -38,12 +38,6 @@ const routes: RouteRecordRaw[] = [
     path: APP_ROUTES.PROFILE,
     component: () => import('@/pages/ProfilePage'),
     name: APP_ROUTERS_NAMES.PROFILE,
-  },
-  {
-    name: APP_ROUTERS_NAMES.FINANCE,
-    path: APP_ROUTES.FINANCE,
-    component: () => import('@/pages/FinTechMain'),
-    meta: { flow: APP_FLOWS.FINANCE },
   },
 ];
 

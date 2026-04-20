@@ -21,6 +21,19 @@ const linesRefs = useAnimationRules();
 </template>
 
 <style lang="scss" scoped>
+@mixin theme-rules($color) {
+  border: 1px solid $color;
+
+  .line {
+    background: $color;
+    box-shadow:
+      0 0 5px var(--primary-1),
+      0 0 10px $color,
+      0 0 20px $color,
+      0 0 40px $color;
+  }
+}
+
 .animatedWrapper {
   position: relative;
   border-radius: 12px;
@@ -66,54 +79,15 @@ const linesRefs = useAnimationRules();
   }
 
   &.widgetThemeGold {
-    border: 1px solid var(--gold-10);
-
-    &:hover {
-      background: var(--gold-10-o-10);
-    }
-
-    .line {
-      background: var(--gold-10-o-10);
-      box-shadow:
-        0 0 5px var(--white-100),
-        0 0 10px var(--gold-10),
-        0 0 20px var(--gold-10),
-        0 0 40px var(--gold-10);
-    }
+    @include theme-rules(var(--primary-20));
   }
 
   &.widgetThemeBlue {
-    border: 1px solid var(--cyan-10-o-50);
-
-    &:hover {
-      background: var(--cyan-10-o-10);
-    }
-
-    .line {
-      background: var(--cyan-50);
-      box-shadow:
-        0 0 5px var(--white-100),
-        0 0 10px var(--cyan-10),
-        0 0 20px var(--cyan-10),
-        0 0 40px var(--cyan-10);
-    }
+    @include theme-rules(var(--tertiary-40));
   }
 
   &.widgetThemeRed {
-    border: 1px solid var(--wine-10);
-
-    &:hover {
-      background: var(--red-10-o-10);
-    }
-
-    .line {
-      background: var(--wine-100);
-      box-shadow:
-        0 0 5px var(--white-100),
-        0 0 10px var(--wine-50),
-        0 0 20px var(--wine-50),
-        0 0 40px var(--wine-50);
-    }
+    @include theme-rules(var(--secondary-60));
   }
 }
 

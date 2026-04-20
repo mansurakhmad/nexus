@@ -1,18 +1,18 @@
 <script setup lang="ts">
-import { APP_ROUTES } from '@/shared/config';
-import { BaseButton, BaseText, BaseContainer } from '@/shared/ui';
+// import { APP_ROUTES } from '@/shared/config';
+// import { BaseButton, BaseText, BaseContainer } from '@/shared/ui';
 
-const finTechBenefits = [
-  'Real-Time Exchange Rates: Instant currency tracking with live charts and historical data.',
-  'Global Financial News: Breaking updates from top agencies and key market events.',
-  'Expert Analytics: Professional forecasts, technical analysis, and economic trend reviews.',
-  'Smart Alerts: Custom notifications to ensure you never miss a market move.',
-];
+// const finTechBenefits = [
+//   'Real-Time Exchange Rates: Instant currency tracking with live charts and historical data.',
+//   'Global Financial News: Breaking updates from top agencies and key market events.',
+//   'Expert Analytics: Professional forecasts, technical analysis, and economic trend reviews.',
+//   'Smart Alerts: Custom notifications to ensure you never miss a market move.',
+// ];
 </script>
 
 <template>
   <div class="mainPage">
-    <BaseContainer
+    <!-- <BaseContainer
       paddingValue="normal"
       gapValue="normal"
       flexValue="column"
@@ -31,7 +31,7 @@ const finTechBenefits = [
         @onClick="$router.push(APP_ROUTES.FINANCE)"
         theme="primary"
       />
-    </BaseContainer>
+    </BaseContainer> -->
   </div>
 </template>
 

@@ -1,5 +1,6 @@
-import { getRandomInt } from '@/shared/utils';
 import { onMounted, ref } from 'vue';
+
+import { getRandomInt } from '@/shared/utils';
 
 export const useAnimationRules = () => {
   const leftLine = ref<HTMLElement | null>(null);

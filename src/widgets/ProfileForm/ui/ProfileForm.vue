@@ -41,7 +41,7 @@ const onSubmit = handleSubmit(
       <BaseButton
         value="Prev"
         type="button"
-        theme="outline"
+        theme="outlined"
         class="stepButton"
         @click="changeStep(currentStep - 1)"
         :disabled="currentStep === 1"
@@ -50,7 +50,7 @@ const onSubmit = handleSubmit(
       <BaseButton
         value="Next"
         type="button"
-        theme="outlineCyan"
+        theme="outlined"
         class="stepButton"
         @click="changeStep(currentStep + 1)"
         v-if="currentStep !== 3"
@@ -58,7 +58,7 @@ const onSubmit = handleSubmit(
       <BaseButton
         value="Submit"
         type="submit"
-        theme="accent"
+        theme="primary"
         class="submitButton"
         :disabled="!handleFormValid()"
         v-else

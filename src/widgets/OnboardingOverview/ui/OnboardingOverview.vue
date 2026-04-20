@@ -5,21 +5,13 @@ import { AppLogo } from '@/shared/ui';
 
 const contentItems = [
   {
-    title: 'Strategic Asset Management & Market Intelligence',
-    description: `Monitor global currency and crypto markets in real time through a centralized professional
-        interface. Integrate live market data with curated financial news to support data-driven
-        decisions. Optimize your fiscal planning and maintain complete oversight of your portfolio
-        within a secure, unified ecosystem.`,
+    title: 'Analytics & Biographies',
+    description: `Go beyond basic stats. Dive into complete fighter biographies, including age, reach, stance, fighting style breakdown, and career milestones. Study their evolution from early amateur bouts to championship fights. Access detailed statistics for every aspect of the sport — track striking accuracy, takedown defense, submission attempts, and control time. Compare performance data across individual fights, full tournament cards, and entire careers. Spot trends, study rivals, and turn raw numbers into real fight IQ.`,
   },
 
   {
-    title: 'Enterprise Project Management Interface',
-    description: `Our Project Management Dashboard offers a robust
-        alternative for tracking complex workflows and team performance. Specifically engineered to
-        facilitate structured task management, the platform provides comprehensive visibility into
-        sprint progress, resource allocation, and milestone achievement. Ensure organizational
-        alignment and enhance productivity through a professional-grade suite of tools designed to
-        streamline the entire development lifecycle.`,
+    title: 'Gaming Platform',
+    description: `Put your knowledge to the test. Use in-game currency to place bets on real upcoming fights — from undercard matchups to main event title bouts. Every decision affects your balance. Then, take it further: join the Prognosticators' Championship, where you compete head‑to‑head with other players based on prediction accuracy. Earn points for correct forecasts, build a win streak, and rise through the ranks. Climb the global leaderboard, earn bragging rights, and prove you have the sharpest mind in MMA analytics`,
   },
 ];
 </script>
@@ -50,7 +42,13 @@ const contentItems = [
   gap: 46px;
   padding: 24px 40px;
   max-width: 50%;
-  background-color: var(--wine-100);
+  background: linear-gradient(
+    0deg,
+    var(--tertiary-70) 0%,
+    var(--tertiary-80) 22%,
+    var(--tertiary-90) 50%,
+    var(--tertiary-100) 100%
+  );
 
   .content {
     display: flex;
@@ -58,6 +56,7 @@ const contentItems = [
     gap: 16px;
 
     .title {
+      color: var(--primary-30);
       font-size: 28px;
       line-height: 32px;
     }
@@ -75,7 +74,7 @@ const contentItems = [
 
   &:deep(.p-carousel-indicator-active) {
     .p-carousel-indicator-button {
-      background: var(--gold-10);
+      background: var(--secondary-60);
     }
   }
 }

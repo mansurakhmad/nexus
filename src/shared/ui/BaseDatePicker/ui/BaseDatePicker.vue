@@ -4,7 +4,7 @@ import { useField } from 'vee-validate';
 
 import type { BaseDatePickerTypes } from '../models';
 
-import { ErrorMessage } from '@/shared/ui/ErrorMessage';
+import { ErrorMessage } from '@/shared/ui';
 
 const { dateFormat, name, placeholder, onlyPast, maxDate } =
   defineProps<BaseDatePickerTypes.Props>();

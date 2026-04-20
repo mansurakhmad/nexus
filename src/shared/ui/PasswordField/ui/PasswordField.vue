@@ -31,17 +31,17 @@ const {
 <style lang="scss" scoped>
 .passwordField {
   width: 100%;
-  color: var(--secondary-100);
+  color: var(--color-normal-text);
 
   &.warningTheme {
     &:has(input[aria-invalid='true']) {
-      color: var(--tertiary-50);
+      color: var(--color-warning);
     }
   }
 
   &.defaultTheme {
     &:has(input[aria-invalid='true']) {
-      color: var(--red-100);
+      color: var(--color-error);
     }
   }
 

@@ -50,17 +50,17 @@ const handleFileUpload = (event: Event) => {
   height: 150px;
   background: linear-gradient(
     135deg,
-    var(--secondary-70) 0%,
-    var(--secondary-60) 20%,
-    var(--secondary-50) 40%,
-    var(--secondary-40) 60%,
-    var(--secondary-30) 80%,
-    var(--secondary-20) 100%
+    var(--neutral-70) 0%,
+    var(--neutral-60) 20%,
+    var(--neutral-50) 40%,
+    var(--neutral-40) 60%,
+    var(--neutral-30) 80%,
+    var(--neutral-20) 100%
   );
   border-radius: 32px;
 
   .icon {
-    color: var(--white-100);
+    color: var(--primary-1);
   }
 }
 

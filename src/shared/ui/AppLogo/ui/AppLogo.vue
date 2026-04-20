@@ -16,8 +16,8 @@ const isOnboardingFlow = computed(() => route.meta.isOnboarding);
     <img :src="logo" class="logo" alt="logo" />
     <div>
       <h1 class="title">Nexus</h1>
-      <span class="subTitle" v-if="isOnboardingFlow">Ready to work?</span>
-      <span class="subTitle" v-else>Performance Hub</span>
+      <span class="subTitle" v-if="isOnboardingFlow">Learn the stats. Join the game.</span>
+      <span class="subTitle" v-else>No luck. Just analytics.</span>
     </div>
   </RouterLink>
 </template>

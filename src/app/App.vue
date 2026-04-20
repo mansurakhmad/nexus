@@ -52,7 +52,7 @@ authStore.init();
 <style scoped lang="scss">
 .app {
   min-height: 100vh;
-  background-color: var(--neutral-1);
+  background-color: var(--tertiary-1);
 }
 
 .onboardingFlow {

@@ -24,12 +24,6 @@ export const PINIA_STORES_KEYS = {
   AUTH: 'auth',
 };
 
-export enum APP_FLOWS {
-  FINANCE = 'finance',
-  FITNESS = 'fitnessLab',
-  TASKS = 'taskManager',
-}
-
 export enum USER_TIRES {
   STANDARD = 'STANDARD',
   PREMIUM = 'PREMIUM',

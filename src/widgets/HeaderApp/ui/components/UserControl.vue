@@ -21,6 +21,7 @@ const togglePopoverState = (event: PointerEvent) => {
 };
 
 const goToProfilePage = () => {
+  console.log('trigger');
   if (op.value) op.value.hide();
 
   router.push(APP_ROUTES.PROFILE);
@@ -43,9 +44,9 @@ const getName = () => {
   <Transition name="fade" appear>
     <div class="userControl" v-if="data && !$route.meta.isOnboarding">
       <BaseButton
+        @click="togglePopoverState"
         :value="`Hi, ${getName()}`"
         theme="primary"
-        @click="togglePopoverState"
         class="popupTrigger"
       />
     </div>
@@ -54,11 +55,11 @@ const getName = () => {
     <div class="popupContent">
       <BaseButton
         v-if="$route.name !== APP_ROUTERS_NAMES.PROFILE"
+        @click="goToProfilePage"
         value="Personal Profile"
         theme="primary"
-        @click="goToProfilePage"
       />
-      <BaseButton value="Log out" theme="inverted" @click="logout" />
+      <BaseButton value="Log out" theme="tertiary" @click="logout" />
     </div>
   </Popover>
 </template>

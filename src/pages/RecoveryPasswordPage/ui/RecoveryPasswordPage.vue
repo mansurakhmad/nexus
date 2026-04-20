@@ -1,11 +1,12 @@
 <script setup lang="ts">
+import { BaseHeading } from '@/shared/ui';
 import { RecoveryPasswordForm } from '@/widgets/RecoveryPasswordForm';
 </script>
 
 <template>
   <div class="recoveryPasswordPage">
     <Transition name="slide-down" appear>
-      <h2>Recovery Password</h2>
+      <BaseHeading level="h2" :class="'title'">Recovery Password</BaseHeading>
     </Transition>
     <RecoveryPasswordForm />
   </div>
@@ -16,10 +17,6 @@ import { RecoveryPasswordForm } from '@/widgets/RecoveryPasswordForm';
   display: flex;
   flex-direction: column;
   gap: 44px;
-
-  h2 {
-    color: var(--primary-80);
-  }
 }
 
 .slide-down-enter-from {

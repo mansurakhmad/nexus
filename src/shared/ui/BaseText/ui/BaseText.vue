@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { BaseTextTypes } from '../models';
 
-const { size, tag = 'p', weight } = defineProps<BaseTextTypes.Props>();
+const { size = 'medium', tag = 'p', weight } = defineProps<BaseTextTypes.Props>();
 
 const classNames = ['baseText', `${size}SizeText`, `${weight}WeightText`];
 </script>

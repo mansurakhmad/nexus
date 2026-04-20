@@ -23,13 +23,7 @@ import { AppLogo, BaseContainer } from '@/shared/ui';
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  background: radial-gradient(
-    circle at center,
-    var(--wine-10),
-    var(--wine-50),
-    var(--wine-100),
-    var(--wine-150)
-  );
+  background: linear-gradient(90deg, var(--secondary-100) 0%, var(--tertiary-100) 100%);
 }
 
 .fade-enter-from {
