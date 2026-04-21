@@ -4,6 +4,7 @@ import Aura from '@primeuix/themes/aura';
 import { VueQueryPlugin } from '@tanstack/vue-query';
 import { createPinia } from 'pinia';
 import PrimeVue from 'primevue/config';
+import Tooltip from 'primevue/tooltip';
 
 import App from '@/app/App.vue';
 import { router } from '@/app/router';
@@ -17,4 +18,5 @@ app.use(PrimeVue, { theme: { preset: Aura } });
 app.use(VueQueryPlugin);
 app.use(pinia);
 app.use(router);
+app.directive('tooltip', Tooltip);
 app.mount('#app');

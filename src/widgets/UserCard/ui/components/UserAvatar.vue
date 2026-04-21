@@ -2,14 +2,18 @@
 import { computed, ref } from 'vue';
 
 import { useUpdateUserAvatarMutation, useUserProfileQuery } from '@/features/user';
-import { BaseIcon } from '@/shared/ui';
+import { BaseIcon, useBaseAlertStore } from '@/shared/ui';
 
 const localAvatar = ref<string | null>(null);
 
 const { data: userData } = useUserProfileQuery();
 const { mutate } = useUpdateUserAvatarMutation();
+const { triggerAlert } = useBaseAlertStore();
 
 const currentAvatar = computed(() => localAvatar.value || userData.value?.profileData.avatar_url);
+
+const maxSizeInMB = 2;
+const maxSizeInBytes = maxSizeInMB * 1024 * 1024;
 
 const handleFileUpload = (event: Event) => {
   if (!userData.value?.id) return;
@@ -18,6 +22,18 @@ const handleFileUpload = (event: Event) => {
   const file = target.files?.[0];
 
   if (!file) return;
+
+  if (file.size > maxSizeInBytes) {
+    triggerAlert({
+      closeTime: 4000,
+      title: 'Upload failed',
+      message: `File size exceeds ${maxSizeInMB} MB. Please choose a smaller file.`,
+      theme: 'error',
+    });
+
+    target.value = '';
+    return;
+  }
 
   const reader = new FileReader();
 
@@ -35,7 +51,7 @@ const handleFileUpload = (event: Event) => {
   <div class="userAvatar">
     <img v-if="currentAvatar" :src="currentAvatar" class="avatarImage" alt="user avatar" />
     <BaseIcon v-else name="user" sizeValue="extraLarge" class="icon" />
-    <label class="uploadButton">
+    <label class="uploadButton" v-tooltip.bottom="'Max size 2MB'">
       <input type="file" @change="handleFileUpload" accept="image/*" />
       <BaseIcon name="camera" sizeValue="xLarge" class="icon" />
     </label>

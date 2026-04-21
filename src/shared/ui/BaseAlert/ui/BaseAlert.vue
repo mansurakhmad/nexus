@@ -14,7 +14,7 @@ const { alertData } = storeToRefs(alertStore);
 <template>
   <Dialog
     class="baseDialog"
-    position="bottomright"
+    position="bottom"
     :class="`${alertData?.theme}Theme`"
     :visible="!!alertData"
     :draggable="false"
@@ -42,7 +42,11 @@ const { alertData } = storeToRefs(alertStore);
   }
 
   &.errorTheme {
-    background-color: var(--secondary-100);
+    background-color: var(--secondary-70);
+
+    .title {
+      color: var(--primary-1);
+    }
   }
 
   .content {
