@@ -27,8 +27,10 @@ const onSubmit = handleSubmit(
         :errorMessage="emailError"
       />
       <div class="buttons">
-        <BaseButton value="Submit" theme="primary" type="submit" :disabled="!handleFormValid()" />
-        <BaseButton value="Back" theme="transparent" @click="router.back()" />
+        <BaseButton value="Submit" theme="primary" type="submit" :disabled="!handleFormValid()">
+          Submit
+        </BaseButton>
+        <BaseButton theme="transparent" @click="router.back()">Back</BaseButton>
       </div>
     </form>
   </Transition>

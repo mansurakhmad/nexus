@@ -7,11 +7,11 @@ import { useRouter } from 'vue-router';
 import { useLogoutMutation } from '@/features/logout';
 import { useUserProfileQuery } from '@/features/user';
 import { APP_ROUTERS_NAMES, APP_ROUTES } from '@/shared/config';
-import { BaseButton } from '@/shared/ui';
+import { BaseButton, BaseText } from '@/shared/ui';
 
 const router = useRouter();
 const { logout } = useLogoutMutation();
-const { data } = useUserProfileQuery();
+const { data: userData } = useUserProfileQuery();
 const op = ref<InstanceType<typeof Popover> | null>(null);
 
 const togglePopoverState = (event: PointerEvent) => {
@@ -21,34 +21,36 @@ const togglePopoverState = (event: PointerEvent) => {
 };
 
 const goToProfilePage = () => {
-  console.log('trigger');
   if (op.value) op.value.hide();
 
   router.push(APP_ROUTES.PROFILE);
 };
 
 const getName = () => {
-  if (!data.value) return '';
+  if (!userData.value) return '';
 
-  if (data.value.profileData.username) return data.value.profileData.username;
+  if (userData.value.profileData.username) return userData.value.profileData.username;
 
-  if (data.value.profileData.first_name && data.value.profileData.last_name) {
-    return `${data.value.profileData.first_name} ${data.value.profileData.last_name}`;
+  if (userData.value.profileData.first_name && userData.value.profileData.last_name) {
+    return `${userData.value.profileData.first_name} ${userData.value.profileData.last_name}`;
   }
 
-  return data.value.email;
+  return userData.value.email;
 };
 </script>
 
 <template>
   <Transition name="fade" appear>
-    <div class="userControl" v-if="data && !$route.meta.isOnboarding">
-      <BaseButton
-        @click="togglePopoverState"
-        :value="`Hi, ${getName()}`"
-        theme="primary"
-        class="popupTrigger"
-      />
+    <div class="userControl" v-if="userData && !$route.meta.isOnboarding">
+      <BaseButton @click="togglePopoverState" theme="primary" class="popupTrigger">
+        <img
+          v-if="userData.profileData.avatar_url"
+          :src="userData.profileData.avatar_url"
+          class="avatar"
+          alt="avatar"
+        />
+        <BaseText>{{ `Hi, ${getName()}` }}</BaseText>
+      </BaseButton>
     </div>
   </Transition>
   <Popover ref="op" :close-on-escape="true">
@@ -56,10 +58,11 @@ const getName = () => {
       <BaseButton
         v-if="$route.name !== APP_ROUTERS_NAMES.PROFILE"
         @click="goToProfilePage"
-        value="Personal Profile"
         theme="primary"
-      />
-      <BaseButton value="Log out" theme="tertiary" @click="logout" />
+      >
+        Personal Profile
+      </BaseButton>
+      <BaseButton theme="tertiary" @click="logout">Log out</BaseButton>
     </div>
   </Popover>
 </template>
@@ -67,6 +70,24 @@ const getName = () => {
 <style lang="scss" scoped>
 .userControl {
   position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  .popupTrigger {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+
+    .avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      overflow: hidden;
+      object-fit: cover;
+    }
+  }
 }
 
 .fade-enter-from {

@@ -59,14 +59,10 @@ const submitForm = handleSubmit(
         </div>
       </div>
       <div class="buttons">
-        <BaseButton
-          value="Create Account"
-          class="button"
-          type="submit"
-          theme="primary"
-          :disabled="!handleFormValid()"
-        />
-        <BaseButton value="Back" class="button" theme="transparent" @onClick="$router.back()" />
+        <BaseButton class="button" type="submit" theme="primary" :disabled="!handleFormValid()">
+          Create Account
+        </BaseButton>
+        <BaseButton class="button" theme="transparent" @onClick="$router.back()">Back</BaseButton>
       </div>
     </form>
   </Transition>

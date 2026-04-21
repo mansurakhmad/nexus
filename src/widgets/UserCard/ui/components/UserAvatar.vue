@@ -1,13 +1,15 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 
 import { useUpdateUserAvatarMutation, useUserProfileQuery } from '@/features/user';
 import { BaseIcon } from '@/shared/ui';
 
-const image = ref<string | null>(null);
+const localAvatar = ref<string | null>(null);
 
 const { data: userData } = useUserProfileQuery();
 const { mutate } = useUpdateUserAvatarMutation();
+
+const currentAvatar = computed(() => localAvatar.value || userData.value?.profileData.avatar_url);
 
 const handleFileUpload = (event: Event) => {
   if (!userData.value?.id) return;
@@ -20,7 +22,7 @@ const handleFileUpload = (event: Event) => {
   const reader = new FileReader();
 
   reader.onload = e => {
-    image.value = e.target?.result as string;
+    localAvatar.value = e.target?.result as string;
   };
 
   reader.readAsDataURL(file);
@@ -31,7 +33,7 @@ const handleFileUpload = (event: Event) => {
 
 <template>
   <div class="userAvatar">
-    <img v-if="image" :src="image" class="avatarImage" alt="user avatar" />
+    <img v-if="currentAvatar" :src="currentAvatar" class="avatarImage" alt="user avatar" />
     <BaseIcon v-else name="user" sizeValue="extraLarge" class="icon" />
     <label class="uploadButton">
       <input type="file" @change="handleFileUpload" accept="image/*" />

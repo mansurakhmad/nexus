@@ -6,6 +6,14 @@ export const sendUpdateUserAvatar = async ({ file, userId }: SendUpdateUserAvata
   const fileExt = file.name.split('.').pop();
   const filePath = `${userId}/${Math.random()}.${fileExt}`;
 
+  const { data: existingFiles } = await api.storage.from('avatars').list(userId);
+
+  if (existingFiles?.length) {
+    const filesToRemove = existingFiles.map(f => `${userId}/${f.name}`);
+
+    await api.storage.from('avatars').remove(filesToRemove);
+  }
+
   const { data, error } = await api.storage.from('avatars').upload(filePath, file);
 
   if (error) throw error;

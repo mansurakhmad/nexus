@@ -39,7 +39,7 @@ const submit = handleSubmit(
         :errorMessage="confirmPasswordError"
         labelValue="Repeat new password"
       />
-      <BaseButton value="Submit" type="submit" :disabled="!handleFormValid()" theme="primary" />
+      <BaseButton type="submit" :disabled="!handleFormValid()" theme="primary">Submit</BaseButton>
     </form>
   </Transition>
 </template>

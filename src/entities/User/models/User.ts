@@ -18,7 +18,7 @@ export namespace User {
     phone_number: number;
     location?: string;
     position?: string;
-    avatar?: string;
+    avatar_url?: string;
     tier?: USER_TIRES;
   }>;
 

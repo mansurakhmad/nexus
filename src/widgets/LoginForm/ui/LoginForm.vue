@@ -84,25 +84,19 @@ const onSubmit = handleSubmit(
         v-model="rememberMe"
         class="rememberMe"
       />
+      <BaseButton theme="primary" type="submit" :disabled="!handleFormValid()" :size="'large'">
+        Login
+      </BaseButton>
+      <BaseButton theme="tertiary" @onClick="$router.push(APP_ROUTES.ENROLLMENT)" :size="'large'">
+        Don't have an account? Register
+      </BaseButton>
       <BaseButton
-        value="Login"
-        theme="primary"
-        type="submit"
-        :disabled="!handleFormValid()"
-        :size="'large'"
-      />
-      <BaseButton
-        value="Don't have an account? Register"
-        theme="tertiary"
-        @onClick="$router.push(APP_ROUTES.ENROLLMENT)"
-        :size="'large'"
-      />
-      <BaseButton
-        value="Forgot Password"
         theme="transparent"
         @click="$router.push(APP_ROUTES.FORGOT_PASSWORD)"
         :size="'large'"
-      />
+      >
+        Forgot Password
+      </BaseButton>
     </form>
   </Transition>
 
