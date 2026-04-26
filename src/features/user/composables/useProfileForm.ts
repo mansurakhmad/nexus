@@ -1,59 +1,13 @@
-import { ref, watch } from 'vue';
+import { watch } from 'vue';
 
 import { toTypedSchema } from '@vee-validate/zod';
 import { useForm } from 'vee-validate';
 
 import { useUserProfileQuery } from './useUserProfileQuery';
-import { ProfileFormFields, zodSchema, type ProfileForm } from '../models';
+import { zodSchema } from '../models';
 
 export const useProfileForm = () => {
   const { data: savedProfileData } = useUserProfileQuery();
-  const steps = ref<ProfileForm.Step[]>([
-    {
-      title: 'Personal Information',
-      key: 'p_inf',
-      id: 1,
-      fields: [
-        ProfileFormFields.FIRST_NAME,
-        ProfileFormFields.LAST_NAME,
-        ProfileFormFields.BIRTHDAY,
-        ProfileFormFields.GENDER,
-      ],
-      hasErrors: false,
-    },
-    {
-      title: 'Contact Information',
-      key: 'c_inf',
-      id: 2,
-      fields: [
-        ProfileFormFields.EMAIL,
-        ProfileFormFields.PHONE_CODE,
-        ProfileFormFields.PHONE_NUMBER,
-      ],
-      hasErrors: false,
-    },
-    {
-      title: 'App information',
-      key: 'a_inf',
-      id: 3,
-      fields: [ProfileFormFields.USERNAME],
-      hasErrors: false,
-    },
-  ]);
-
-  const currentStep = ref(1);
-
-  const checkCurrentStepErrors = () => {
-    const i = currentStep.value - 1;
-    steps.value[i]!.hasErrors = steps.value[i]!.fields.some(field => errors.value[field]);
-  };
-
-  const changeStep = (step: number) => {
-    checkCurrentStepErrors();
-
-    if (step === 0) currentStep.value = 1;
-    else currentStep.value = step;
-  };
 
   const { handleSubmit, values, errors, resetForm } = useForm({
     validationSchema: toTypedSchema(zodSchema),
@@ -82,11 +36,12 @@ export const useProfileForm = () => {
   );
 
   const handleFormValid = () => {
-    if (!errors.value) return true;
+    if (Object.keys(errors.value).length) return false;
 
+    console.log('errors.value', errors.value);
     const valuesArr = Object.values(values);
     return valuesArr.every(Boolean);
   };
 
-  return { handleSubmit, handleFormValid, steps, currentStep, changeStep };
+  return { handleSubmit, handleFormValid, resetForm };
 };

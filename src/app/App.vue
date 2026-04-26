@@ -38,7 +38,7 @@ authStore.init();
   </div>
 
   <div v-else class="app">
-    <HeaderApp class="header" />
+    <HeaderApp />
     <main class="main">
       <RouterView />
     </main>
@@ -79,6 +79,6 @@ authStore.init();
 }
 
 .main {
-  padding: 46px 16px;
+  padding: 142px 16px 0;
 }
 </style>

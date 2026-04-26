@@ -104,5 +104,14 @@ const { theme = 'primary', type = 'button', disabled } = defineProps<BaseButtonT
       color: var(--primary-70);
     }
   }
+
+  &.neutralTheme {
+    @include common-styles(
+      var(--neutral-70),
+      var(--neutral-80),
+      var(--neutral-90),
+      var(--primary-1)
+    );
+  }
 }
 </style>

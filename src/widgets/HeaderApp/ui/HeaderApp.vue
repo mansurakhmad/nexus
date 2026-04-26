@@ -5,7 +5,7 @@ import { AppLogo, BaseContainer } from '@/shared/ui';
 </script>
 
 <template>
-  <BaseContainer sizeValue="full" paddingValue="normal">
+  <BaseContainer sizeValue="full" class="headerWrapper">
     <header class="header">
       <Transition name="fade" appear>
         <AppLogo />
@@ -18,10 +18,19 @@ import { AppLogo, BaseContainer } from '@/shared/ui';
 </template>
 
 <style lang="scss" scoped>
+.headerWrapper {
+  position: fixed;
+  z-index: 9;
+  top: 0;
+  right: 0;
+  left: 0;
+}
+
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 16px;
   width: 100%;
   background: linear-gradient(90deg, var(--secondary-100) 0%, var(--tertiary-100) 100%);
 }

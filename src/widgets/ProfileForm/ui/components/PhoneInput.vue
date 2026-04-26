@@ -4,6 +4,8 @@ import { computed } from 'vue';
 import { FloatLabel, InputNumber } from 'primevue';
 import { useField } from 'vee-validate';
 
+import { ErrorMessage } from '@/shared/ui';
+
 const phoneCodeField = useField<number>('phoneCode');
 const phoneNumberField = useField<number>('phoneNumber');
 
@@ -37,9 +39,7 @@ const errorMessage = computed(() => {
         />
       </FloatLabel>
     </div>
-    <template v-if="errorMessage">
-      <div class="errorMessage">{{ errorMessage }}</div>
-    </template>
+    <ErrorMessage :message="errorMessage" v-if="errorMessage" />
   </div>
 </template>
 
@@ -49,7 +49,13 @@ const errorMessage = computed(() => {
 
   &:deep(.p-inputnumber-input) {
     width: 100%;
-    background-color: var(--glass-white);
+    background-color: transparent;
+    color: var(--primary-100);
+    font-weight: 500;
+
+    &:focus {
+      border: 1px solid var(--primary-100);
+    }
   }
 
   .fields {
@@ -59,15 +65,24 @@ const errorMessage = computed(() => {
   }
 
   .code {
-    width: 150px;
+    width: 120px;
     flex-shrink: 0;
   }
 
   .wrapperCode,
   .wrapperNumber {
+    label {
+      color: var(--primary-100);
+    }
+
     &:has(span[isvalid='false']) {
+      &:deep(.p-inputtext) {
+        border: 1px solid var(--color-error);
+        color: var(--color-error);
+      }
+
       label {
-        color: var(--red-50);
+        color: var(--color-error);
         font-weight: 500;
       }
     }
@@ -76,18 +91,6 @@ const errorMessage = computed(() => {
   .wrapperNumber,
   .number {
     width: 100%;
-  }
-
-  .errorMessage {
-    position: absolute;
-    left: 0;
-    width: 100%;
-    color: var(--red-50);
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 14px;
-    text-align: center;
-    padding-top: 12px;
   }
 }
 </style>
