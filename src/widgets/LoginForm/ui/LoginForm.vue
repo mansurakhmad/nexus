@@ -4,8 +4,7 @@ import { watch } from 'vue';
 import Dialog from 'primevue/dialog';
 import { useRouter, useRoute } from 'vue-router';
 
-import { useConfirmEnrollment } from '@/features/confirm';
-import { useLoginForm, useLoginQuery } from '@/features/login';
+import { useConfirmEnrollment, useLoginForm, useLoginQuery } from '@/features/onboarding';
 import { APP_ROUTERS_NAMES, APP_ROUTES, KEEP_USER_LOGIN } from '@/shared/config';
 import { BaseButton, BaseCheckbox, BaseInput, PasswordField, useBaseAlertStore } from '@/shared/ui';
 

@@ -4,5 +4,6 @@ export namespace BaseHeadingTypes {
     theme?: 'primary' | 'secondary' | 'tertiary';
     transform?: 'uppercase' | 'lowercase' | 'capitalize';
     fontSize?: 'xSmall' | 'small' | 'medium' | 'large' | 'xLarge' | 'extraLarge';
+    weight?: 'normal' | 'bold';
   }
 }

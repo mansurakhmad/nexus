@@ -6,7 +6,7 @@ import { RecoveryPasswordForm } from '@/widgets/RecoveryPasswordForm';
 <template>
   <div class="recoveryPasswordPage">
     <Transition name="slide-down" appear>
-      <BaseHeading level="h2" :class="'title'">Recovery Password</BaseHeading>
+      <BaseHeading level="h2" fontSize="medium" weight="normal">Recovery Password</BaseHeading>
     </Transition>
     <RecoveryPasswordForm />
   </div>

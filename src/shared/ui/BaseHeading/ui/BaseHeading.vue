@@ -6,6 +6,7 @@ const {
   level = 'h1',
   theme = 'primary',
   transform = 'uppercase',
+  weight = 'normal',
 } = defineProps<BaseHeadingTypes.Props>();
 </script>
 
@@ -16,6 +17,7 @@ const {
       'baseHeading',
       `${theme}Theme`,
       `${transform}Transform`,
+      `${weight}WeightValue`,
       { [`${fontSize}Size`]: fontSize },
     ]"
   >
@@ -27,10 +29,11 @@ const {
 .baseHeading {
   display: inline-block;
   margin: 0;
+  font-family: 'BBH Hegarty', sans-serif;
 }
 
 .primaryTheme {
-  color: var(--primary-40);
+  color: var(--primary-30);
 }
 
 .secondaryTheme {
@@ -64,8 +67,8 @@ const {
 }
 
 .mediumSize {
-  font-size: 20px;
-  line-height: 28px;
+  font-size: 24px;
+  line-height: 32px;
 }
 
 .largeSize {
@@ -81,5 +84,13 @@ const {
 .extraLargeSize {
   font-size: 48px;
   line-height: 56px;
+}
+
+.normalWeightValue {
+  font-weight: 500;
+}
+
+.boldWeightValue {
+  font-weight: 600;
 }
 </style>

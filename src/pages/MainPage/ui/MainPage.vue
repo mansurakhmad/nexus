@@ -45,6 +45,6 @@
 }
 
 .finTechWidget {
-  background-color: var(--white-100);
+  background-color: var(--primary-1);
 }
 </style>

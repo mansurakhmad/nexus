@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useEnrollmentMutation, useEnrollmentForm } from '@/features/enrollment';
+import { useEnrollmentMutation, useEnrollmentForm } from '@/features/onboarding';
 import { BaseButton, BaseInput, PasswordField } from '@/shared/ui';
 import { PasswordRules } from '@/widgets/PasswordRules';
 

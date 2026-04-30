@@ -56,7 +56,7 @@ const isOnboardingFlow = computed(() => route.meta.isOnboarding);
 .subTitle {
   background: linear-gradient(90deg, #fff 0%, #32ebee 25%, #8b1d36 50%, #32ebee 75%, #fff 100%);
   background-size: 200% auto;
-  color: var(--white-100);
+  color: var(--primary-1);
   font-size: 14px;
   font-weight: 500;
   line-height: 18px;

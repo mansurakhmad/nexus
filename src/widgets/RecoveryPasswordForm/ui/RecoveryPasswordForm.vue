@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useRecoveryPasswordForm, useRecoveryPasswordMutation } from '@/features/recoveryPassword';
+import { useRecoveryPasswordForm, useRecoveryPasswordMutation } from '@/features/onboarding';
 import { PasswordField, BaseButton } from '@/shared/ui';
 import { PasswordRules } from '@/widgets/PasswordRules';
 

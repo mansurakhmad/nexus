@@ -6,7 +6,7 @@ import { ForgotPasswordForm } from '@/widgets/ForgotPasswordForm';
 <template>
   <div class="forgotPasswordPage">
     <Transition name="slide-down" appear>
-      <BaseHeading level="h2" :class="'title'">Forgot Password</BaseHeading>
+      <BaseHeading level="h2" fontSize="medium">Forgot Password</BaseHeading>
     </Transition>
     <ForgotPasswordForm />
   </div>

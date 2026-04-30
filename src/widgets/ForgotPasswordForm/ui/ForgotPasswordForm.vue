@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
 
-import { useForgotPasswordMutation, useForgotPasswordForm } from '@/features/forgotPassword';
+import { useForgotPasswordMutation, useForgotPasswordForm } from '@/features/onboarding';
 import { BaseButton, BaseInput } from '@/shared/ui';
 
 const { email, emailAttr, emailError, handleSubmit, resetForm, handleFormValid } =

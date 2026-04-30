@@ -38,9 +38,7 @@ export const useProfileForm = () => {
   const handleFormValid = () => {
     if (Object.keys(errors.value).length) return false;
 
-    console.log('errors.value', errors.value);
-    const valuesArr = Object.values(values);
-    return valuesArr.every(Boolean);
+    return Object.values(values).every(Boolean);
   };
 
   return { handleSubmit, handleFormValid, resetForm };

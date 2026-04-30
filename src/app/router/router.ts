@@ -1,5 +1,7 @@
 import { createWebHistory, createRouter, type RouteRecordRaw } from 'vue-router';
 
+import { setupMiddleware } from './middleware';
+
 import { LoginPage } from '@/pages/LoginPage';
 import { MainPage } from '@/pages/MainPage';
 import { APP_ROUTERS_NAMES, APP_ROUTES } from '@/shared/config';
@@ -42,5 +44,7 @@ const routes: RouteRecordRaw[] = [
 ];
 
 const router = createRouter({ history: createWebHistory(), routes });
+
+setupMiddleware(router);
 
 export { router };

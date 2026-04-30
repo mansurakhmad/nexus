@@ -4,7 +4,7 @@ import { ref } from 'vue';
 import { Popover } from 'primevue';
 import { useRouter } from 'vue-router';
 
-import { useLogoutMutation } from '@/features/logout';
+import { useLogoutMutation } from '@/features/user';
 import { useUserProfileQuery } from '@/features/user';
 import { APP_ROUTERS_NAMES, APP_ROUTES } from '@/shared/config';
 import { BaseButton, BaseText } from '@/shared/ui';

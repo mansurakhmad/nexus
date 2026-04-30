@@ -6,7 +6,7 @@ import { EnrollmentForm } from '@/widgets/EnrollmentForm';
 <template>
   <div class="enrollmentPage">
     <Transition name="slide-down" appear>
-      <BaseHeading level="h2" :class="'title'">Create Account</BaseHeading>
+      <BaseHeading level="h2" fontSize="medium">Create Account</BaseHeading>
     </Transition>
     <EnrollmentForm />
   </div>

@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/vue-query';
 
-import { sendUpdateUserAvatar } from '../logic';
+import { sendUpdateUserAvatarRequest } from '../logic';
 
 import type { SendUpdateUserAvatarPayload } from '../models/api.types';
 
@@ -11,7 +11,7 @@ export const useUpdateUserAvatarMutation = () => {
   const { triggerAlert } = useBaseAlertStore();
 
   const { mutate, data, error } = useMutation({
-    mutationFn: (payload: SendUpdateUserAvatarPayload) => sendUpdateUserAvatar(payload),
+    mutationFn: (payload: SendUpdateUserAvatarPayload) => sendUpdateUserAvatarRequest(payload),
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ['userProfile'] }),
     onError: error => {
       triggerAlert({

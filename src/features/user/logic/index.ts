@@ -1,3 +1,5 @@
 export * from './getUserRequest';
 export * from './sendUpdateUserRequest';
-export * from './sendUpdateUserAvatar';
+export * from './sendUpdateUserAvatarRequest';
+export * from './sendDeleteAccountRequest';
+export * from './logoutUser';

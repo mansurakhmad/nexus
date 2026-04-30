@@ -64,7 +64,7 @@ authStore.init();
   .onboardingContentContainer {
     gap: 40px;
     min-height: 80vh;
-    background-color: var(--white-100);
+    background-color: var(--primary-1);
     border-radius: 16px;
     overflow: hidden;
     box-shadow:

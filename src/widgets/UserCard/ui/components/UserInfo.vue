@@ -16,7 +16,7 @@ const fullName = computed(
 
 <template>
   <div class="userInfo" v-if="data && data.profileData">
-    <BaseHeading level="h3" class="fullName">
+    <BaseHeading level="h3" class="fullName" weight="normal">
       {{ fullName }}
     </BaseHeading>
     <div class="details">
@@ -46,7 +46,6 @@ const fullName = computed(
 .fullName {
   color: var(--primary-100);
   font-size: 32px;
-  font-weight: 600;
   line-height: 40px;
 }
 
