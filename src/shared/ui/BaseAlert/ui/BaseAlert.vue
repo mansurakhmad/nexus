@@ -2,6 +2,8 @@
 import { storeToRefs } from 'pinia';
 import { Dialog } from 'primevue';
 
+import { BaseHeading } from '../../BaseHeading';
+import { BaseText } from '../../BaseText';
 import { useBaseAlertStore } from '../store';
 
 const alertStore = useBaseAlertStore();
@@ -20,12 +22,12 @@ const { alertData } = storeToRefs(alertStore);
     :pt="{ header: { style: 'padding: 16px 0 0' } }"
   >
     <div class="content">
-      <h4 class="title">
+      <BaseHeading level="h3" class="title">
         <slot name="title">{{ alertData?.title }}</slot>
-      </h4>
-      <p class="message">
+      </BaseHeading>
+      <BaseText tag="p" class="message">
         <slot name="message">{{ alertData?.message }}</slot>
-      </p>
+      </BaseText>
     </div>
   </Dialog>
 </template>
@@ -33,14 +35,18 @@ const { alertData } = storeToRefs(alertStore);
 <style lang="scss">
 .baseDialog.p-dialog {
   border: none;
-  color: var(--white-100);
+  color: var(--primary-1);
 
   &.defaultTheme {
-    background-color: var(--cyan-100);
+    background-color: var(--tertiary-100);
   }
 
   &.errorTheme {
-    background-color: var(--wine-100);
+    background-color: var(--secondary-70);
+
+    .title {
+      color: var(--primary-1);
+    }
   }
 
   .content {

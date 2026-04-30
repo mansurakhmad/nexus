@@ -1,11 +1,78 @@
 <script setup lang="ts">
+import { ConfirmDialog } from 'primevue';
+import { useConfirm } from 'primevue/useconfirm';
+
+import { useLogoutMutation } from '@/features/user';
+import { useDeleteUserMutation, useUserProfileQuery } from '@/features/user';
+import { BaseHeading, BaseIcon, BaseText } from '@/shared/ui';
+import BaseButton from '@/shared/ui/BaseButton/ui/BaseButton.vue';
 import { ProfileForm } from '@/widgets/ProfileForm';
+import { UserCard } from '@/widgets/UserCard';
+
+const { deleteUser } = useDeleteUserMutation();
+const { logout } = useLogoutMutation();
+const { data: userData } = useUserProfileQuery();
+
+const confirm = useConfirm();
+
+const confirmDelete = () => {
+  confirm.require({
+    message:
+      'This will permanently delete your account. Are you sure you want to delete the account?',
+    header: 'Delete Confirmation',
+    icon: 'pi pi-exclamation-triangle',
+    acceptClass: 'p-button-danger',
+    acceptLabel: 'Yes',
+    rejectLabel: 'No',
+
+    accept: () => {
+      if (!userData.value) return;
+
+      deleteUser(userData.value.id, {
+        onSuccess: () => logout(true),
+      });
+    },
+  });
+};
 </script>
 
 <template>
   <div class="profilePage">
-    <h2 class="title">Personal Profile</h2>
-    <ProfileForm />
+    <div class="heading">
+      <BaseHeading level="h1" fontSize="extraLarge" weight="bold">ACCOUNT SETUP</BaseHeading>
+      <BaseHeading level="h4">Complete it to enter the game.</BaseHeading>
+    </div>
+    <UserCard />
+    <div class="profileFormWrapper">
+      <BaseHeading level="h2" class="formHeading" transform="uppercase">
+        Account configuration
+      </BaseHeading>
+      <ProfileForm />
+    </div>
+    <BaseButton theme="transparent" @click="confirmDelete" class="deleteButton">
+      Delete Account
+    </BaseButton>
+    <ConfirmDialog>
+      <template #container="{ message, acceptCallback, rejectCallback }">
+        <div class="deleteConfirmDialog">
+          <header class="header">
+            <BaseIcon :name="message.icon" sizeValue="large" class="icon" />
+            <BaseHeading level="h4" fontSize="medium">{{ message.header }}</BaseHeading>
+          </header>
+          <div class="body">
+            <BaseText>{{ message.message }}</BaseText>
+          </div>
+          <footer class="footer">
+            <BaseButton @click="rejectCallback" theme="secondary">
+              {{ message.rejectLabel }}
+            </BaseButton>
+            <BaseButton @click="acceptCallback" class="primary">
+              {{ message.acceptLabel }}
+            </BaseButton>
+          </footer>
+        </div>
+      </template>
+    </ConfirmDialog>
   </div>
 </template>
 
@@ -17,11 +84,60 @@ import { ProfileForm } from '@/widgets/ProfileForm';
   gap: 44px;
   width: 100%;
   padding-bottom: 64px;
+
+  .deleteButton {
+    color: var(--secondary-70);
+  }
 }
 
-.title {
-  font-size: 24px;
-  font-weight: 500;
-  line-height: 30px;
+.heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 46px;
+}
+
+.profileFormWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  width: 100%;
+  margin-top: 24px;
+
+  .formHeading {
+    width: max-content;
+    border-bottom: 4px solid var(--primary-30);
+    padding-bottom: 8px;
+  }
+}
+
+.deleteConfirmDialog {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px;
+  max-width: 488px;
+
+  .header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .icon {
+    color: var(--primary-40);
+  }
+
+  .footer {
+    display: flex;
+    justify-content: space-around;
+    gap: 16px;
+    width: 100%;
+
+    button {
+      width: 100%;
+    }
+  }
 }
 </style>

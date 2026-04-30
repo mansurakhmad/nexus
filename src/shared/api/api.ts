@@ -7,14 +7,23 @@ const supabaseKey = import.meta.env.VITE_SUPABASE_KEY;
 
 const customStorage = {
   getItem: (key: string) => {
-    const rememberMe = localStorage.getItem(KEEP_USER_LOGIN) === 'true';
-    return rememberMe ? localStorage.getItem(key) : sessionStorage.getItem(key);
+    const fromLocal = localStorage.getItem(key);
+    const fromSession = sessionStorage.getItem(key);
+    return fromLocal || fromSession;
   },
+
   setItem: (key: string, value: string) => {
-    const rememberMe = localStorage.getItem(KEEP_USER_LOGIN) === 'true';
-    if (rememberMe) localStorage.setItem(key, value);
-    else sessionStorage.setItem(key, value);
+    const isSavaOldSession = localStorage.getItem(KEEP_USER_LOGIN) === 'true';
+
+    if (isSavaOldSession) {
+      sessionStorage.removeItem(key);
+      localStorage.setItem(key, value);
+    } else {
+      localStorage.removeItem(key);
+      sessionStorage.setItem(key, value);
+    }
   },
+
   removeItem: (key: string) => {
     localStorage.removeItem(key);
     sessionStorage.removeItem(key);

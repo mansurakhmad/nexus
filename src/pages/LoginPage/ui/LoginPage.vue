@@ -1,11 +1,12 @@
 <script setup lang="ts">
+import { BaseHeading } from '@/shared/ui';
 import { LoginForm } from '@/widgets/LoginForm';
 </script>
 
 <template>
   <div class="loginPage">
     <Transition name="slide-down" appear>
-      <h2 class="title">Log in to your account</h2>
+      <BaseHeading level="h2" fontSize="medium">Welcome back to Nexus!</BaseHeading>
     </Transition>
     <div class="content">
       <LoginForm />
@@ -23,12 +24,6 @@ import { LoginForm } from '@/widgets/LoginForm';
 .content {
   display: flex;
   justify-content: space-between;
-}
-
-.title {
-  font-size: 24px;
-  font-weight: 500;
-  line-height: 30px;
 }
 
 .banner {

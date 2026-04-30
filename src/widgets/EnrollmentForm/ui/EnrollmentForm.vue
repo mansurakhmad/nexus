@@ -1,6 +1,7 @@
 <script lang="ts" setup>
-import { useEnrollmentMutation, useEnrollmentForm } from '@/features/enrollment';
+import { useEnrollmentMutation, useEnrollmentForm } from '@/features/onboarding';
 import { BaseButton, BaseInput, PasswordField } from '@/shared/ui';
+import { PasswordRules } from '@/widgets/PasswordRules';
 
 const {
   email,
@@ -39,28 +40,29 @@ const submitForm = handleSubmit(
         :isValid="!emailError"
         errorMessage="Invalid email"
       />
-      <PasswordField
-        labelValue="Password"
-        v-model="password"
-        v-bind="passwordAttr"
-        :isValid="!passwordError"
-      />
-      <PasswordField
-        labelValue="Confirm password"
-        v-model="confirmPassword"
-        v-bind="confirmPasswordAttr"
-        :isValid="!confirmPasswordError"
-        :errorMessage="confirmPasswordError"
-      />
+      <div class="passwordBlock">
+        <PasswordRules :password="password || ''" />
+        <div class="passwordFields">
+          <PasswordField
+            labelValue="Password"
+            v-model="password"
+            v-bind="passwordAttr"
+            :isValid="!passwordError"
+          />
+          <PasswordField
+            labelValue="Confirm password"
+            v-model="confirmPassword"
+            v-bind="confirmPasswordAttr"
+            :isValid="!confirmPasswordError"
+            :errorMessage="confirmPasswordError"
+          />
+        </div>
+      </div>
       <div class="buttons">
-        <BaseButton
-          value="Create Account"
-          class="button"
-          type="submit"
-          theme="accent"
-          :disabled="!handleFormValid()"
-        />
-        <BaseButton value="Back" class="button" theme="secondary" @onClick="$router.back()" />
+        <BaseButton class="button" type="submit" theme="primary" :disabled="!handleFormValid()">
+          Create Account
+        </BaseButton>
+        <BaseButton class="button" theme="transparent" @onClick="$router.back()">Back</BaseButton>
       </div>
     </form>
   </Transition>
@@ -72,9 +74,20 @@ const submitForm = handleSubmit(
   flex-direction: column;
   gap: 48px;
   width: 100%;
-  max-width: 400px;
   border-radius: 12px;
   color: var(--black-100);
+
+  .passwordBlock {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .passwordFields {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
 }
 
 .buttons {

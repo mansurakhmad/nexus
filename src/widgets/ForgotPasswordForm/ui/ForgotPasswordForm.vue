@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
 
-import { useForgotPasswordMutation, useForgotPasswordForm } from '@/features/forgotPassword';
+import { useForgotPasswordMutation, useForgotPasswordForm } from '@/features/onboarding';
 import { BaseButton, BaseInput } from '@/shared/ui';
 
 const { email, emailAttr, emailError, handleSubmit, resetForm, handleFormValid } =
@@ -27,8 +27,10 @@ const onSubmit = handleSubmit(
         :errorMessage="emailError"
       />
       <div class="buttons">
-        <BaseButton value="Submit" theme="accent" type="submit" :disabled="!handleFormValid()" />
-        <BaseButton value="Back" theme="secondary" @click="router.back()" />
+        <BaseButton value="Submit" theme="primary" type="submit" :disabled="!handleFormValid()">
+          Submit
+        </BaseButton>
+        <BaseButton theme="transparent" @click="router.back()">Back</BaseButton>
       </div>
     </form>
   </Transition>
@@ -39,9 +41,8 @@ const onSubmit = handleSubmit(
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 32px;
+  gap: 48px;
   width: 100%;
-  max-width: 400px;
   border-radius: 12px;
   color: var(--black-100);
 }

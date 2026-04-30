@@ -1,47 +1,62 @@
 :root {
-  /* --- Основные темные (Black/Dark Wine) --- */
-  --black-150: #000;
-  --black-100: #0a0104;
-  --black-50: #140307;
-  --black-10: #1c050a;
+    /* --- Primary --- */
+  --primary-100: #000;
+  --primary-90: #241A00;
+  --primary-80: #3E2E00;
+  --primary-70: #574500;
+  --primary-60: #735C00;
+  --primary-50: #917400;
+  --primary-40: #AF8D11;
+  --primary-30: #CCA730;
+  --primary-20: #E9C349;
+  --primary-10: #FFE088;
+  --primary-1: #FFF;
 
-  /* --- Винные и бордовые (Wine) --- */
-  --wine-150: #180409;
-  --wine-100: #4a0e1c;
-  --wine-50: #6b1428;
-  --wine-10: #8b1d36;
-  --wine-50-o-50: rgb(74 14 28 / 50%);
-  --wine-10-o-20: rgb(139 29 54 / 20%);
+   /* --- Secondary  --- */
+  --secondary-100: #410007;
+  --secondary-90: #680011;
+  --secondary-80: #92001C;
+  --secondary-70: #BB152C;
+  --secondary-60: #DF3341;
+  --secondary-50: #FF535B;
+  --secondary-40: #F88;
+  --secondary-30: #FFB3B1;
+  --secondary-20: #FFDAD8;
+  --secondary-10: #FFEDEB;
+  --secondary-1: #fff0ee;
 
-  /* --- Красные акценты (Red) --- */
-  --red-100: #b22a22;
-  --red-50: #ff3b30;
-  --red-10: #ff5e54;
-  --red-10-o-10: rgb(255 94 84 / 10%);
+  /* --- Tertiary --- */
+  --tertiary-100: #01123a;
+  --tertiary-90: #082B72;
+  --tertiary-80: #27438A;
+  --tertiary-70: #415BA4;
+  --tertiary-60: #5B74BE;
+  --tertiary-50: #758EDA;
+  --tertiary-40: #8FA8F7;
+  --tertiary-30: #B4C5FF;
+  --tertiary-20: #DBE1FF;
+  --tertiary-10: #EEF0FF;
+  --tertiary-1: #f5f6fe;
 
-  /* --- акценты (Cyan/Mint/Gold) --- */
-  --cyan-100: #39a694;
-  --cyan-50: #4cd9c0;
-  --cyan-50-o-80: rgb(76 217 192 / 80%);
-  --cyan-10: #76e7d3;
-  --cyan-10-o-50: rgb(118 231 211 / 50%);
-  --cyan-10-o-10: rgb(118 231 211 / 10%);
-  --cyan-10-o-5: rgb(118 231 211 / 5%);
-  --gold-100: #8c6a2c;
-  --gold-50: #d4af37;
-  --gold-10: #f1d592;
-  --gold-10-o-15: rgb(241 213 146 / 15%);
-  --gold-10-o-10: rgb(241 213 146 / 10%);
+/* --- Neutral --- */
+  --neutral-100: #1B1C1C;
+  --neutral-90: #303031;
+  --neutral-80: #464747;
+  --neutral-70: #5E5E5E;
+  --neutral-60: #777;
+  --neutral-50: #808080;
+  --neutral-40: #919190;
+  --neutral-30: #ABABAB;
+  --neutral-20: #C7C6C6;
+  --neutral-10: #E3E2E2;
+  --neutral-1: #F2F0F0;
 
-  /* --- Нейтральные и карточки (Gray/Light/White) --- */
-  --white-100: #fff;
-  --gray-80: #e9ecef;
-  --gray-50: #ced4da;
-  --gray-20: #a1a1a1;
-  --gray-10: #2d2d2d;
+  /* --- Error --- */
+  --color-error: var(--secondary-60);
 
-  /* --- Спец-эффекты (Glass & Border) --- */
-  --glass-white: rgb(255 255 255 / 8%); /* Эффект матового стекла */
-  --glass-border: rgb(255 255 255 / 15%); /* Тонкие границы окон */
-  --shadow-overlay: rgb(0 0 0 / 40%); /* Тень под модальным окном */
+  /* --- Warning --- */
+  --color-warning: var(--primary-50);
+
+  /* --- Normal text --- */
+  --color-normal-text: var(--primary-100);
 }

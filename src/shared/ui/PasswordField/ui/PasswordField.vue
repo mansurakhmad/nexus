@@ -6,11 +6,16 @@ import type { PasswordFieldTypes } from '../models';
 import { ErrorMessage } from '@/shared/ui/ErrorMessage';
 
 const modelValue = defineModel<string>();
-const { labelValue, isValid, errorMessage } = defineProps<PasswordFieldTypes.Props>();
+const {
+  labelValue,
+  isValid,
+  errorMessage,
+  errorTheme = 'default',
+} = defineProps<PasswordFieldTypes.Props>();
 </script>
 
 <template>
-  <FloatLabel class="passwordField">
+  <FloatLabel :class="[`${errorTheme}Theme`, 'passwordField']">
     <Password
       v-model="modelValue"
       :feedback="false"
@@ -19,38 +24,50 @@ const { labelValue, isValid, errorMessage } = defineProps<PasswordFieldTypes.Pro
       toggleMask
     />
     <label>{{ labelValue }}</label>
-    <ErrorMessage v-if="!isValid && errorMessage" :message="errorMessage" />
+    <ErrorMessage v-if="!isValid && errorMessage" :message="errorMessage" :theme="errorTheme" />
   </FloatLabel>
 </template>
 
 <style lang="scss" scoped>
 .passwordField {
   width: 100%;
+  color: var(--color-normal-text);
+
+  &.warningTheme {
+    &:has(input[aria-invalid='true']) {
+      color: var(--color-warning);
+    }
+  }
+
+  &.defaultTheme {
+    &:has(input[aria-invalid='true']) {
+      color: var(--color-error);
+    }
+  }
 
   :deep(.inputWrapper) {
+    display: block;
     width: 100%;
-  }
 
-  :deep(input) {
-    width: 100%;
-    background-color: var(--glass-white);
-
-    &:focus {
-      border: 1px solid var(--gold-10);
-    }
-  }
-
-  &:has(input:focus) {
-    label {
-      color: var(--gold-50);
-    }
-  }
-
-  &:has(input[aria-invalid='true']) {
-    label {
-      color: var(--red-50);
+    input {
+      width: 100%;
+      background-color: transparent;
+      color: inherit;
       font-weight: 500;
+      border-color: inherit;
+
+      &:focus {
+        border: 1px solid var(--tertiary-90);
+      }
     }
+
+    svg {
+      color: inherit;
+    }
+  }
+
+  :deep(label) {
+    color: inherit !important;
   }
 }
 </style>

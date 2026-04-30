@@ -1,9 +1,13 @@
 <script setup lang="ts">
-const { message } = defineProps<{ message: string }>();
+import { BaseText } from '../../BaseText';
+
+import type { ErrorMessageTypes } from '../models';
+
+const { message, theme = 'default' } = defineProps<ErrorMessageTypes.Props>();
 </script>
 
 <template>
-  <div class="errorMessage">{{ message }}</div>
+  <BaseText tag="p" size="small" :class="['errorMessage', `${theme}Theme`]">{{ message }}</BaseText>
 </template>
 
 <style lang="scss" scoped>
@@ -11,11 +15,15 @@ const { message } = defineProps<{ message: string }>();
   position: absolute;
   left: 0;
   width: 100%;
-  color: var(--red-50);
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 14px;
   text-align: center;
-  padding-top: 12px;
+  padding-top: 8px;
+
+  &.defaultTheme {
+    color: var(--color-error);
+  }
+
+  &.warningTheme {
+    color: var(--color-warning);
+  }
 }
 </style>

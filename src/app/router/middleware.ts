@@ -1,24 +1,45 @@
-import { router } from './router';
+import type { Router } from 'vue-router';
 
 import { useAuthStore } from '@/features/user';
 import { api } from '@/shared/api';
 import { APP_ROUTES } from '@/shared/config';
+import { authChannel, type AuthMessage } from '@/shared/utils';
 
-router.beforeEach(async (to, _, next) => {
-  const {
-    data: { session },
-  } = await api.auth.getSession();
-  const authStore = useAuthStore();
+export function setupMiddleware(router: Router) {
+  let isInitialAuthChecked = false;
 
-  const requiresAuth = to.matched.some(record => !record.meta.isOnboarding);
+  authChannel.onmessage = (event: MessageEvent<AuthMessage>) => {
+    if (event.data.type === 'LOGIN') {
+      window.location.reload();
+    }
 
-  if (session) authStore.setSession(session);
+    if (event.data.type === 'LOGOUT') {
+      localStorage.clear();
+      sessionStorage.clear();
+      router.replace(APP_ROUTES.lOGIN);
+      window.location.reload();
+    }
+  };
 
-  if (requiresAuth && !session) {
-    next(APP_ROUTES.lOGIN);
-  } else if (session && to.name === APP_ROUTES.lOGIN) {
-    next(APP_ROUTES.MAIN);
-  } else {
+  router.beforeEach(async (to, _, next) => {
+    const authStore = useAuthStore();
+
+    if (!isInitialAuthChecked) {
+      try {
+        const {
+          data: { session },
+        } = await api.auth.getSession();
+        if (session) authStore.setSession(session);
+      } catch (error) {
+        console.error('Auth check failed', error);
+      } finally {
+        isInitialAuthChecked = true;
+      }
+    }
+
+    if (authStore.session && to.meta.isOnboarding) return next(APP_ROUTES.MAIN);
+    if (!authStore.session && !to.meta.isOnboarding) return next(APP_ROUTES.lOGIN);
+
     next();
-  }
-});
+  });
+}

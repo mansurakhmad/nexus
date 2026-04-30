@@ -4,8 +4,7 @@ import { watch } from 'vue';
 import Dialog from 'primevue/dialog';
 import { useRouter, useRoute } from 'vue-router';
 
-import { useConfirmEnrollment } from '@/features/confirm';
-import { useLoginForm, useLoginQuery } from '@/features/login';
+import { useConfirmEnrollment, useLoginForm, useLoginQuery } from '@/features/onboarding';
 import { APP_ROUTERS_NAMES, APP_ROUTES, KEEP_USER_LOGIN } from '@/shared/config';
 import { BaseButton, BaseCheckbox, BaseInput, PasswordField, useBaseAlertStore } from '@/shared/ui';
 
@@ -62,7 +61,8 @@ const onSubmit = handleSubmit(
     <form class="loginForm" @submit.prevent="onSubmit">
       <div class="fields">
         <BaseInput
-          labelValue="Email"
+          labelValue="Enter your email"
+          errorTheme="warning"
           v-model="email"
           v-bind="emailAttr"
           :isValid="!emailError"
@@ -70,6 +70,7 @@ const onSubmit = handleSubmit(
         />
         <PasswordField
           labelValue="Password"
+          errorTheme="default"
           v-model="password"
           v-bind="passwordAttr"
           :isValid="!passwordError"
@@ -77,24 +78,27 @@ const onSubmit = handleSubmit(
         />
       </div>
       <BaseCheckbox
-        :label="'Remember Me'"
+        :label="'Keep me logged in'"
         inputIdValue="rememberMe"
         v-model="rememberMe"
         class="rememberMe"
       />
-      <BaseButton value="Login" theme="accent" type="submit" :disabled="!handleFormValid()" />
+      <BaseButton theme="primary" type="submit" :disabled="!handleFormValid()" :size="'large'">
+        Login
+      </BaseButton>
+      <BaseButton theme="tertiary" @onClick="$router.push(APP_ROUTES.ENROLLMENT)" :size="'large'">
+        Don't have an account? Register
+      </BaseButton>
       <BaseButton
-        value="Create Account"
-        theme="secondary"
-        @onClick="$router.push(APP_ROUTES.ENROLLMENT)"
-      />
-      <BaseButton
-        value="Forgot Password"
-        theme="secondary"
+        theme="transparent"
         @click="$router.push(APP_ROUTES.FORGOT_PASSWORD)"
-      />
+        :size="'large'"
+      >
+        Forgot Password
+      </BaseButton>
     </form>
   </Transition>
+
   <Dialog
     modal
     :closable="false"
@@ -109,21 +113,20 @@ const onSubmit = handleSubmit(
 .loginForm {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 22px;
   width: 100%;
-  max-width: 400px;
   border-radius: 12px;
   color: var(--black-100);
 
   .fields {
     display: flex;
     flex-direction: column;
-    gap: 44px;
+    gap: 48px;
     margin-bottom: 12px;
   }
 
   .rememberMe {
-    margin-top: 12px;
+    margin: 12px 0;
   }
 }
 

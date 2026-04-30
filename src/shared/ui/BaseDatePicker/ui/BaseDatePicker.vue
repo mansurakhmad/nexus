@@ -4,7 +4,7 @@ import { useField } from 'vee-validate';
 
 import type { BaseDatePickerTypes } from '../models';
 
-import { ErrorMessage } from '@/shared/ui/ErrorMessage';
+import { ErrorMessage } from '@/shared/ui';
 
 const { dateFormat, name, placeholder, onlyPast, maxDate } =
   defineProps<BaseDatePickerTypes.Props>();
@@ -33,5 +33,18 @@ const maxDateValue = onlyPast ? maxDate || new Date() : undefined;
 <style lang="scss" scoped>
 .baseDatePicker {
   position: relative;
+
+  &:deep(.p-datepicker-input) {
+    color: var(--color-normal-text);
+    font-weight: 500;
+
+    &:focus {
+      border: 1px solid var(--color-normal-text);
+    }
+
+    &::placeholder {
+      color: var(--color-normal-text);
+    }
+  }
 }
 </style>

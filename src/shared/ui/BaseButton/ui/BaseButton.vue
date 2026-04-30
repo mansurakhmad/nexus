@@ -3,93 +3,115 @@ import { Button } from 'primevue';
 
 import type { BaseButtonTypes } from '../models';
 
-const {
-  value,
-  theme = 'primary',
-  type = 'button',
-  disabled,
-} = defineProps<BaseButtonTypes.Props>();
+const { theme = 'primary', type = 'button', disabled } = defineProps<BaseButtonTypes.Props>();
 </script>
 
 <template>
-  <Button class="baseButton" :class="`${theme}Theme`" @click="$emit('onClick')" :disabled :type>
-    {{ value }}
+  <Button @click="$emit('onClick')" :class="[`${theme}Theme`, 'baseButton']" :disabled :type>
+    <slot />
   </Button>
 </template>
 
 <style lang="scss" scoped>
+@mixin common-styles($bg-color-0, $bg-color-50, $bg-color-100, $text-color, $border-value: none) {
+  $gradient: radial-gradient(
+    circle at center,
+    $bg-color-0 0%,
+    $bg-color-50 50%,
+    $bg-color-100 100%
+  );
+
+  background: $gradient;
+  background-size: 200% 200%;
+  background-position: center;
+  border: $border-value;
+  color: $text-color;
+
+  &:hover,
+  &:active {
+    background: $gradient;
+    background-position: right bottom;
+    border: $border-value;
+    color: $text-color;
+  }
+
+  &:disabled {
+    &:hover {
+      background: $gradient;
+      background-size: 200% 200%;
+      background-position: center;
+    }
+  }
+}
+
 .baseButton {
-  background-color: var(--glass-white);
-  color: var(--white-100);
-  box-shadow: var(--shadow-overlay) 0 20px 30px -10px;
-
-  &:not(:disabled):hover {
-    background: var(--gold-100);
-    border: 1px solid var(--gold-100);
-    color: var(--white-100);
-  }
-
-  &:not(:disabled):active {
-    background: var(--gold-50);
-    border: 1px solid var(--gold-50);
-  }
+  padding: 14px 20px;
+  background-size: 200% 200%;
+  background-position: center;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
 
   &.primaryTheme {
-    background-color: var(--glass-white);
-    border: 1px solid var(--glass-border);
+    @include common-styles(
+      var(--primary-30),
+      var(--primary-40),
+      var(--primary-30),
+      var(--primary-1)
+    );
   }
 
   &.secondaryTheme {
-    background-color: transparent;
-    border: none;
+    @include common-styles(
+      var(--secondary-50),
+      var(--secondary-60),
+      var(--secondary-70),
+      var(--primary-1)
+    );
+  }
 
-    &:not(:disabled):hover {
-      background-color: var(--glass-white);
-      border: none;
-      color: var(--white-100);
+  &.tertiaryTheme {
+    @include common-styles(
+      var(--tertiary-70),
+      var(--tertiary-80),
+      var(--tertiary-90),
+      var(--primary-1)
+    );
+  }
+
+  &.outlinedTheme {
+    border: 1px solid var(--primary-50);
+
+    @include common-styles(
+      transparent,
+      transparent,
+      transparent,
+      var(--color-normal-text),
+      1px solid var(--color-normal-text)
+    );
+
+    &:hover,
+    &:active {
+      background-color: var(--neutral-1);
     }
   }
 
-  &.accentTheme {
-    background: var(--gold-100);
-    border: 1px solid var(--gold-100);
+  &.transparentTheme {
+    @include common-styles(transparent, transparent, transparent, var(--color-normal-text));
 
-    &:not(:disabled):hover {
-      background: var(--gold-50);
-      border: 1px solid var(--gold-50);
-      color: var(--white-100);
-    }
-
-    &:not(:disabled):active {
-      background: var(--gold-10);
-      border: 1px solid var(--gold-10);
-      color: var(--white-100);
+    &:hover,
+    &:active {
+      color: var(--primary-70);
     }
   }
 
-  &.outlineTheme {
-    background: transparent;
-    border: 1px solid var(--white-100);
-
-    &:not(:disabled):hover,
-    &:not(:disabled):active {
-      background-color: var(--glass-white);
-      border: 1px solid var(--white-100);
-      color: var(--white-100);
-    }
-  }
-
-  &.outlineCyanTheme {
-    background: transparent;
-    border: 1px solid var(--cyan-50-o-80);
-    color: var(--cyan-50);
-
-    &:not(:disabled):hover,
-    &:not(:disabled):active {
-      background-color: var(--glass-white);
-      border: 1px solid var(--cyan-10);
-      color: var(--cyan-10);
-    }
+  &.neutralTheme {
+    @include common-styles(
+      var(--neutral-70),
+      var(--neutral-80),
+      var(--neutral-90),
+      var(--primary-1)
+    );
   }
 }
 </style>

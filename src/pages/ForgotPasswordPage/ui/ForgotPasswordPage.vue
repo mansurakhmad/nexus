@@ -1,11 +1,12 @@
 <script setup lang="ts">
+import { BaseHeading } from '@/shared/ui';
 import { ForgotPasswordForm } from '@/widgets/ForgotPasswordForm';
 </script>
 
 <template>
   <div class="forgotPasswordPage">
     <Transition name="slide-down" appear>
-      <h2>Forgot Password</h2>
+      <BaseHeading level="h2" fontSize="medium">Forgot Password</BaseHeading>
     </Transition>
     <ForgotPasswordForm />
   </div>
@@ -15,7 +16,6 @@ import { ForgotPasswordForm } from '@/widgets/ForgotPasswordForm';
 .forgotPasswordPage {
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 44px;
 }
 
