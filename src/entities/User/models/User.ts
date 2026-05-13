@@ -20,6 +20,8 @@ export namespace User {
     position?: string;
     avatar_url?: string;
     tier?: USER_TIRES;
+    balance: number;
+    xp: number;
   }>;
 
   export interface Model extends UserAuth {

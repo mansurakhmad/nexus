@@ -22,6 +22,10 @@ const { heading, description, stepNumber } = defineProps<StepContainerTypes.Prop
 <style lang="scss" scoped>
 :deep(.stepContainer) {
   gap: 0;
+
+  @include max-mobile {
+    flex-direction: column;
+  }
 }
 
 .header {
@@ -35,6 +39,11 @@ const { heading, description, stepNumber } = defineProps<StepContainerTypes.Prop
   );
   flex-basis: 30%;
   border-right: 10px solid var(--primary-20);
+
+  @include max-mobile {
+    border-right: none;
+    border-bottom: 5px solid var(--primary-20);
+  }
 }
 
 .stepNumber {
@@ -58,7 +67,7 @@ const { heading, description, stepNumber } = defineProps<StepContainerTypes.Prop
   align-items: center;
   padding: 32px 16px;
   width: 100%;
-  background: linear-gradient(135deg, var(--tertiary-30), var(--secondary-10), var(--tertiary-20));
+  background-color: var(--primary-1);
   flex-basis: 70%;
 
   & > * {

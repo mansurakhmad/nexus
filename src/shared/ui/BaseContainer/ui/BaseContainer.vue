@@ -67,6 +67,10 @@ const { sizeValue, flexValue, paddingValue, gapValue, radiusValue } =
     gap: 0;
   }
 
+  &.xSmallGap {
+    gap: 12px;
+  }
+
   &.smallGap {
     gap: 12px;
   }
@@ -83,7 +87,7 @@ const { sizeValue, flexValue, paddingValue, gapValue, radiusValue } =
     gap: 32px;
   }
 
-  &.extraGap {
+  &.extraLargeGap {
     gap: 40px;
   }
 

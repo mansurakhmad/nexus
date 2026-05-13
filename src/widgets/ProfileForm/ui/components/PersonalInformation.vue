@@ -63,5 +63,9 @@ const { value: gender } = useField<string>(ProfileFormFields.GENDER);
   &:deep(.p-datepicker-input) {
     background-color: transparent;
   }
+
+  @include max-tablet {
+    grid-template-columns: 1fr;
+  }
 }
 </style>

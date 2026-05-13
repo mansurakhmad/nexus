@@ -2,10 +2,13 @@
 import { ConfirmDialog } from 'primevue';
 import { useConfirm } from 'primevue/useconfirm';
 
+import { TalentsBlock } from './components';
+
 import { useLogoutMutation } from '@/features/user';
 import { useDeleteUserMutation, useUserProfileQuery } from '@/features/user';
-import { BaseHeading, BaseIcon, BaseText } from '@/shared/ui';
+import { BaseContainer, BaseHeading, BaseIcon, BaseText } from '@/shared/ui';
 import BaseButton from '@/shared/ui/BaseButton/ui/BaseButton.vue';
+import { LevelProgressTracker } from '@/widgets/LevelProgressTracker';
 import { ProfileForm } from '@/widgets/ProfileForm';
 import { UserCard } from '@/widgets/UserCard';
 
@@ -42,7 +45,11 @@ const confirmDelete = () => {
       <BaseHeading level="h1" fontSize="extraLarge" weight="bold">ACCOUNT SETUP</BaseHeading>
       <BaseHeading level="h4">Complete it to enter the game.</BaseHeading>
     </div>
-    <UserCard />
+    <BaseContainer class="overview" flexValue="row" gapValue="extraLarge">
+      <UserCard />
+      <LevelProgressTracker />
+      <TalentsBlock />
+    </BaseContainer>
     <div class="profileFormWrapper">
       <BaseHeading level="h2" class="formHeading" transform="uppercase">
         Account configuration
@@ -80,8 +87,7 @@ const confirmDelete = () => {
 .profilePage {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 44px;
+  gap: 68px;
   width: 100%;
   padding-bottom: 64px;
 
@@ -98,6 +104,16 @@ const confirmDelete = () => {
   margin-bottom: 46px;
 }
 
+.overview {
+  @include max-extra-small-desktop {
+    flex-wrap: wrap;
+  }
+
+  @include max-mobile {
+    flex-direction: column !important;
+  }
+}
+
 .profileFormWrapper {
   display: flex;
   flex-direction: column;
@@ -106,9 +122,7 @@ const confirmDelete = () => {
   margin-top: 24px;
 
   .formHeading {
-    width: max-content;
-    border-bottom: 4px solid var(--primary-30);
-    padding-bottom: 8px;
+    text-align: center;
   }
 }
 
