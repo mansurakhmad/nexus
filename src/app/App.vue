@@ -30,7 +30,7 @@ authStore.init();
       flexValue="row"
       class="onboardingContentContainer"
     >
-      <OnboardingOverview />
+      <OnboardingOverview class="overview" />
       <div class="onboardingMainContent">
         <RouterView />
       </div>
@@ -52,7 +52,9 @@ authStore.init();
 <style scoped lang="scss">
 .app {
   min-height: 100vh;
-  background-color: var(--tertiary-1);
+  background:
+    radial-gradient(at bottom right, var(--tertiary-100), transparent 90%),
+    radial-gradient(at bottom left, var(--secondary-100), transparent 90%), var(--neutral-80);
 }
 
 .onboardingFlow {
@@ -62,18 +64,50 @@ authStore.init();
   padding: 10px;
 
   .onboardingContentContainer {
-    gap: 40px;
     min-height: 80vh;
     background-color: var(--primary-1);
     border-radius: 16px;
     overflow: hidden;
-    box-shadow:
-      rgb(0 0 0 / 30%) 0 19px 38px,
-      rgb(0 0 0 / 22%) 0 15px 12px;
+
+    @include block-styles;
+
+    @include max-tablet {
+      gap: 24px;
+    }
+
+    @include max-mobile {
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .overview {
+      max-width: 50%;
+
+      @include max-tablet {
+        width: 352px;
+        max-width: 100%;
+        flex-shrink: 0;
+      }
+
+      @include max-mobile {
+        gap: 28px;
+        padding: 24px 24px 48px;
+        width: 100%;
+      }
+    }
 
     .onboardingMainContent {
       flex-basis: 50%;
-      padding: 24px 40px 24px 0;
+      padding: 24px 40px;
+      background-color: var(--primary-1);
+
+      @include max-tablet {
+        flex-basis: 60%;
+      }
+
+      @include max-mobile {
+        padding: 24px;
+      }
     }
   }
 }

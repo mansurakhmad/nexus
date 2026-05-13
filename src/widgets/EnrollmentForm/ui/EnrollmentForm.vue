@@ -87,6 +87,10 @@ const submitForm = handleSubmit(
     display: flex;
     align-items: center;
     gap: 32px;
+
+    @include max-tablet {
+      flex-direction: column;
+    }
   }
 }
 

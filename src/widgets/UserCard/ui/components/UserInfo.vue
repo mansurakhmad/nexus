@@ -2,8 +2,7 @@
 import { computed } from 'vue';
 
 import { useUserProfileQuery } from '@/features/user';
-import { USER_TIRES } from '@/shared/config';
-import { AnimatedWrapper, BaseHeading, BaseText } from '@/shared/ui';
+import { AnimatedWrapper, BaseContainer, BaseHeading, BaseText } from '@/shared/ui';
 import { capitalizeFirstLetter } from '@/shared/utils';
 
 const { data } = useUserProfileQuery();
@@ -15,55 +14,58 @@ const fullName = computed(
 </script>
 
 <template>
-  <div class="userInfo" v-if="data && data.profileData">
-    <BaseHeading level="h3" class="fullName" weight="normal">
-      {{ fullName }}
-    </BaseHeading>
-    <div class="details">
-      <AnimatedWrapper theme="Blue" class="tierWrapper">
-        <BaseText tag="span" size="medium" class="tier">
-          {{ data.profileData.tier || USER_TIRES.STANDARD }}
+  <BaseContainer
+    v-if="data && data.profileData"
+    class="userInfo"
+    paddingValue="normal"
+    flexValue="column"
+    gapValue="small"
+  >
+    <BaseContainer flexValue="row" gapValue="xSmall" class="header">
+      <BaseHeading level="h3" class="fullName" weight="normal" fontSize="medium">
+        {{ fullName }}
+      </BaseHeading>
+      <BaseText v-if="data.profileData.username" class="username" size="large" weight="semibold">
+        {{ `@${capitalizeFirstLetter(data.profileData.username)}` }}
+      </BaseText>
+    </BaseContainer>
+    <AnimatedWrapper theme="Gold" class="balanceWrapper">
+      <BaseText tag="p" size="large" weight="semibold" class="balance">
+        Your balance:
+        <BaseText tag="span" size="xLarge" weight="bold" class="creditsValue">
+          {{ data.profileData.balance }}
         </BaseText>
-      </AnimatedWrapper>
-      <BaseText v-if="data.profileData.position" tag="span" size="medium">
-        {{ capitalizeFirstLetter(data.profileData.position) }}
+        credits
       </BaseText>
-      <BaseText v-if="data.profileData.location" tag="span" size="medium">
-        {{ capitalizeFirstLetter(data.profileData.location) }}
-      </BaseText>
-      <BaseText v-if="data.email" tag="span" size="medium">
-        {{ data.email }}
-      </BaseText>
-    </div>
-  </div>
+    </AnimatedWrapper>
+  </BaseContainer>
 </template>
 
 <style lang="scss" scoped>
 .userInfo {
-  align-self: center;
+  position: absolute;
+  z-index: 2;
+  bottom: 0;
+  background-color: rgb(48 48 49 / 70%);
+  border-radius: 16px 16px 0 0;
+  backdrop-filter: blur(10px);
 }
 
-.fullName {
-  color: var(--primary-100);
-  font-size: 32px;
-  line-height: 40px;
-}
-
-.details {
-  display: flex;
+.header {
   align-items: center;
-  gap: 8px;
-  margin-top: 6px;
+}
 
-  .tierWrapper {
-    border-radius: 100px;
+.name {
+  color: var(--primary-20);
+}
 
-    .tier {
-      padding: 8px 12px;
-      background-color: var(--tertiary-20);
-      border-radius: 100px;
-      color: var(--primary-100);
-    }
+.balanceWrapper {
+  padding: 16px;
+  overflow: hidden;
+  width: max-content;
+
+  .creditsValue {
+    color: var(--primary-20);
   }
 }
 </style>

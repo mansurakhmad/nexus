@@ -33,5 +33,10 @@ const emailField = useField<string>(ProfileFormFields.EMAIL);
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 16px;
+
+  @include max-tablet {
+    grid-template-columns: 1fr;
+    gap: 40px 16px;
+  }
 }
 </style>

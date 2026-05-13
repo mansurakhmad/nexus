@@ -20,7 +20,12 @@ const contentItems = [
   <Transition name="fade" appear>
     <div class="onboardingOverview">
       <AppLogo />
-      <Carousel :value="contentItems" :circular="true" :showNavigators="false">
+      <Carousel
+        :value="contentItems"
+        :circular="true"
+        :showNavigators="false"
+        class="carouselOverview"
+      >
         <template #item="slotProps">
           <div class="content">
             <h2 class="title">{{ slotProps.data.title }}</h2>
@@ -41,7 +46,6 @@ const contentItems = [
   flex-direction: column;
   gap: 46px;
   padding: 24px 40px;
-  max-width: 50%;
   background: linear-gradient(
     0deg,
     var(--tertiary-70) 0%,
@@ -49,6 +53,12 @@ const contentItems = [
     var(--tertiary-90) 50%,
     var(--tertiary-100) 100%
   );
+
+  .carouselOverview {
+    @include max-extra-small-mobile {
+      display: none;
+    }
+  }
 
   .content {
     display: flex;
@@ -70,6 +80,11 @@ const contentItems = [
   &:deep(.p-carousel-indicator-list) {
     position: absolute;
     bottom: 5%;
+
+    @include max-mobile {
+      bottom: 6px;
+      padding-left: 0;
+    }
   }
 
   &:deep(.p-carousel-indicator-active) {
@@ -81,7 +96,7 @@ const contentItems = [
 
 .fade-enter-from {
   opacity: 0;
-  transform: translateX(-20%);
+  transform: translateX(-80%);
 }
 
 .fade-enter-active {

@@ -19,18 +19,15 @@ import { LoginForm } from '@/widgets/LoginForm';
   display: flex;
   flex-direction: column;
   gap: 44px;
+
+  @include max-mobile {
+    gap: 28px;
+  }
 }
 
 .content {
   display: flex;
   justify-content: space-between;
-}
-
-.banner {
-  width: 400px;
-  border-radius: 16px;
-  opacity: 0.75;
-  object-fit: cover;
 }
 
 .slide-down-enter-from {

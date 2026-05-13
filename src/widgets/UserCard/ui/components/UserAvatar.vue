@@ -60,12 +60,13 @@ const handleFileUpload = (event: Event) => {
 
 <style lang="scss" scoped>
 .userAvatar {
-  position: relative;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 150px;
-  height: 150px;
   background: linear-gradient(
     135deg,
     var(--neutral-70) 0%,
@@ -75,7 +76,10 @@ const handleFileUpload = (event: Event) => {
     var(--neutral-30) 80%,
     var(--neutral-20) 100%
   );
-  border-radius: 32px;
+
+  @include max-mobile {
+    width: 100%;
+  }
 
   .icon {
     color: var(--primary-1);
@@ -86,13 +90,13 @@ const handleFileUpload = (event: Event) => {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 32px;
+  border-radius: 8px;
 }
 
 .uploadButton {
   position: absolute;
-  right: -10%;
-  bottom: -10%;
+  top: 5%;
+  right: 5%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -100,11 +104,11 @@ const handleFileUpload = (event: Event) => {
   height: 50px;
   background: linear-gradient(
     110deg,
-    var(--tertiary-70) 0%,
-    var(--tertiary-50) 25%,
-    var(--tertiary-30) 50%,
-    var(--tertiary-50) 75%,
-    var(--tertiary-70) 100%
+    var(--neutral-70) 0%,
+    var(--neutral-50) 25%,
+    var(--neutral-30) 50%,
+    var(--neutral-50) 75%,
+    var(--neutral-70) 100%
   );
   border-radius: 12px;
   cursor: pointer;

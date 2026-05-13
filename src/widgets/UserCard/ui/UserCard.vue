@@ -8,7 +8,13 @@ const { data } = useUserProfileQuery();
 </script>
 
 <template>
-  <BaseContainer v-if="data && data.profileData" class="userCard" flexValue="row" gapValue="xLarge">
+  <BaseContainer
+    v-if="data && data.profileData"
+    class="userCard"
+    flexValue="column"
+    gapValue="xLarge"
+    radiusValue="large"
+  >
     <UserAvatar />
     <UserInfo />
   </BaseContainer>
@@ -16,6 +22,19 @@ const { data } = useUserProfileQuery();
 
 <style lang="scss" scoped>
 .userCard {
-  color: var(--neutral-100);
+  position: relative;
+  margin: 0;
+  width: 380px;
+  height: 380px;
+  border-radius: 24px;
+  overflow: hidden;
+  flex-shrink: 0;
+
+  @include block-styles;
+
+  @include max-mobile {
+    width: 100%;
+    height: 480px;
+  }
 }
 </style>

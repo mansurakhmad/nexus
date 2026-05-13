@@ -1,0 +1,26 @@
+$extra-small-mobile: 576px;
+$max-mobile: 768px;
+$max-tablet: 1000px;
+$extra-small-desktop: 1200px;
+
+@mixin max-extra-small-mobile {
+  @media (max-width: #{$extra-small-mobile}) { @content; }
+}
+
+@mixin max-mobile {
+  @media (max-width: #{$max-mobile}) { @content; }
+}
+
+@mixin max-tablet {
+  @media (max-width: #{$max-tablet}) { @content; }
+}
+
+@mixin max-extra-small-desktop {
+  @media (max-width: #{$extra-small-desktop}) { @content; }
+}
+
+@mixin block-styles {
+  background-color: rgb(255 255 255 / 10%);
+  box-shadow: var(--block-box-shadow);
+  backdrop-filter: blur(10px);
+}

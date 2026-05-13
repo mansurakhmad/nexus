@@ -42,7 +42,11 @@ const onSubmit = handleSubmit(
   display: flex;
   flex-direction: column;
   gap: 24px;
+  padding: 40px 24px;
   width: 100%;
+  border-radius: 24px;
+
+  @include block-styles;
 }
 
 .stepButtons {
@@ -53,8 +57,17 @@ const onSubmit = handleSubmit(
   margin: 24px auto 0;
   width: max-content;
 
+  @include max-mobile {
+    flex-direction: column;
+    width: 100%;
+  }
+
   .button {
     width: 220px;
+
+    @include max-extra-small-mobile {
+      width: 100%;
+    }
   }
 }
 </style>

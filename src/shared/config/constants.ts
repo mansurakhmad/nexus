@@ -29,3 +29,6 @@ export enum USER_TIRES {
   PREMIUM = 'PREMIUM',
   ENTERPRISE = 'ENTERPRISE',
 }
+
+export const BASE_XP = 60;
+export const MULTIPLIER = 1.2;
