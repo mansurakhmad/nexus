@@ -58,7 +58,7 @@ const {
       border-color: var(--bg-field);
 
       &:focus {
-        border: 1px solid var(--tertiary-90);
+        border: 1px solid var(--tertiary-50);
       }
     }
 
