@@ -52,13 +52,13 @@
   --neutral-1: #F2F0F0;
 
   /* --- Error --- */
-  --color-error: var(--secondary-60);
+  --color-error: var(--secondary-40);
 
   /* --- Warning --- */
-  --color-warning: var(--primary-50);
+  --color-warning: var(--primary-30);
 
-  /* --- Normal text --- */
-  --color-normal-text: var(--primary-100);
+  /* --- Text Field color  --- */
+  --color-field-text: var(--neutral-20);
 
   /* --- SHADOWS --- */
   --block-box-shadow: rgb(0 0 0 / 25%) 0 54px 55px,
@@ -66,4 +66,9 @@
     rgb(0 0 0 / 12%) 0 4px 6px,
     rgb(0 0 0 / 17%) 0 12px 13px,
     rgb(0 0 0 / 9%) 0 -3px 5px;
+  --field-box-shadow: rgb(0 0 0 / 25%) 0px 6px 12px -2px, rgb(0 0 0 / 30%) 0px 3px 7px -3px;
+
+  /* -- Background -- */
+  --bg-form: var(--neutral-100);
+  --bg-field: var(--neutral-80);
 }

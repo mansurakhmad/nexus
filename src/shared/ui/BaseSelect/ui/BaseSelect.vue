@@ -28,16 +28,17 @@ const model = defineModel<string>();
 <style lang="scss" scoped>
 .baseSelect {
   &:deep(.p-select) {
-    background-color: transparent;
+    background-color: var(--bg-field);
+    box-shadow: var(--field-box-shadow);
     font-weight: 500;
   }
 
   &:deep(.p-select:not(.p-disabled).p-focus) {
-    border: 1px solid var(--primary-100);
+    border: 1px solid var(--tertiary-50);
   }
 
   &:deep(.p-select-label) {
-    color: var(--primary-100);
+    color: var(--color-field-text);
   }
 }
 </style>

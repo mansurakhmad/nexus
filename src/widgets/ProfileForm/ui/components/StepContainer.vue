@@ -67,7 +67,7 @@ const { heading, description, stepNumber } = defineProps<StepContainerTypes.Prop
   align-items: center;
   padding: 32px 16px;
   width: 100%;
-  background-color: var(--primary-1);
+  background-color: var(--bg-form);
   flex-basis: 70%;
 
   & > * {

@@ -49,12 +49,13 @@ const errorMessage = computed(() => {
 
   &:deep(.p-inputnumber-input) {
     width: 100%;
-    background-color: transparent;
-    color: var(--primary-100);
+    background-color: var(--bg-field);
+    box-shadow: var(--field-box-shadow);
+    color: var(--color-field-text);
     font-weight: 500;
 
     &:focus {
-      border: 1px solid var(--primary-100);
+      border: 1px solid var(--tertiary-50);
     }
   }
 
@@ -72,7 +73,7 @@ const errorMessage = computed(() => {
   .wrapperCode,
   .wrapperNumber {
     label {
-      color: var(--primary-100);
+      color: var(--color-field-text);
     }
 
     &:has(span[isvalid='false']) {

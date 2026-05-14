@@ -70,7 +70,7 @@ const onSubmit = handleSubmit(
         />
         <PasswordField
           labelValue="Password"
-          errorTheme="default"
+          errorTheme="warning"
           v-model="password"
           v-bind="passwordAttr"
           :isValid="!passwordError"

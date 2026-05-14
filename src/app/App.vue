@@ -65,7 +65,6 @@ authStore.init();
 
   .onboardingContentContainer {
     min-height: 80vh;
-    background-color: var(--primary-1);
     border-radius: 16px;
     overflow: hidden;
 
@@ -99,7 +98,7 @@ authStore.init();
     .onboardingMainContent {
       flex-basis: 50%;
       padding: 24px 40px;
-      background-color: var(--primary-1);
+      background-color: var(--bg-form);
 
       @include max-tablet {
         flex-basis: 60%;

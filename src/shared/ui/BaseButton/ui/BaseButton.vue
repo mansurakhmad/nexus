@@ -86,8 +86,8 @@ const { theme = 'primary', type = 'button', disabled } = defineProps<BaseButtonT
       transparent,
       transparent,
       transparent,
-      var(--color-normal-text),
-      1px solid var(--color-normal-text)
+      var(--color-field-text),
+      1px solid var(--color-field-text)
     );
 
     &:hover,
@@ -97,7 +97,7 @@ const { theme = 'primary', type = 'button', disabled } = defineProps<BaseButtonT
   }
 
   &.transparentTheme {
-    @include common-styles(transparent, transparent, transparent, var(--color-normal-text));
+    @include common-styles(transparent, transparent, transparent, var(--color-field-text));
 
     &:hover,
     &:active {

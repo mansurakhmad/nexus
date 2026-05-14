@@ -14,31 +14,33 @@ const fullName = computed(
 </script>
 
 <template>
-  <BaseContainer
-    v-if="data && data.profileData"
-    class="userInfo"
-    paddingValue="normal"
-    flexValue="column"
-    gapValue="small"
-  >
-    <BaseContainer flexValue="row" gapValue="xSmall" class="header">
-      <BaseHeading level="h3" class="fullName" weight="normal" fontSize="medium">
-        {{ fullName }}
-      </BaseHeading>
-      <BaseText v-if="data.profileData.username" class="username" size="large" weight="semibold">
-        {{ `@${capitalizeFirstLetter(data.profileData.username)}` }}
-      </BaseText>
-    </BaseContainer>
-    <AnimatedWrapper theme="Gold" class="balanceWrapper">
-      <BaseText tag="p" size="large" weight="semibold" class="balance">
-        Your balance:
-        <BaseText tag="span" size="xLarge" weight="bold" class="creditsValue">
-          {{ data.profileData.balance }}
+  <Transition name="move-up" appear>
+    <BaseContainer
+      v-if="data && data.profileData"
+      class="userInfo"
+      paddingValue="normal"
+      flexValue="column"
+      gapValue="small"
+    >
+      <BaseContainer flexValue="row" gapValue="xSmall" class="header">
+        <BaseHeading level="h3" class="fullName" weight="normal" fontSize="medium">
+          {{ fullName }}
+        </BaseHeading>
+        <BaseText v-if="data.profileData.username" class="username" size="large" weight="semibold">
+          {{ `@${capitalizeFirstLetter(data.profileData.username)}` }}
         </BaseText>
-        credits
-      </BaseText>
-    </AnimatedWrapper>
-  </BaseContainer>
+      </BaseContainer>
+      <AnimatedWrapper theme="Gold" class="balanceWrapper">
+        <BaseText tag="p" size="large" weight="semibold" class="balance">
+          Your balance:
+          <BaseText tag="span" size="xLarge" weight="bold" class="creditsValue">
+            {{ data.profileData.balance }}
+          </BaseText>
+          credits
+        </BaseText>
+      </AnimatedWrapper>
+    </BaseContainer>
+  </Transition>
 </template>
 
 <style lang="scss" scoped>
@@ -67,5 +69,13 @@ const fullName = computed(
   .creditsValue {
     color: var(--primary-20);
   }
+}
+
+.move-up-enter-active {
+  transition: all 2s ease;
+}
+
+.move-up-enter-from {
+  transform: translateY(100%);
 }
 </style>

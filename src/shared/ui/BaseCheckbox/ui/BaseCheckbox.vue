@@ -21,16 +21,16 @@ const checked = defineModel<boolean>();
   gap: 12px;
 
   :deep(.p-checkbox-box) {
-    background-color: transparent !important;
-    border: 1px solid var(--tertiary-80) !important;
+    background-color: var(--bg-field) !important;
+    border: 1px solid var(--bg-field) !important;
 
     svg {
-      color: var(--tertiary-100) !important;
+      color: var(--color-field-text) !important;
     }
   }
 
   .label {
-    color: var(--tertiary-80);
+    color: var(--color-field-text);
     cursor: pointer;
   }
 }
