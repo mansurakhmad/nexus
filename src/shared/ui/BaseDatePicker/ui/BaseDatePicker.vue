@@ -35,6 +35,7 @@ const maxDateValue = onlyPast ? maxDate || new Date() : undefined;
   position: relative;
   background-color: var(--bg-field);
   box-shadow: var(--field-box-shadow);
+  border-radius: 8px;
 
   &:deep(.p-datepicker-input) {
     color: var(--color-field-text);
