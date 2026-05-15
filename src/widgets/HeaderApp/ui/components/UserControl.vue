@@ -2,12 +2,13 @@
 import { ref } from 'vue';
 
 import { Popover } from 'primevue';
+import Skeleton from 'primevue/skeleton';
 import { useRouter } from 'vue-router';
 
 import { useLogoutMutation } from '@/features/user';
 import { useUserProfileQuery } from '@/features/user';
 import { APP_ROUTERS_NAMES, APP_ROUTES } from '@/shared/config';
-import { BaseButton, BaseText } from '@/shared/ui';
+import { BaseButton, BaseText, BaseContainer } from '@/shared/ui';
 
 const router = useRouter();
 const { logout } = useLogoutMutation();
@@ -53,6 +54,17 @@ const getName = () => {
       </BaseButton>
     </div>
   </Transition>
+  <BaseContainer
+    v-if="!userData && !$route.meta.isOnboarding"
+    flexValue="row"
+    gapValue="xSmall"
+    class="skeletonBlock"
+    paddingValue="normal"
+    radiusValue="normal"
+  >
+    <Skeleton shape="circle" width="32px" height="32px" />
+    <Skeleton width="50px" height="32px" />
+  </BaseContainer>
   <Popover ref="op" :close-on-escape="true">
     <div class="popupContent">
       <BaseButton
@@ -88,6 +100,10 @@ const getName = () => {
       object-fit: cover;
     }
   }
+}
+
+.skeletonBlock {
+  @include block-styles;
 }
 
 .fade-enter-from {

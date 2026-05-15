@@ -33,11 +33,11 @@ const setChartData = () => {
         borderColor: 'transparent',
         backgroundColor: [
           documentStyle.getPropertyValue('--primary-40'),
-          documentStyle.getPropertyValue('--tertiary-70'),
+          documentStyle.getPropertyValue('--tertiary-60'),
         ],
         hoverBackgroundColor: [
           documentStyle.getPropertyValue('--primary-30'),
-          documentStyle.getPropertyValue('--tertiary-60'),
+          documentStyle.getPropertyValue('--tertiary-50'),
         ],
       },
     ],
@@ -73,23 +73,25 @@ const setChartOptions = () => {
     radiusValue="normal"
     paddingValue="normal"
   >
-    <Chart type="doughnut" :data="chartData" :options="chartOptions" />
     <Transition name="fade" appear>
-      <BaseContainer class="description" flexValue="column">
-        <BaseText class="levelInfo" size="extraLarge" weight="bold" as="p">
-          You level is
-          <BaseText class="value" size="extraLarge" weight="bold" as="span">
-            {{ currentLevel }}
+      <div>
+        <Chart type="doughnut" :data="chartData" :options="chartOptions" />
+        <BaseContainer class="description" flexValue="column">
+          <BaseText class="levelInfo" size="extraLarge" weight="bold" as="p">
+            You level is
+            <BaseText class="value" size="extraLarge" weight="bold" as="span">
+              {{ currentLevel }}
+            </BaseText>
           </BaseText>
-        </BaseText>
-        <BaseText class="xpInfo" size="small" weight="normal" as="p">
-          You need
-          <BaseText class="value" size="medium" weight="bold" as="span">
-            {{ xpRequired }}
+          <BaseText class="xpInfo" size="small" weight="normal" as="p">
+            You need
+            <BaseText class="value" size="medium" weight="bold" as="span">
+              {{ xpRequired }}
+            </BaseText>
+            XP to level up
           </BaseText>
-          XP to level up
-        </BaseText>
-      </BaseContainer>
+        </BaseContainer>
+      </div>
     </Transition>
   </BaseContainer>
 </template>
@@ -135,7 +137,7 @@ const setChartOptions = () => {
 }
 
 .fade-enter-active {
-  transition: opacity 2.5s ease;
+  transition: opacity 3.5s ease-out;
 }
 
 .fade-enter-from {
