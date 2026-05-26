@@ -12,3 +12,4 @@ export * from './BaseIcon';
 export * from './BaseHeading';
 export * from './ErrorMessage';
 export * from './BaseSelect';
+export * from './BaseToggleButton';

@@ -1,20 +1,21 @@
 <script setup lang="ts">
 import { Carousel } from 'primevue';
 
+import { APP_ROUTES } from '@/shared/config';
 import { BaseContainer, BaseText, BaseHeading } from '@/shared/ui';
 
 const sliders = [
   {
     id: 1,
     key: 'bookmaker',
-    link: '#bookmaker',
+    link: APP_ROUTES.TALENTS,
     title: 'MASTER THE ART OF THE BET',
     description:
       'Elevate your strategy with the Bookmaker specialization. Unlock advanced skills to maximize your betting performance!',
   },
   {
     id: 2,
-    link: '#lorekeeper',
+    link: APP_ROUTES.TALENTS,
     key: 'lorekeeper',
     title: 'THE LOREKEEPER. KNOWLEDGE UNBOUND',
     description: `Master the world's hidden intelligence. Unlock access to secrets about this world that you've never known before!`,
@@ -33,7 +34,7 @@ const sliders = [
     >
       <Carousel :value="sliders" :circular="true" :showNavigators="false" class="carouselOverview">
         <template #item="slotProps">
-          <a :href="slotProps.data.link" :class="[slotProps.data.key, 'link']">
+          <RouterLink :to="slotProps.data.link" :class="[slotProps.data.key, 'link']">
             <BaseContainer
               flexValue="column"
               gapValue="large"
@@ -47,7 +48,7 @@ const sliders = [
                 {{ slotProps.data.description }}
               </BaseText>
             </BaseContainer>
-          </a>
+          </RouterLink>
         </template>
       </Carousel>
     </BaseContainer>

@@ -41,6 +41,11 @@ const routes: RouteRecordRaw[] = [
     component: () => import('@/pages/ProfilePage'),
     name: APP_ROUTERS_NAMES.PROFILE,
   },
+  {
+    path: APP_ROUTES.TALENTS,
+    component: () => import('@/pages/TalentsPage'),
+    name: APP_ROUTERS_NAMES.TALENTS,
+  },
 ];
 
 const router = createRouter({ history: createWebHistory(), routes });
