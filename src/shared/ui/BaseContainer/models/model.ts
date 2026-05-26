@@ -5,5 +5,7 @@ export namespace BaseContainer {
     paddingValue?: 'normal' | 'none';
     gapValue?: 'xSmall' | 'small' | 'normal' | 'large' | 'xLarge' | 'extraLarge' | 'none';
     radiusValue?: 'small' | 'normal' | 'large';
+    flexJustifyValue?: 'center' | 'start' | 'end' | 'between' | 'around';
+    flexAlignValue?: 'center' | 'start' | 'end';
   }
 }

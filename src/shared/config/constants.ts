@@ -5,7 +5,7 @@ export enum APP_ROUTERS_NAMES {
   FORGOT_PASSWORD = 'FORGOT_PASSWORD',
   RECOVERY_PASSWORD = 'RECOVERY_PASSWORD',
   PROFILE = 'PROFILE',
-  FINANCE = 'FINANCE',
+  TALENTS = 'TALENTS',
 }
 
 export const APP_ROUTES = {
@@ -15,7 +15,7 @@ export const APP_ROUTES = {
   [APP_ROUTERS_NAMES.FORGOT_PASSWORD]: '/forgot-password',
   [APP_ROUTERS_NAMES.RECOVERY_PASSWORD]: '/recovery-password',
   [APP_ROUTERS_NAMES.PROFILE]: '/profile',
-  [APP_ROUTERS_NAMES.FINANCE]: '/finance',
+  [APP_ROUTERS_NAMES.TALENTS]: '/profile/talents',
 } as const satisfies Record<APP_ROUTERS_NAMES, string>;
 
 export const KEEP_USER_LOGIN = 'KEEP_USER_LOGIN';

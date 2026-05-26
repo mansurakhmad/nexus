@@ -1,8 +1,15 @@
 <script lang="ts" setup>
 import type { BaseContainer } from '../models';
 
-const { sizeValue, flexValue, paddingValue, gapValue, radiusValue } =
-  defineProps<BaseContainer.Props>();
+const {
+  sizeValue,
+  flexValue,
+  paddingValue,
+  gapValue,
+  radiusValue,
+  flexJustifyValue,
+  flexAlignValue,
+} = defineProps<BaseContainer.Props>();
 </script>
 
 <template>
@@ -14,6 +21,8 @@ const { sizeValue, flexValue, paddingValue, gapValue, radiusValue } =
       [`${paddingValue}Padding`]: paddingValue,
       [`${gapValue}Gap`]: gapValue,
       [`${radiusValue}Radius`]: radiusValue,
+      [`${flexJustifyValue}FlexJustify`]: flexJustifyValue,
+      [`${flexAlignValue}FlexAlign`]: flexAlignValue,
     }"
   >
     <slot></slot>
@@ -106,6 +115,40 @@ const { sizeValue, flexValue, paddingValue, gapValue, radiusValue } =
 
   &.largeRadius {
     border-radius: 24px;
+  }
+
+  // FLEX JUSTIFY CONTENT
+  &.startFlexJustify {
+    justify-content: flex-start;
+  }
+
+  &.centerFlexJustify {
+    justify-content: center;
+  }
+
+  &.endFlexJustify {
+    justify-content: flex-end;
+  }
+
+  &.betweenFlexJustify {
+    justify-content: space-between;
+  }
+
+  &.aroundFlexJustify {
+    justify-content: space-around;
+  }
+
+  // FLEX ALIGN ITEMS
+  &.startFlexAlign {
+    align-items: flex-start;
+  }
+
+  &.centerFlexAlign {
+    align-items: center;
+  }
+
+  &.endFlexAlign {
+    align-items: flex-end;
   }
 }
 </style>
