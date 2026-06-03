@@ -10,6 +10,7 @@
   --primary-30: #CCA730;
   --primary-20: #E9C349;
   --primary-10: #FFE088;
+  --primary-10-o-10: rgb(255 224 136 / 10%);
   --primary-1: #FFF;
 
    /* --- Secondary  --- */
@@ -47,6 +48,7 @@
   --neutral-50: #808080;
   --neutral-40: #919190;
   --neutral-30: #ABABAB;
+  --neutral-30-o-30: rgb(171 171 171 / 30%);
   --neutral-20: #C7C6C6;
   --neutral-10: #E3E2E2;
   --neutral-1: #F2F0F0;

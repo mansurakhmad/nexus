@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { FrequentlyAskedQuestions } from './components';
+import { FrequentlyAskedQuestions, CoreTalents } from './components';
 
 import { BaseHeading, BaseContainer } from '@/shared/ui';
 </script>
@@ -10,8 +10,8 @@ import { BaseHeading, BaseContainer } from '@/shared/ui';
       <BaseHeading level="h1" fontSize="extraLarge" weight="bold">Specialization Core</BaseHeading>
       <BaseHeading level="h4">Choose Your Path</BaseHeading>
     </BaseContainer>
-
     <FrequentlyAskedQuestions />
+    <CoreTalents />
   </BaseContainer>
 </template>
 

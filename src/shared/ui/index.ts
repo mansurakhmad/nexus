@@ -13,3 +13,4 @@ export * from './BaseHeading';
 export * from './ErrorMessage';
 export * from './BaseSelect';
 export * from './BaseToggleButton';
+export * from './BaseDrawer';

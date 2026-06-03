@@ -6,8 +6,7 @@ import { RouterView, useRoute } from 'vue-router';
 
 import { useRequestState } from '@/features/requestState';
 import { useAuthStore } from '@/features/user';
-import { BaseContainer } from '@/shared/ui';
-import BaseAlert from '@/shared/ui/BaseAlert/ui/BaseAlert.vue';
+import { BaseContainer, BaseDrawer, BaseAlert } from '@/shared/ui';
 import { GlobalLoader } from '@/shared/ui/GlobalLoader';
 import { HeaderApp } from '@/widgets/HeaderApp';
 import { OnboardingOverview } from '@/widgets/OnboardingOverview';
@@ -45,6 +44,7 @@ authStore.init();
   </div>
 
   <BaseAlert />
+  <BaseDrawer />
   <GlobalLoader :showLoader />
   <VueQueryDevtools />
 </template>
