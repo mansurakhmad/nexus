@@ -27,12 +27,12 @@ const openDescription = () => {
 
 <template>
   <div :class="['talentElement', { levelComplete: currentProgress >= MAX_LEVEL_PROGRESS }]">
-    <div class="star">
-      <div :class="`inner step-${currentProgress}`" @click="openDescription">
-        <BaseIcon :name="iconName" sizeValue="extraLarge" />
-      </div>
+    <BaseIcon localIconName="CROWN" :size="55" class="crown" @click="openDescription" />
+    <div class="circleOuter">
+      <button class="circleInner" @click="openDescription">
+        <BaseIcon :name="iconName" sizeValue="medium" color="currentColor" />
+      </button>
     </div>
-
     <Tag
       rounded
       class="talentProgress"
@@ -47,107 +47,76 @@ const openDescription = () => {
 <style lang="scss" scoped>
 .talentElement {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 72px;
+  min-height: 137px;
+
+  &:hover {
+    .circleInner {
+      background: linear-gradient(
+        180deg,
+        var(--secondary-70) 0%,
+        var(--tertiary-80) 50%,
+        var(--tertiary-100) 100%
+      );
+      background-size: 100% 400%;
+      animation: fluid-gradient 3s ease infinite;
+    }
+  }
 
   &.levelComplete {
-    .inner {
-      background-color: var(--primary-20);
-      border: 6px solid var(--primary-10);
-      color: var(--primary-100);
+    .crown {
+      color: var(--primary-30);
     }
 
-    .star {
-      background: var(--primary-10-o-10);
-    }
-
-    .talentProgress {
-      cursor: default;
-    }
-  }
-
-  &:not(.levelComplete):hover {
-    .star {
-      animation: fluid-gradient 8s ease infinite;
+    .circleOuter {
+      border: 4px solid var(--primary-30);
     }
 
     .talentProgress {
-      display: flex;
-    }
-
-    .inner {
-      background-color: var(--tertiary-90);
-      color: var(--primary-10);
-      border-color: var(--primary-10);
+      background-color: var(--primary-30);
+      border: 2px solid var(--primary-30);
+      color: var(--primary-90);
     }
   }
 }
 
-.star {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 150px;
-  height: 150px;
-  background: linear-gradient(
-    180deg,
-    var(--secondary-70) 0%,
-    var(--tertiary-80) 50%,
-    var(--tertiary-100) 100%
-  );
-  background-size: 100% 400%;
-  background-position-y: bottom;
-  clip-path: polygon(
-    50% 0%,
-    71% 20%,
-    98% 35%,
-    83% 64%,
-    79% 91%,
-    50% 83%,
-    21% 91%,
-    17% 61%,
-    2% 35%,
-    26% 22%
-  );
-}
-
-.talentProgress {
-  position: absolute;
-  z-index: 1;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  display: none;
-  align-items: center;
-  gap: 8px;
+.crown {
   cursor: pointer;
 }
 
-.inner {
+.circleOuter {
+  position: absolute;
+  top: 44px;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 80px;
-  height: 80px;
-  background-color: var(--tertiary-80);
+  width: 70px;
+  height: 70px;
+  border: 4px solid var(--primary-1);
   border-radius: 50%;
-  backdrop-filter: blur(10px);
-  border-style: solid;
-  border-color: var(--tertiary-50);
+}
 
-  &.step-0 {
-    border-width: 1px;
-  }
+.circleInner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  border: 2px solid var(--primary-1);
+  border-radius: 50%;
+}
 
-  &.step-1 {
-    border-width: 3px;
-  }
-
-  &.step-2 {
-    border-width: 6px;
-  }
-
-  &.step-3 {
-    border-width: 9px;
-  }
+.talentProgress {
+  position: relative;
+  z-index: 1;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  border: 2px solid var(--primary-1);
 }
 
 @keyframes fluid-gradient {

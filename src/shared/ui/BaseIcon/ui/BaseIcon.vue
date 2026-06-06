@@ -1,11 +1,14 @@
 <script setup lang="ts">
-import type { BaseIconTypes } from '../models';
+import LocalIcon from './components/LocalIcon.vue';
 
-const { name, sizeValue } = defineProps<BaseIconTypes.Props>();
+import type { BaseIconTypes } from '../models/baseIcon.types';
+
+const { name, sizeValue, localIconName, size } = defineProps<BaseIconTypes.Props>();
 </script>
 
 <template>
-  <i :class="['pi', `pi-${name}`, `${sizeValue}SizeIcon`]"></i>
+  <localIcon v-if="localIconName" :localIconName="localIconName" :size="size" />
+  <i v-else :class="['pi', `pi-${name}`, `${sizeValue}SizeIcon`]"></i>
 </template>
 
 <style lang="scss" scoped>
