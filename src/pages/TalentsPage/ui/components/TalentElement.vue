@@ -3,7 +3,7 @@ import { ref } from 'vue';
 
 import { Tag } from 'primevue';
 
-import type { TalentElementTypes } from '../../models';
+import type { TalentElementTypes } from '../../models/talentElement.types';
 
 import { BaseIcon, useBaseDrawerStore } from '@/shared/ui';
 
@@ -30,7 +30,8 @@ const openDescription = () => {
     <BaseIcon localIconName="CROWN" :size="55" class="crown" @click="openDescription" />
     <div class="circleOuter">
       <button class="circleInner" @click="openDescription">
-        <BaseIcon :name="iconName" sizeValue="medium" color="currentColor" />
+        <BaseIcon :name="iconName" sizeValue="medium" color="currentColor" class="talentIcon" />
+        <BaseIcon name="info-circle" sizeValue="medium" color="currentColor" class="infoIcon" />
       </button>
     </div>
     <Tag
@@ -64,6 +65,14 @@ const openDescription = () => {
       );
       background-size: 100% 400%;
       animation: fluid-gradient 3s ease infinite;
+
+      .infoIcon {
+        display: block;
+      }
+
+      .talentIcon {
+        display: none;
+      }
     }
   }
 
@@ -82,6 +91,10 @@ const openDescription = () => {
       color: var(--primary-90);
     }
   }
+}
+
+.infoIcon {
+  display: none;
 }
 
 .crown {

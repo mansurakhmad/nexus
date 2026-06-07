@@ -71,6 +71,10 @@ const {
     padding: 16px;
   }
 
+  &.largePadding {
+    padding: 24px;
+  }
+
   // GAP
   &.noneGap {
     gap: 0;
