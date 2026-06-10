@@ -5,6 +5,7 @@ import CoreTalents from './components/CoreTalents.vue';
 import FrequentlyAskedQuestions from './components/FrequentlyAskedQuestions.vue';
 import SpecializationCard from './components/SpecializationCard.vue';
 
+import { bookmakerTalents, lorekeeperTalents } from '@/entities/User';
 import { SPECIALIZATIONS } from '@/shared/config';
 import { BaseHeading, BaseContainer, AnimatedWrapper } from '@/shared/ui';
 
@@ -21,27 +22,29 @@ const selectSpecialization = (specialization: SPECIALIZATIONS) => {
       <BaseHeading level="h1" fontSize="extraLarge" weight="bold">Specialization Core</BaseHeading>
       <BaseHeading level="h4">Choose Your Path</BaseHeading>
     </BaseContainer>
-    <FrequentlyAskedQuestions />
     <CoreTalents />
     <BaseContainer flexValue="column" flexAlignValue="center" class="specializationsDivider">
       <AnimatedWrapper theme="Blue" class="top line" />
       <BaseHeading level="h4" fontSize="medium" class="title">Specialization fork</BaseHeading>
-      <AnimatedWrapper theme="Blue" class="bottom line" />
+      <AnimatedWrapper theme="Red" class="bottom line" />
     </BaseContainer>
     <BaseContainer flexValue="row" flexJustifyValue="between" gapValue="extraLarge">
       <SpecializationCard
+        :talents="bookmakerTalents"
         :currentSpecializationKey="SPECIALIZATIONS.BOOKMAKER"
         :selectedSpecializationKey="selectedSpecialization"
         @selectSpecialization="selectSpecialization"
         title="Bookmaker"
       />
       <SpecializationCard
+        :talents="lorekeeperTalents"
         :currentSpecializationKey="SPECIALIZATIONS.LOREKEEPER"
         :selectedSpecializationKey="selectedSpecialization"
         @selectSpecialization="selectSpecialization"
         title="Lorekeeper"
       />
     </BaseContainer>
+    <FrequentlyAskedQuestions />
   </BaseContainer>
 </template>
 
@@ -55,6 +58,8 @@ const selectSpecialization = (specialization: SPECIALIZATIONS) => {
 }
 
 .specializationsDivider {
+  opacity: 0.5;
+
   .line {
     width: 10px;
     height: 80px;

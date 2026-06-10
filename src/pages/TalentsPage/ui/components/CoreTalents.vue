@@ -50,7 +50,7 @@ const coreTalents = [
       flexAlignValue="center"
     >
       <template v-for="(talent, index) in coreTalents" :key="talent.iconName">
-        <TalentElement v-bind="talent" class="baseTalent" />
+        <TalentElement v-bind="talent" class="baseTalent" :maxLevel="3" />
         <AnimatedWrapper v-if="index !== coreTalents.length - 1" theme="Blue" class="talentLine" />
       </template>
     </BaseContainer>

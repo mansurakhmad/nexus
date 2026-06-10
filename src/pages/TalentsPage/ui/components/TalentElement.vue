@@ -7,17 +7,15 @@ import type { TalentElementTypes } from '../../models/talentElement.types';
 
 import { BaseIcon, useBaseDrawerStore } from '@/shared/ui';
 
-const MAX_LEVEL_PROGRESS = 3;
-
-const { iconName, talentName, description } = defineProps<TalentElementTypes.Props>();
+const { iconName, talentName, description, maxLevel } = defineProps<TalentElementTypes.Props>();
 
 const currentProgress = ref(0);
 
 const { triggerDrawer } = useBaseDrawerStore();
 
 const upTalentProgress = () => {
-  const newValue = currentProgress.value + 1;
-  currentProgress.value = newValue > MAX_LEVEL_PROGRESS ? MAX_LEVEL_PROGRESS : newValue;
+  const newLevel = currentProgress.value + 1;
+  currentProgress.value = newLevel > maxLevel ? maxLevel : newLevel;
 };
 
 const openDescription = () => {
@@ -26,20 +24,26 @@ const openDescription = () => {
 </script>
 
 <template>
-  <div :class="['talentElement', { levelComplete: currentProgress >= MAX_LEVEL_PROGRESS }]">
+  <div :class="['talentElement', { levelComplete: currentProgress >= maxLevel }]">
     <BaseIcon localIconName="CROWN" :size="55" class="crown" @click="openDescription" />
     <div class="circleOuter">
       <button class="circleInner" @click="openDescription">
-        <BaseIcon :name="iconName" sizeValue="medium" color="currentColor" class="talentIcon" />
+        <BaseIcon
+          :name="isBlocked ? 'lock' : iconName"
+          sizeValue="medium"
+          color="currentColor"
+          class="talentIcon"
+        />
         <BaseIcon name="info-circle" sizeValue="medium" color="currentColor" class="infoIcon" />
       </button>
     </div>
     <Tag
+      v-if="!isBlocked"
       rounded
       class="talentProgress"
       severity="secondary"
-      :value="`${currentProgress} / ${MAX_LEVEL_PROGRESS}`"
-      :icon="currentProgress < MAX_LEVEL_PROGRESS ? `pi pi-plus` : undefined"
+      :value="`${currentProgress} / ${maxLevel}`"
+      :icon="currentProgress < maxLevel ? `pi pi-plus` : undefined"
       @click="upTalentProgress"
     />
   </div>
@@ -111,6 +115,7 @@ const openDescription = () => {
   height: 70px;
   border: 4px solid var(--primary-1);
   border-radius: 50%;
+  box-shadow: 0 0 10px 2px var(--primary-1);
 }
 
 .circleInner {
@@ -130,6 +135,7 @@ const openDescription = () => {
   gap: 8px;
   cursor: pointer;
   border: 2px solid var(--primary-1);
+  box-shadow: 0 0 10px 2px var(--primary-1);
 }
 
 @keyframes fluid-gradient {

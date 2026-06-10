@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import SpecializationTalents from './SpecializationTalents.vue';
 import { SpecializationCardTypes } from '../../models/specializationCard.types';
 
 import { BaseButton, BaseContainer, BaseHeading, BaseText } from '@/shared/ui';
@@ -6,7 +7,7 @@ import { BaseButton, BaseContainer, BaseHeading, BaseText } from '@/shared/ui';
 const { currentSpecializationKey, selectedSpecializationKey } =
   defineProps<SpecializationCardTypes.Props>();
 
-const emit = defineEmits<SpecializationCardTypes.Events>();
+defineEmits<SpecializationCardTypes.Events>();
 </script>
 
 <template>
@@ -32,7 +33,7 @@ const emit = defineEmits<SpecializationCardTypes.Events>();
         class="chooseSpecializationButton"
         :disabled="!!selectedSpecializationKey"
         @click="
-          emit(SpecializationCardTypes.EventNames.SELECT_SPECIALIZATION, currentSpecializationKey)
+          $emit(SpecializationCardTypes.EventNames.SELECT_SPECIALIZATION, currentSpecializationKey)
         "
       >
         Choose
@@ -50,7 +51,13 @@ const emit = defineEmits<SpecializationCardTypes.Events>();
       </BaseContainer>
       <BaseHeading level="h4" fontSize="medium">{{ title }}</BaseHeading>
     </BaseContainer>
-    <BaseContainer>Specialization Tree</BaseContainer>
+    <BaseContainer>
+      <SpecializationTalents
+        :specializationTalents="talents"
+        :selectedSpecializationKey="selectedSpecializationKey"
+        :currentSpecializationKey="currentSpecializationKey"
+      />
+    </BaseContainer>
   </BaseContainer>
 </template>
 
@@ -62,7 +69,7 @@ const emit = defineEmits<SpecializationCardTypes.Events>();
   transition: all 0.5s ease-in-out;
 
   &.disabled {
-    opacity: 0.5;
+    opacity: 0.35;
   }
 
   &.active {
