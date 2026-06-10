@@ -3,5 +3,7 @@ export namespace TalentElementTypes {
     iconName: string;
     talentName: string;
     description: string;
+    maxLevel: number;
+    isBlocked?: boolean;
   }
 }

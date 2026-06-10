@@ -23,7 +23,7 @@ const classNames = ['baseText', `${size}SizeText`, `${weight}WeightText`];
 <style lang="scss" scoped>
 .baseText {
   margin: 0;
-  color: var(--black-000);
+  color: var(--primary-1);
 }
 
 // SIZE

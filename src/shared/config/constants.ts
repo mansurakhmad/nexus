@@ -30,5 +30,10 @@ export enum USER_TIRES {
   ENTERPRISE = 'ENTERPRISE',
 }
 
+export enum SPECIALIZATIONS {
+  BOOKMAKER = 'BOOKMAKER',
+  LOREKEEPER = 'LOREKEEPER',
+}
+
 export const BASE_XP = 60;
 export const MULTIPLIER = 1.2;

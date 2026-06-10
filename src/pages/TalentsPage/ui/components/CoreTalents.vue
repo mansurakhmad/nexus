@@ -1,9 +1,13 @@
 <script setup lang="ts">
+import { ref } from 'vue';
+
 import TalentElement from './TalentElement.vue';
 
-import { BaseContainer, BaseHeading } from '@/shared/ui';
+import { AnimatedWrapper, BaseContainer, BaseHeading, BaseToggleButton } from '@/shared/ui';
 
-const firstTierTalents = [
+const isExpanded = ref(true);
+
+const coreTalents = [
   {
     iconName: 'sun',
     talentName: 'Analytical Mind',
@@ -22,14 +26,33 @@ const firstTierTalents = [
     description:
       'Focus: Economy. Perk per level: Passive daily login bonus: +5 / +10 / +15 Credits. Purpose: Provides a reliable baseline capital, even if the user is temporarily inactive in quizzes.',
   },
+  {
+    iconName: 'heart',
+    talentName: 'Safe Bet',
+    description:
+      'Serves as your weekly safety net, allowing you to reclaim up to 50% of your stake on a single high-risk or major tournament prediction.',
+  },
 ];
 </script>
 
 <template>
   <BaseContainer class="talentsTreeWorkspace" paddingValue="normal" radiusValue="normal">
-    <BaseHeading level="h4">Core Talents</BaseHeading>
-    <BaseContainer class="talents" flexValue="row" flexJustifyValue="center" gapValue="extraLarge">
-      <TalentElement v-for="talent in firstTierTalents" :key="talent.iconName" v-bind="talent" />
+    <BaseContainer flexValue="row" flexJustifyValue="between" flexAlignValue="center">
+      <BaseHeading level="h4">Core Talents</BaseHeading>
+      <BaseToggleButton v-model="isExpanded" onLabel="Collapse" offLabel="Expand" size="small" />
+    </BaseContainer>
+    <BaseContainer
+      v-show="isExpanded"
+      class="talents"
+      flexValue="row"
+      flexJustifyValue="center"
+      gapValue="extraLarge"
+      flexAlignValue="center"
+    >
+      <template v-for="(talent, index) in coreTalents" :key="talent.iconName">
+        <TalentElement v-bind="talent" class="baseTalent" :maxLevel="3" />
+        <AnimatedWrapper v-if="index !== coreTalents.length - 1" theme="Blue" class="talentLine" />
+      </template>
     </BaseContainer>
   </BaseContainer>
 </template>
@@ -41,5 +64,11 @@ const firstTierTalents = [
 
 .talents {
   margin-top: 24px;
+  padding-bottom: 32px;
+}
+
+.talentLine {
+  width: 77px;
+  height: 10px;
 }
 </style>
