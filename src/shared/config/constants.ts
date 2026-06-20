@@ -35,5 +35,7 @@ export enum SPECIALIZATIONS {
   LOREKEEPER = 'LOREKEEPER',
 }
 
+export type TalentType = SPECIALIZATIONS | 'CORE';
+
 export const BASE_XP = 60;
 export const MULTIPLIER = 1.2;

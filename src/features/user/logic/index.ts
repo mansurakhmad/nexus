@@ -3,3 +3,4 @@ export * from './sendUpdateUserRequest';
 export * from './sendUpdateUserAvatarRequest';
 export * from './sendDeleteAccountRequest';
 export * from './logoutUser';
+export * from './sendUpdateUserTalentRequest';

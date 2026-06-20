@@ -1,3 +1,4 @@
+import type { TalentsTypes } from './talents.types';
 import type { USER_TIRES } from '@/shared/config';
 import type { Nullable } from '@/shared/utils';
 import type { User as UserAuth } from '@supabase/supabase-js';
@@ -22,9 +23,11 @@ export namespace User {
     tier?: USER_TIRES;
     balance: number;
     xp: number;
+    talent_points: number;
   }>;
 
   export interface Model extends UserAuth {
     profileData: ProfileData;
+    talents: TalentsTypes.UserTalent[];
   }
 }

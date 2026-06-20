@@ -1,4 +1,4 @@
-import type { User } from '@/entities/User';
+import type { TalentsTypes, User } from '@/entities/User';
 
 import { api } from '@/shared/api';
 
@@ -20,8 +20,17 @@ export const getUserRequest = async (): Promise<User.Model> => {
 
   if (profileError) throw profileError;
 
+  const { data: talents, error: talentsError } = await api
+    .from('user_talents')
+    .select<string, TalentsTypes.UserTalent>('current_level, type, talent_id')
+    .eq('user_id', user?.id);
+
+  if (talentsError) throw talentsError;
+  console.log('request talents', talents);
+  console.log('request profileData', profileData);
   return {
     ...user,
     profileData,
+    talents,
   };
 };

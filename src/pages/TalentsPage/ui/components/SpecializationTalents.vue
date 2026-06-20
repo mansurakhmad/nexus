@@ -38,6 +38,7 @@ defineProps<SpecializationTalentsTypes.Props>();
             :talentName="talent.name"
             :description="talent.description"
             :maxLevel="talent.maxLevel"
+            :id="talent.id"
             :isBlocked="
               !selectedSpecializationKey || selectedSpecializationKey !== currentSpecializationKey
             "

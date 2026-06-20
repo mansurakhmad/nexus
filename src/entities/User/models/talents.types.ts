@@ -1,3 +1,5 @@
+import type { TalentType } from '@/shared/config';
+
 export namespace TalentsTypes {
   export enum TalentsTiers {
     first = '11 - 20',
@@ -11,4 +13,10 @@ export namespace TalentsTypes {
     maxLevel: number;
     id: string;
   };
+
+  export interface UserTalent {
+    talent_id: string;
+    current_level: number;
+    type: TalentType;
+  }
 }

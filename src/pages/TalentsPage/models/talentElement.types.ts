@@ -5,5 +5,6 @@ export namespace TalentElementTypes {
     description: string;
     maxLevel: number;
     isBlocked?: boolean;
+    id: string;
   }
 }

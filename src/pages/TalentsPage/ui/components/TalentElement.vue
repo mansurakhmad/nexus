@@ -1,26 +1,40 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { computed } from 'vue';
 
 import { Tag } from 'primevue';
 
 import type { TalentElementTypes } from '../../models/talentElement.types';
 
+import { useUserTalentUpdateMutation, useUserProfileQuery } from '@/features/user';
 import { BaseIcon, useBaseDrawerStore } from '@/shared/ui';
 
-const { iconName, talentName, description, maxLevel } = defineProps<TalentElementTypes.Props>();
-
-const currentProgress = ref(0);
+const { iconName, talentName, description, maxLevel, id } = defineProps<TalentElementTypes.Props>();
 
 const { triggerDrawer } = useBaseDrawerStore();
+const { data: userData } = useUserProfileQuery();
+const { updateUserTalent } = useUserTalentUpdateMutation();
+
+const currentProgress = computed(() => {
+  if (!userData.value?.talents.length) return 0;
+  return userData.value.talents.find(talent => talent.talent_id === id)?.current_level || 0;
+});
 
 const upTalentProgress = () => {
-  const newLevel = currentProgress.value + 1;
-  currentProgress.value = newLevel > maxLevel ? maxLevel : newLevel;
+  if (!userData.value || !userData.value.profileData.talent_points) return;
+
+  const newLevel = currentProgress.value + 1 > maxLevel ? maxLevel : currentProgress.value + 1;
+  const availablePoints = userData.value.profileData.talent_points - 1;
+
+  updateUserTalent({
+    talent_id: id,
+    current_level: newLevel,
+    type: 'CORE',
+    user_id: userData.value.profileData.id || '',
+    talent_points: availablePoints,
+  });
 };
 
-const openDescription = () => {
-  triggerDrawer({ title: talentName, description, position: 'bottom' });
-};
+const openDescription = () => triggerDrawer({ title: talentName, description, position: 'bottom' });
 </script>
 
 <template>
@@ -38,7 +52,7 @@ const openDescription = () => {
       </button>
     </div>
     <Tag
-      v-if="!isBlocked"
+      v-if="!isBlocked && userData?.profileData.talent_points"
       rounded
       class="talentProgress"
       severity="secondary"
