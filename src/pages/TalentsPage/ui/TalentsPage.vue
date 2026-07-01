@@ -1,18 +1,30 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { computed } from 'vue';
 
 import CoreTalents from './components/CoreTalents.vue';
 import FrequentlyAskedQuestions from './components/FrequentlyAskedQuestions.vue';
 import SpecializationCard from './components/SpecializationCard.vue';
 
 import { bookmakerTalents, lorekeeperTalents } from '@/entities/User';
+import {
+  useUpdateUserSpecializationMutation,
+  useUserProfileQuery,
+} from '@/features/user';
 import { SPECIALIZATIONS } from '@/shared/config';
 import { BaseHeading, BaseContainer, AnimatedWrapper } from '@/shared/ui';
 
-const selectedSpecialization = ref<SPECIALIZATIONS | null>(null);
+const { data: userData } = useUserProfileQuery();
+const { updateUserSpecialization, isPending } = useUpdateUserSpecializationMutation();
+
+const selectedSpecialization = computed(
+  () => userData.value?.profileData?.specialization ?? null
+);
 
 const selectSpecialization = (specialization: SPECIALIZATIONS) => {
-  selectedSpecialization.value = specialization;
+  const userId = userData.value?.profileData?.id;
+  if (!userId || selectedSpecialization.value || isPending.value) return;
+
+  updateUserSpecialization({ user_id: userId, specialization });
 };
 </script>
 
@@ -33,6 +45,7 @@ const selectSpecialization = (specialization: SPECIALIZATIONS) => {
         :talents="bookmakerTalents"
         :currentSpecializationKey="SPECIALIZATIONS.BOOKMAKER"
         :selectedSpecializationKey="selectedSpecialization"
+        :isSelectingSpecialization="isPending"
         @selectSpecialization="selectSpecialization"
         title="Bookmaker"
       />
@@ -40,6 +53,7 @@ const selectSpecialization = (specialization: SPECIALIZATIONS) => {
         :talents="lorekeeperTalents"
         :currentSpecializationKey="SPECIALIZATIONS.LOREKEEPER"
         :selectedSpecializationKey="selectedSpecialization"
+        :isSelectingSpecialization="isPending"
         @selectSpecialization="selectSpecialization"
         title="Lorekeeper"
       />

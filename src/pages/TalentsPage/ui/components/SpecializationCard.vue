@@ -4,7 +4,7 @@ import { SpecializationCardTypes } from '../../models/specializationCard.types';
 
 import { BaseButton, BaseContainer, BaseHeading, BaseText } from '@/shared/ui';
 
-const { currentSpecializationKey, selectedSpecializationKey } =
+const { currentSpecializationKey, selectedSpecializationKey, isSelectingSpecialization } =
   defineProps<SpecializationCardTypes.Props>();
 
 defineEmits<SpecializationCardTypes.Events>();
@@ -31,7 +31,7 @@ defineEmits<SpecializationCardTypes.Events>();
         v-if="selectedSpecializationKey !== currentSpecializationKey"
         theme="primary"
         class="chooseSpecializationButton"
-        :disabled="!!selectedSpecializationKey"
+        :disabled="!!selectedSpecializationKey || isSelectingSpecialization"
         @click="
           $emit(SpecializationCardTypes.EventNames.SELECT_SPECIALIZATION, currentSpecializationKey)
         "

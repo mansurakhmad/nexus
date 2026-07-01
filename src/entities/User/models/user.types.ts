@@ -1,5 +1,5 @@
 import type { TalentsTypes } from './talents.types';
-import type { USER_TIRES } from '@/shared/config';
+import type { USER_TIRES, SPECIALIZATIONS } from '@/shared/config';
 import type { Nullable } from '@/shared/utils';
 import type { User as UserAuth } from '@supabase/supabase-js';
 
@@ -24,6 +24,7 @@ export namespace User {
     balance: number;
     xp: number;
     talent_points: number;
+    specialization?: SPECIALIZATIONS | null;
   }>;
 
   export interface Model extends UserAuth {

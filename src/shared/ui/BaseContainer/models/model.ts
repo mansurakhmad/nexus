@@ -6,6 +6,6 @@ export namespace BaseContainer {
     gapValue?: 'xSmall' | 'small' | 'normal' | 'large' | 'xLarge' | 'extraLarge' | 'none';
     radiusValue?: 'small' | 'normal' | 'large';
     flexJustifyValue?: 'center' | 'start' | 'end' | 'between' | 'around';
-    flexAlignValue?: 'center' | 'start' | 'end';
+    flexAlignValue?: 'center' | 'stretch' | 'start' | 'end';
   }
 }

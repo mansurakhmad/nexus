@@ -10,6 +10,7 @@ export namespace SpecializationCardTypes {
     selectedSpecializationKey: SPECIALIZATIONS | null;
     currentSpecializationKey: SPECIALIZATIONS;
     talents: Record<TalentsTypes.TalentsTiers, TalentsTypes.Model[]>;
+    isSelectingSpecialization?: boolean;
   }
 
   export interface Events {

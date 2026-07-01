@@ -151,6 +151,10 @@ const {
     align-items: center;
   }
 
+  &.stretchFlexAlign {
+    align-items: stretch;
+  }
+
   &.endFlexAlign {
     align-items: flex-end;
   }

@@ -6,7 +6,7 @@ export const coreTalents: TalentsTypes.Model[] = [
     name: 'Analytical Mind',
     description:
       'Focus: Quizzes & Knowledge Base. Perk per level: Increases XP gained from correctly answered quizzes by +5% / +10% / +15%. Purpose: Accelerates early leveling for players who prefer testing their knowledge.',
-    maxLevel: 3,
+    maxLevel: 1,
     id: 'analytical-mind',
   },
   {

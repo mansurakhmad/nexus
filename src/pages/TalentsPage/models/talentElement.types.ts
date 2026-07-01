@@ -1,3 +1,5 @@
+import type { TalentType } from '@/shared/config';
+
 export namespace TalentElementTypes {
   export interface Props {
     iconName: string;
@@ -6,5 +8,6 @@ export namespace TalentElementTypes {
     maxLevel: number;
     isBlocked?: boolean;
     id: string;
+    talentType?: TalentType;
   }
 }

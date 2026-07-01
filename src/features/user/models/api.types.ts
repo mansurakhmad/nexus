@@ -1,4 +1,4 @@
-import type { TalentType } from '@/shared/config';
+import type { TalentType, SPECIALIZATIONS } from '@/shared/config';
 
 export interface SendUpdateUserAvatarPayload {
   file: File;
@@ -16,4 +16,9 @@ export interface SendUpdateUserTalentPayload {
 export interface SendUpdateUserLocationPayload {
   user_id: string;
   talent_points: number;
+}
+
+export interface SendUpdateUserSpecializationPayload {
+  user_id: string;
+  specialization: SPECIALIZATIONS;
 }
